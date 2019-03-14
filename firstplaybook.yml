@@ -1,0 +1,57 @@
+---
+- hosts: ansi-2 
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  gather_facts: false
+
+
+  tasks:
+  - name: Installing HTTPD server
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Restarting Web Server
+    service:
+      name: httpd
+      state: restarted
+    register: output
+  - debug:
+      msg: "SHOW RESTART OUTPUT {{ output }}"
+
+  - name: Installing elinks packages
+    yum:
+      name: elinks
+      state: latest
+    
+- hosts: ansi-1
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  gather_facts: false
+
+  handlers:
+    - name: Restarted The Web Server
+      service:
+        name: httpd
+        state: restarted
+      listen: "Restarted The Web Server"
+
+  tasks:
+  - name: IRemoving WEB server and Calling handlers signal
+    yum:
+      name: httpd
+      state: absent
+    notify: "Restarted The Web Server"
+    register: restartlogs
+
+  - debug:
+      msg: "Resating logs {{ restartlogs }}"
+  
+  - name: Installing GITHUB in local machine
+    yum:
+      name: git
+      state: latest
+  - debug: 
+      msg: "GIT installing logs"
