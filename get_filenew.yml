@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  gather_facts: fales
+  
+  tasks:
+  - name: Get files
+    get_url:
+      url: http://{{item}}/index.html
+      dest: /tmp/{{item}}
+    with_items:
+      - "{{ hostvars['ansi_1'] }}"
+      - "{{ hostvars['ansi_2'] }}"
