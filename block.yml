@@ -25,7 +25,7 @@
           msg: 'File is exist :-)'
     rescue:
       - debug:
-          msg: 'File doesn't exist :-('
+          msg: "File does not exist :-("
     always:
       - debug:
           msg: 'This is done!'
