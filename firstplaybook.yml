@@ -15,7 +15,7 @@
   - name: Restarting Web Server
     service:
       name: httpd
-      state: restarted
+      state: started
     register: output
   - debug:
       msg: "SHOW RESTART OUTPUT {{ output }}"
@@ -24,7 +24,16 @@
     yum:
       name: elinks
       state: latest
-    
+  
+  - name: Creating a file called "Index.html"
+    lineinfile:
+      path: /var/www/html/index.html
+      state: touch
+      line: "<h1> Welcome to the Ansi world </h1>"
+
+  - debug:
+      msg: "Line creation file error:" 
+ 
 - hosts: ansi-1
   remote_user: ec2-user
   become: yes
@@ -35,23 +44,25 @@
     - name: Restarted The Web Server
       service:
         name: httpd
-        state: restarted
+        state: started
       listen: "Restarted The Web Server"
 
   tasks:
-  - name: IRemoving WEB server and Calling handlers signal
+  - name: Installing WEB server and Calling handlers signal
     yum:
       name: httpd
-      state: absent
+      state: latest 
     notify: "Restarted The Web Server"
-    register: restartlogs
+   # register: restartlogs
 
   - debug:
       msg: "Resating logs {{ restartlogs }}"
-  
-  - name: Installing GITHUB in local machine
-    yum:
-      name: git
-      state: latest
-  - debug: 
-      msg: "GIT installing logs"
+ 
+  - name: Creating a file called "Index.html" 
+    lineinfile: 
+      path: /var/www/html/index.html
+      state: touch
+      line: "<h1> Welcome to the Ansi world </h1>"
+
+  - debug:
+      msg: "Line creation file error:"
