@@ -9,7 +9,7 @@
     - name: get file
       block:
         - get_url: http://172.31.34.177/index.html
-          dest: /tmp/index_file
+          dest: "/tmp/index_file"
       rescue:
         - debug: msg="The file is doesn't exist"
       always:
