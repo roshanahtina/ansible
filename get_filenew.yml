@@ -11,5 +11,5 @@
       url: http://{{item}}/index.html
       dest: /tmp/{{item}}
     with_items:
-      - "{{ hostvars['ansi_1'] }}"
+      - 172.31.34.177
       
