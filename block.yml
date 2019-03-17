@@ -18,7 +18,8 @@
       - debug:
           msg: 'I caught an error, can do stuff here to fix it, :-)'
       - name: get file
-        get_url: http://localhost/index.html
+        get_url: 
+          url: http://localhost/index.html
           dest: "/tmp/index_html"
       - debug:
           msg: 'File is exist :-)'
