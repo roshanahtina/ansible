@@ -1,2 +1,2 @@
 # ansible-training
-This My Ansible traing palybooks and plays
+This is my ansible traing palybooks and plays
