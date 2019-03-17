@@ -1,2 +1,2 @@
-# ansible-training
+# ansible-personla-training
 This is my very first ansible traing palybooks and plays in yaml files...
