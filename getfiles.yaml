@@ -40,5 +40,5 @@
       url: http://{{item}}/index.html
       dest: /tmp/{{item}}
     with_items:
-      - "{{ hostvars['ansi_1'].anisble_host }}"
-      - "{{ hostvars['ansi_2'].anisble_host }}"
+      - "{{ hostvars['ansi_1'].AWS_Servers }}"
+      - "{{ hostvars['ansi_2'].AWS_Servers }}"
