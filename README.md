@@ -1,2 +1,2 @@
 # ansible-training
-This is my ansible traing palybooks and plays
+This is my very first ansible traing palybooks and plays in yaml files...
