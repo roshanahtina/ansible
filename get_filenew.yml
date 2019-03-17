@@ -11,5 +11,5 @@
       url: http://{{item}}/index.html
       dest: /tmp/{{item}}
     with_items:
-      - 172.31.34.177
+      - {{ inventory_hostname['ansi_1'] }}
       
