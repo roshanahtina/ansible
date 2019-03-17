@@ -11,5 +11,5 @@
       url: http://{{item}}/index.html
       dest: /tmp/{{item}}
     with_items:
-      - "{{ inventory_hostname['ansi_1'] }}"
+      - "{{ hostvars['ansi_1'] }}"
       
