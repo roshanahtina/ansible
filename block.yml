@@ -14,9 +14,9 @@
         command:  which /bin/false
       - debug:
           msg: 'I never execute, due to the above task failing, :-('
-    rescue:
-      - debug:
-          msg: 'I caught an error, can do stuff here to fix it, :-)'
+  #  rescue:
+   #   - debug:
+    #      msg: 'I caught an error, can do stuff here to fix it, :-)'
       - name: get file
         get_url: 
           url: http://localhost/index.html
