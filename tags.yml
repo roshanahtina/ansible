@@ -25,4 +25,4 @@
       dest: /var/www/html/
     tags:
       - configuration
-  - debug: msg="Show output when tags is executes:"
+    - debug: msg="Show output when tags is executes:"
