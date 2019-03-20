@@ -19,4 +19,10 @@
       path: /home/ec2-user/index.html
       line: "Hello to WEB WORLD!!!"
      
-  - 
+  - name: copy a index file in dest
+    copy:
+      src: /home/ec2-user/index.html
+      dest: /var/www/html/
+    tags:
+      - configuration
+    - debug: msg="Show output when tags is executes:"
