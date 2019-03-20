@@ -1,0 +1,22 @@
+---
+# This is a TAGS yml file
+- hosts: ansi_1
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  tasks:
+  
+  - name: Webdepoly for ansi_1 server
+    file:
+      path: /home/ec2-user/index.html
+      state: touch
+      mode: 0775
+     
+  - name: Insert a line in a index file
+    lineinfile:
+      path: /home/ec2-user/index.html
+      line: "Hello to WEB WORLD!!!"
+     
+  - 
