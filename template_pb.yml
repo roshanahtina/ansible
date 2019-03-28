@@ -2,8 +2,8 @@
 - hosts: all
   tasks:
   - name: getting facts informations
-      template:
-        src: /home/ec2-user/ansible-training/template.ji2
-        dest: /home/ec2-user/template.txt
+    template:
+      src: /home/ec2-user/ansible-training/template.ji2
+      dest: /home/ec2-user/template.txt
   - debug: msg="Template dest output:"
         
