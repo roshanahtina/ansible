@@ -1,0 +1,4 @@
+####https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#using-variables-with-jinja2####
+My Ansible IPv4 Address {{ ansible_default_ipv4.address }} 
+and etho is {{ ansible_default_ipv4.alias }}
+My Distro {{ ansible_distribution }}
