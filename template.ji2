@@ -2,4 +2,4 @@
 My Ansible IPv4 Address {{ ansible_default_ipv4.address }} 
 and etho is {{ ansible_default_ipv4.alias }}
 My Distro {{ ansible_distribution }}
-Ansible Dsk {{ ansible_device_links.labels }}
+Ansible Date {{ ansible_date_time.date }}
