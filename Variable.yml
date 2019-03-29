@@ -1,0 +1,22 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
+  gather_facts: true
+  
+  vars:
+    user_list: /home/ec2-user/var/list
+  tasks:
+  - name: Create A File using vars
+    file:
+      path: "{{ user_list }}"
+      state: touch
+  - name: Copy a group hosts name in a newly created file
+    lineinfile:
+      path: "{{ user_list }}"
+      line: "{{ item }}"
+    with_item:
+      - "{{ staff }}"
+      - "{{ faculty }}"
+      - "{{ others }}"
