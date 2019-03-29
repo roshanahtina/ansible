@@ -17,3 +17,7 @@
       path: "{{ inv_file }}"
       line: "{{ groups['AWS_Servers'] | join (' ')}}"
   - debug: msg="OutPut of the Line in a file"
+  - name: fateching a hostname
+    lineinfile:
+      path: "{{ inv_file }}"
+      line: "{{ group_names['ansi_1'] }}"
