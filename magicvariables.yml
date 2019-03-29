@@ -17,4 +17,5 @@
       path: "{{ inv_file }}"
       line: "{{ groups['AWS_Servers'] | join (' ')}}"
     register: "Line in a file"
-  - debug: msg="OutPut of the '{{ Line in a file }}' :"
+  - debug: 
+      msg: "OutPut of the '{{ Line in a file }}' :"
