@@ -16,7 +16,7 @@
     lineinfile:
       path: "{{ user_list }}"
       line: "{{ item }}"
-    with_item:
+    with_items:
       - "{{ staff }}"
       - "{{ faculty }}"
       - "{{ others }}"
