@@ -6,14 +6,14 @@
   gather_facts: true
   
   vars:
-    inv_vars=/home/ec2-user/var/inv.txt
+    inv_file: /home/ec2-user/var/inv.txt
   tasks:
   - name: Create A File using vars
     file:
-      path: "{{ inv_vars }}"
+      path: "{{ inv_file }}"
       state: touch
   - name: Copy a group hosts name in a newly created file
     lineinfile:
-      path: "{{ iinv_vars }}"
-      line: "{{ groups['AWS_Servers'] }}"
-  - debug: msg="OutPut of the Line in a file:"
+      path: "{{ inv_file }}"
+      line: "{{ groups['AWS_Servers'] | join (' ')}}"
+  - debug: msg="OutPut of the Line in a file"
