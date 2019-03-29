@@ -15,5 +15,5 @@
   - name: Copy a group hosts name in a newly created file
     lineinfile:
       path: "{{ inv_file }}"
-      line: "{{ groups['AWS_Servers'] }}"
+      line: "{{ groups['AWS_Servers'] | join (' ')}}"
   - debug: msg="OutPut of the Line in a file:"
