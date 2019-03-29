@@ -20,4 +20,4 @@
   - name: fateching a hostname
     lineinfile:
       path: "{{ inv_file }}"
-      line: "{{ groups['ansi_1'] }}"
+      line: "{{ groups['ansi_1'] | join (' ')}}"
