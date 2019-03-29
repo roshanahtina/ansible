@@ -6,7 +6,7 @@
   gather_facts: true
   
   vars:
-    inv_file=/home/ec2-user/var/inv.txt
+    inv_file: /home/ec2-user/var/inv.txt
   tasks:
   - name: Create A File using vars
     file:
