@@ -5,10 +5,11 @@
   become_method: sudo
   gather_facts: true
   
+  - import_playbook: firstplaybook.yml
+  
   tasks:
   - name: ping to all the ec2-ins
     ping:
   - debug:
       msg: "If ping failed to ping to target server"
       
-  - import_playbook: firstplaybook.yml
