@@ -1,5 +1,5 @@
 ---
-- import_playbook: firstplaybook.yml
+# - import_playbook: firstplaybook.yml
 
 - hosts: all
   remote_user: ec2-user
