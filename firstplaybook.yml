@@ -53,7 +53,7 @@
       name: httpd
       state: latest 
     notify: "Restarted The Web Server"
-   # register: restartlogs
+    register: restartlogs
 
   - debug:
       msg: "Resating logs {{ restartlogs }}"
