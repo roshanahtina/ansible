@@ -10,3 +10,5 @@
     ping:
   - debug:
       msg: "If ping failed to ping to target server"
+      
+  - import_playbook: firstplaybook.yml
