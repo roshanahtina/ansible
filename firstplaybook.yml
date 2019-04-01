@@ -26,9 +26,11 @@
       state: latest
   
   - name: Creating a file called "Index.html"
-    lineinfile:
+    file:
       path: /var/www/html/index.html
       state: touch
+    lineinfile:
+      path: /var/www/html/index.html
       line: "<h1> Welcome to the Ansi world </h1>"
 
   - debug:
@@ -59,6 +61,9 @@
       msg: "Resating logs {{ restartlogs }}"
  
   - name: Creating a file called "Index.html" 
+    file:
+      path: /var/www/html/index.html
+      state: touch
     lineinfile: 
       path: /var/www/html/index.html
       state: touch
