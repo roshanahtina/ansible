@@ -6,11 +6,11 @@
   gather_facts: true
   
   handlers:
-  - name: Apache Webserver Restart
-    service:
-      name: httpd
-      state: restarted
-      listen: Apache Webserver Restart
+    - name: Apache Webserver Restart
+      service:
+        name: httpd
+        state: started
+      #listen: "Apache Webserver Restart"
 
   tasks:
   - name: Installing HTTPD on All server
