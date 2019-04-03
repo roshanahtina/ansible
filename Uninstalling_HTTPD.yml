@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  gather_facts: true
+
+  tasks:
+  - name: Uninstalling HTTPD on "{{ hosts }}" server
+    yum:
+      name: httpd
+      state: absent
