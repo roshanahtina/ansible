@@ -40,5 +40,5 @@
       url: http://{{item}}/index.html
       dest: /tmp/{{item}}
     with_items:
-      - {{ hostvars['ansi_1'] }}
-      - {{ hostvars['ansi_2'] }}
+      - {{ groups['ansi_1'] | join (' ')}}
+      - {{ groups['ansi_2'] | join (' ')}}
