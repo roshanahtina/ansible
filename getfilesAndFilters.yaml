@@ -5,15 +5,6 @@
   become_method: sudo
   gather_facts: fales
 
-  handlers:
-    - name: webserver HTTPD restart
-      service:
-        name: httpd
-        state: started
-      #listen: "webstarted"
-    - debug:
-        msg: "Handlers errors messages"
-
   tasks:
   - name: Installing HTTPD on All server
     yum:
@@ -42,3 +33,12 @@
     with_items:
       - "{{ groups['ansi_1'] | join (' ')}}"
       - "{{ groups['ansi_2'] | join (' ')}}"
+      
+  handlers:
+    - name: webserver HTTPD restart
+      service:
+        name: httpd
+        state: restarted
+      #listen: "webstarted"
+    - debug:
+        msg: "Handlers errors messages"
