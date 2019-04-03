@@ -36,10 +36,10 @@
       - "{{ groups['ansi_2'] | join (' ')}}"
       
   handlers:
-    - name: Apache Webserver Restart
-      service:
-        name: httpd
-        state: restarted
+  - name: Apache Webserver Restart
+    service:
+      name: httpd
+      state: restarted
   
-    - debug:
-        msg: "Handlers errors messages"
+  - debug:
+      msg: "Handlers errors messages"
