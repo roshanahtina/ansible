@@ -8,7 +8,8 @@
   tasks:
   - name: Creation of bunch of users
     user:
-      name: {{item}}
+      name: "{{ item }}"
+      state: present
       groups: wheel
     with_items:
       - jon
