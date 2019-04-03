@@ -8,9 +8,9 @@
   tasks:
   - name: Creation of bunch of users
     user:
-      name: {{ item }}
+      name: {{item}}
       groups: wheel
-    loops:
+    with_items:
       - jon
       - man
       - rose
