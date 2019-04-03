@@ -10,3 +10,6 @@
     yum:
       name: httpd
       state: absent
+      
+  - debug: 
+      msg: "UnInstalling Apache WebServer:"
