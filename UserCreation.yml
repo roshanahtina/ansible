@@ -5,6 +5,8 @@
   become_method: sudo
   gather_facts: true
 
+  vars:
+    user.lst: /home/ec2-user/ansible-training/vars/user.lst
   tasks:
   - name: Creation of bunch of users
     user:
