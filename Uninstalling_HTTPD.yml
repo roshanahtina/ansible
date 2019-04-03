@@ -6,7 +6,7 @@
   gather_facts: true
 
   tasks:
-  - name: Uninstalling HTTPD on '{{ ansible_host }}' server
+  - name: Uninstalling HTTPD on {{ansible_host | $6}} server
     yum:
       name: httpd
       state: absent
