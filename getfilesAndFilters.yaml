@@ -10,25 +10,17 @@
       service:
         name: httpd
         state: started
-      #listen: "Apache Webserver Restart"
+      listen: "Apache Webserver Restart"
 
   tasks:
   - name: Installing HTTPD on All server
     yum:
       name: httpd
       state: latest
-      
-    #notify: "Apache Webserver Restart"
+    notify: "Apache Webserver Restart"
   - debug:
       msg: "Installing Logs"
     
-  - name: Starting Apache Web Server
-    service:
-      name: httpd
-      state: started
-    
-
-
   - name: Creating index.html file
     file:
       path: /var/www/html/index.html
