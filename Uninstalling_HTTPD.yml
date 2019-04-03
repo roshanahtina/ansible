@@ -6,7 +6,7 @@
   gather_facts: true
 
   tasks:
-  - name: Uninstalling HTTPD on "{{ hosts }}" server
+  - name: Uninstalling HTTPD on '{{ hosts }}' server
     yum:
       name: httpd
       state: absent
