@@ -10,14 +10,14 @@
     service:
       name: httpd
       state: restarted
+      listen: Apache Webserver Restart
 
   tasks:
   - name: Installing HTTPD on All server
     yum:
       name: httpd
       state: latest
-    notify:
-    - "Apache Webserver Restart"
+    notify: "Apache Webserver Restart"
     
   - debug:
       msg: "HTTPD INstalling Logs"
