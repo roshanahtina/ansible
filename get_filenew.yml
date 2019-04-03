@@ -3,7 +3,7 @@
   remote_user: ec2-user
   become: yes
   become_method: sudo
-  gather_facts: fales
+  gather_facts: true
   
   tasks:
   - name: Get files
@@ -11,5 +11,5 @@
       url: http://{{item}}/index.html
       dest: /tmp/{{item}}
     with_items:
-      - 172.31.34.177
+      - "{{ groups['ansi_1'] | join (' ')}}"
       
