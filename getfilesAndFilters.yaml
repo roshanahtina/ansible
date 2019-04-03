@@ -17,10 +17,10 @@
     yum:
       name: httpd
       state: latest
-      register: Installing Logs
+      
     #notify: "Apache Webserver Restart"
   - debug:
-      msg: "{{ Installing Logs }}"
+      msg: "Installing Logs"
     
   - name: Starting Apache Web Server
     service:
