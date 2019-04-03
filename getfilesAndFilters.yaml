@@ -4,6 +4,12 @@
   become: yes
   become_method: sudo
   gather_facts: true
+  
+  handlers:
+  - name: Apache Webserver Restart
+    service:
+      name: httpd
+      state: restarted
 
   tasks:
   - name: Installing HTTPD on All server
@@ -11,7 +17,7 @@
       name: httpd
       state: latest
     notify:
-      - Apache Webserver Restart
+      - "Apache Webserver Restart"
     
   - debug:
       msg: "HTTPD INstalling Logs"
@@ -35,11 +41,3 @@
       - "{{ groups['ansi_1'] | join (' ')}}"
       - "{{ groups['ansi_2'] | join (' ')}}"
       
-  handlers:
-  - name: Apache Webserver Restart
-    service:
-      name: httpd
-      state: restarted
-  
-  - debug:
-      msg: "Handlers errors messages"
