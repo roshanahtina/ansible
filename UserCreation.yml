@@ -13,7 +13,7 @@
       name: "{{ item }}"
       state: absent
       groups: wheel
-    loops: "{{ user.lst }}"
+    loop: "{{ user.lst }}"
     #with_items: 
     # - jon
     # - man
