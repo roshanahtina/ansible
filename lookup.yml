@@ -9,7 +9,9 @@
   - name: lookup the ssh key file
     command: echo "{{ ssh_keys }}"
     register: findingthepubkeys
-  - demsg: msg="output {{ findingthepubkeys }}"
+    
+  - debug: msg="output {{ findingthepubkeys }}"
+  
     vars:
       ssh_keys:
       - "{{lookup('file', '/home/jsmith/.ssh/id_rsa.pub') }}"
