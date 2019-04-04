@@ -38,3 +38,5 @@
 #     generate_ssh_key: yes
 #     ssh_key_bits: 2048
 #     ssh_key_file: .ssh/id_rsa
+
+##  URL:: https://docs.ansible.com/ansible/latest/modules/user_module.html
