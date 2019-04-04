@@ -5,8 +5,6 @@
   become_method: sudo
   gather_facts: true
 
-  vars:
-    user.lst: /vars/user.lst
   tasks:
   - name: Creation of bunch of users
     user:
