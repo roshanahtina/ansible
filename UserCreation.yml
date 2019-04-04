@@ -11,7 +11,7 @@
       name: jsmith
       state: absent
       remove: yes
-      register: result
+    register: result
   - debug: msg="Output of userdell {{ result }}"
  #- name: Creation of bunch of users
  #  user:
