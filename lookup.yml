@@ -8,8 +8,8 @@
   tasks:
   - name: lookup the ssh key file
     command: echo "{{ ssh_keys }}"
-    register: "finding the pub keys"
-  - demsg: msg="output {{ finding the pub keys }}"
+    register: findingthepubkeys
+  - demsg: msg="output {{ findingthepubkeys }}"
     vars:
       ssh_keys:
       - "{{lookup('file', '/home/jsmith/.ssh/id_rsa.pub') }}"
