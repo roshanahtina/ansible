@@ -6,12 +6,20 @@
   gather_facts: true
 
   tasks:
-  - name: Remove the user 'johnd'
+  - name: Create a 2048-bit SSH key for user jsmith in ~jsmith/.ssh/id_rsa
     user:
       name: jsmith
-      state: absent
-      remove: yes
-    register: result
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
+    register: Output of useradd
+  - debug: msg="O/P of Usedadd {{ Output of useradd }}"
+# - name: Remove the user 'johnd'
+#   user:
+#     name: jsmith
+#     state: absent
+#     remove: yes
+#   register: result
   - debug: msg="Output of userdell {{ result }}"
  #- name: Creation of bunch of users
  #  user:
