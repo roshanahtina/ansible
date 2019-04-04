@@ -5,7 +5,7 @@
   become_method: sudo
   gather_facts: true
   
-  task:
+  tasks:
   - name: lookup the ssh key file
     command: echo "{{ ssh_keys }}"
     vars:
