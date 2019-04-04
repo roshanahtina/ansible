@@ -9,8 +9,7 @@
   - name: Creation of bunch of users
     user:
       name: "{{ item }}"
-      state: absent
-      groups: wheel
+      state: present
     loop: "{{ user.lst }}"
     #with_items: 
     # - jon
