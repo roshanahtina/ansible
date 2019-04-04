@@ -20,7 +20,7 @@
 #     state: absent
 #     remove: yes
 #   register: result
-  - debug: msg="Output of userdell {{ result }}"
+# - debug: msg="Output of userdell {{ result }}"
  #- name: Creation of bunch of users
  #  user:
  #    name: "{{ item }}"
