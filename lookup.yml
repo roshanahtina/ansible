@@ -1,0 +1,13 @@
+---
+- host: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  task:
+  - name: lookup the ssh key file
+    command: echo "{{ ssh_keys }}"
+    vars:
+      ssh_keys:
+      - "{{lookup('file', '/home/jsmith/.ssh/id_rsa.pub') }}"
