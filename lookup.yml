@@ -10,4 +10,4 @@
     command: echo "{{ ssh_keys }}"
     vars:
       ssh_keys:
-      - "{{lookup('file', '/home/jsmith/.ssh/*pub') }}"
+      - "{{lookup('file', '/home/jsmith/.ssh/id_rsa.pub') }}"
