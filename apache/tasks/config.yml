@@ -4,7 +4,7 @@
     src: httpd.conf
     dest: /etc/httpd/conf/
   notify:
-   - restart apache server
+    - restart apache server
     
 - name: Copying INde.html file to the path
   copy:
