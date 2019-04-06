@@ -17,4 +17,6 @@
     - debug:
         msg: "print of facts {{ ansible_distribution }}"
        
+    - debug:
+        msg: "host {{ ansible_facts['ansible_all_ipv4_addresses']}}"
 ...
