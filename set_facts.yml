@@ -1,0 +1,20 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  tasks:
+    - name: Setting manual facts for debug
+      set_fact:
+        our_facts: Ansible RooooooCKS!!!!
+        ansible_distribution: "{{ ansible_distribution | upper }}"
+        
+    - debug:
+        msg: "print of facts {{ our_facts }}"
+        
+    - debug:
+        msg: "print of facts {{ ansible_distribution }}"
+       
+...
