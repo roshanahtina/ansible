@@ -1,0 +1,12 @@
+---
+- name: Copying the conf file to the path
+  copy:
+    src: httpd.conf
+    dest: /etc/httpd/conf/
+  notify:
+    - restart apache server
+    
+ - name: Copying INde.html file to the path
+   copy:
+     src: index.html
+     dest: /var/www/html
