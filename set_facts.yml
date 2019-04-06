@@ -18,5 +18,5 @@
         msg: "print of facts {{ ansible_distribution }}"
        
     - debug:
-        msg: "host {{ ansible_all_ipv4_addresses }}"
+        msg: "host IP ADD: {{ ansible_all_ipv4_addresses }}"
 ...
