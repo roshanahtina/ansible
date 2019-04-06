@@ -7,5 +7,6 @@
 
   tasks:
     - name: "Gathering the ec2-user information"
-        user: jsmith
+      user: 
+        name: jsmith
         comment: "Admin"
