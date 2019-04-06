@@ -9,4 +9,4 @@
     - name: "Gathering the ec2-user information"
       user: 
         name: jsmith
-        comment: "Admin"
+        comment: "Admin" #####jsmith:x:1002:1002:Admin:/home/jsmith:/bin/bash####
