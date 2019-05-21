@@ -2,7 +2,7 @@
 # - import_playbook: firstplaybook.yml
 
 - hosts: all
-  remote_user: ec2-user
+#  remote_user: ec2-user
   become: yes
   become_method: sudo
   gather_facts: true
