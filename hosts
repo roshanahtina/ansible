@@ -42,3 +42,13 @@
 
 ## db-[99:101]-node.example.com
 
+[ansi-master]
+roshansyed27c.mylabserver.com
+
+[ansi-clients]
+roshansyed2[1:5]c.mylabserver.com
+#roshansyed22c.mylabserver.com
+#roshansyed23c.mylabserver.com
+#roshansyed25c.mylabserver.com
+#roshansyed24c.mylabserver.com
+
