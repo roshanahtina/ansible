@@ -44,7 +44,7 @@
 
 [ansi-master]
 roshansyed27c.mylabserver.com
-localhost
+#localhost
 
 [ansi-clients]
 roshansyed2[1:5]c.mylabserver.com
