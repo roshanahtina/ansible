@@ -8,7 +8,7 @@
   gather_facts: true
     
   tasks:
-  - name: ping to all the ec2-ins
+  - name: ping to all the ansible-clients
     ping:
   - debug:
       msg: "If ping failed to ping to target server"
