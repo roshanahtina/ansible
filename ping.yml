@@ -2,10 +2,10 @@
 # - import_playbook: firstplaybook.yml
 
 - hosts: ansi-clients
-  remote_user: ansible
+  #remote_user: ansible
   become: yes
-  become_method: sudo
-  gather_facts: true
+  #become_method: sudo
+  #gather_facts: true
     
   tasks:
   - name: ping to all the ansible-clients
