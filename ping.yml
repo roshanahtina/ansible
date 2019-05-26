@@ -4,9 +4,9 @@
 - hosts: ansi-clients
   #remote_user: cloud_user
   remote_user: ansible
-  #become: yes
+  become: yes
   become_method: sudo
-  gather_facts: false
+  gather_facts: true
     
   tasks:
   - name: ping to all the ansible-clients
