@@ -2,7 +2,8 @@
 # - import_playbook: firstplaybook.yml
 
 - hosts: ansi-clients
-  remote_user: ansible
+  remote_user: cloud_user
+  #remote_user: ansible
   #become: yes
   become_method: sudo
   gather_facts: true
