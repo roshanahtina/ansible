@@ -39,7 +39,7 @@
   - name: Inserting a line in index file
     lineinfile:
       path: /var/www/html/index.html
-      line: "<h1> Welcome to the LA CloudServers world </h1>"
+      line: "<h1> Welcome to the LA CloudServers Web World </h1>"
     notify: "Restarting Apache"
 
   - debug:
