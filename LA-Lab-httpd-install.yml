@@ -29,6 +29,7 @@
     file:
       path: /var/www/html/index.html
       state: touch
+  - debug: msg="error for creating a file"
       
   - name: Inserting a line in index file
     lineinfile:
