@@ -17,5 +17,5 @@
       path: /var/www/html/index.html
       regexp: '^LA CloudServers '
       insertbefore: '^LA CloudServers '
-      line: "<h1> Welcome to the Roshan Academy Web Servers World - {{ ansible_hostname }} </h1>"
+      line: "<h1> Welcome to the Roshan's Web Servers World - {{ ansible_hostname }} </h1>"
     notify: "Restarting Apache"
