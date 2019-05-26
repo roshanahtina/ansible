@@ -1,0 +1,20 @@
+---
+- hosts: ansi-clients 
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true
+
+  handlers:
+  - name: "Restarting Apache"
+    service: 
+      name: httpd
+      state: restarted
+      
+  tasks:
+  - name: Replace a line index file
+    lineinfile:
+      path: /var/www/html/index.html
+      regexp: '^LA CloudServers '
+      line: "Welcome to the Roshan Academy Web Servers World - {{ ansible_hostname }}"
+    notify: "Restarting Apache"
