@@ -10,4 +10,4 @@
     lineinfile:
       path: /etc/sudoers
       regexp: '^root  ALL='
-      line: 'ansible    ALL=(ALL)       ALL'
+      line: 'ansible    ALL=(ALL)      NOPASSWD: ALL'
