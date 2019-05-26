@@ -1,12 +1,12 @@
 ---
 # - import_playbook: firstplaybook.yml
 
-- hosts: ansi-clients
+- hosts: all
   remote_user: cloud_user
   #remote_user: ansible
   #become: yes
   become_method: sudo
-  #gather_facts: true
+  gather_facts: false
     
   tasks:
   - name: ping to all the ansible-clients
