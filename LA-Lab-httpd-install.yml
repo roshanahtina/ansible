@@ -1,0 +1,37 @@
+---
+- hosts: ansi-clients 
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true
+
+
+  tasks:
+  - name: Installing HTTPD server
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Restarting Web Server
+    service:
+      name: httpd
+      state: started
+    register: output
+  - debug:
+      msg: "SHOW RESTART OUTPUT {{ output }}"
+
+  - name: Installing elinks packages
+    yum:
+      name: elinks
+      state: latest
+  
+  - name: Creating a file called "Index.html"
+    file:
+      path: /var/www/html/index.html
+      state: touch
+    lineinfile:
+      path: /var/www/html/index.html
+      line: "<h1> Welcome to the LA CloudServers world </h1>"
+
+  - debug:
+      msg: "Line creation file error:" 
