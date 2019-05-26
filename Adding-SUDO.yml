@@ -1,0 +1,13 @@
+---
+- hosts: ansi-clients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_fact: true
+  
+  tasks:
+  - name: Adding Ansible user into sudoers files
+    lineinfile:
+      path: /etc/sudoers
+      regexp: '^root  ALL='
+      line: 'ansible    ALL=(ALL)       ALL'
