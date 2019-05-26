@@ -25,7 +25,7 @@
       name: elinks
       state: latest
   
-  - name: Creating a file called "Index.html"
+  - name: Creating a file called Index.html
     file:
       path: /var/www/html/index.html
       state: touch
