@@ -24,13 +24,12 @@
     - name: INstall list of packages in otherway
       yum:
         name:
-          - postgressql-contrib
-          - postgressql-server
+          - postgresql-contrib
+          - postgresql-server
         state: latest
       
     - name: List ansible packages and register result to print with debug later
       yum:
         list: ansible
       register: result
-      
     - debug: msg="Result of installed packages using list {{ result }}"
