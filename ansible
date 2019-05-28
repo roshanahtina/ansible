@@ -1,0 +1,4 @@
+ansible:
+  - mysql
+  - mysql-server
+  - htop
