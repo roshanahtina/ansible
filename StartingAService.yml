@@ -3,7 +3,7 @@
   remote_user: ansible
   become: yes
   become_method: sudo
-  gather_fact: true
+  gather_facts: true
   
   tasks:
   - name: Statrnig a serice with mentioned...
