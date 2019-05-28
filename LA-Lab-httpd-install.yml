@@ -23,14 +23,14 @@
       
   - debug: msg="Output of httpdInstall a HTTPD Service {{ httpdInstallop }}"
 
-  - name: Restarting Web Server
+  - name: Starting Web Server
     service:
       name: httpd
       state: started
     register: output
     
   - debug:
-      msg: "SHOW RESTART OUTPUT {{ output }}"
+      msg: "SHOW STARTHTTPD OUTPUT {{ output }}"
 
   - name: Installing elinks packages
     yum:
