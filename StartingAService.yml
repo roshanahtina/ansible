@@ -1,0 +1,15 @@
+---
+- hosts: ansi-clients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_fact: true
+  
+  tasks:
+  - name: Statrnig a serice with mentioned...
+    service:
+      name: httpd
+      state: started
+      register: httpdstartop
+      
+  - debug: msg="Output of starting a HTTPD Service {{ httpdstartop }}"
