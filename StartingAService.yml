@@ -10,6 +10,6 @@
     service:
       name: httpd
       state: started
-      register: httpdstartop
+    register: httpdstartop
       
   - debug: msg="Output of starting a HTTPD Service {{ httpdstartop }}"
