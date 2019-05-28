@@ -10,18 +10,25 @@
     service: 
       name: httpd
       state: restarted
+    register: httpdrestartedop
+      
+  - debug: msg="Output of starting a HTTPD Service {{ httpdrestartedop }}"
 
   tasks:
   - name: Installing HTTPD server
     yum:
       name: httpd
       state: latest
+    register: httpdInstallop
+      
+  - debug: msg="Output of starting a HTTPD Service {{ httpdInstallop }}"
 
   - name: Restarting Web Server
     service:
       name: httpd
       state: started
     register: output
+    
   - debug:
       msg: "SHOW RESTART OUTPUT {{ output }}"
 
