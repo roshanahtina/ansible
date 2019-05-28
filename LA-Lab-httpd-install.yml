@@ -12,7 +12,7 @@
       state: restarted
     register: httpdrestartedop
       
-  - debug: msg="Output of starting a HTTPD Service {{ httpdrestartedop }}"
+  - debug: msg="Output of httpdrestarte a HTTPD Service {{ httpdrestartedop }}"
 
   tasks:
   - name: Installing HTTPD server
@@ -21,7 +21,7 @@
       state: latest
     register: httpdInstallop
       
-  - debug: msg="Output of starting a HTTPD Service {{ httpdInstallop }}"
+  - debug: msg="Output of httpdInstall a HTTPD Service {{ httpdInstallop }}"
 
   - name: Restarting Web Server
     service:
@@ -36,12 +36,17 @@
     yum:
       name: elinks
       state: latest
+    register: InstallElinks
+    
+  - debug: msg="INstalling Elinks {{ InstallElinks }}"
   
   - name: Creating a file called Index.html
     file:
       path: /var/www/html/index.html
       state: touch
-  - debug: msg="error for creating a file"
+    register: createAFileOP
+    
+  - debug: msg="Output of creating a file {{ createAFileOP }}"
       
   - name: Inserting a line in index file
     lineinfile:
