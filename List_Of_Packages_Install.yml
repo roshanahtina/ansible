@@ -24,7 +24,7 @@
     - name: INstall list of packages in otherway
       yum:
         name:
-          - postgressql
+          - postgressql-contrib
           - postgressql-server
         state: latest
       
