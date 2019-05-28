@@ -1,0 +1,36 @@
+---
+- hosts: ansi-clients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  tasks:
+    - name: Installing A list of Linux packages
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - elinks
+        - htop
+        - httpd-tools
+        
+    - name: Install the nginx rpm from a remote repo
+      yum:
+        name: http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+        state: present
+        download_only: true
+      
+    - name: INstall list of packages in otherway
+      yum:
+        name:
+          - postgressql
+          - postgressql-server
+        state: latest
+      
+    - name: List ansible packages and register result to print with debug later
+      yum:
+        list: ansible
+      register: result
+      
+    - debug: msg="Result of installed packages using list {{ result }}"
