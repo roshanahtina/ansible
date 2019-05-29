@@ -33,9 +33,9 @@
         #ist: ansible
         list: "{{ items }}"
         with_items:
-        - git
-        - tar
-        - curl
+          - git
+          - tar
+          - curl
         #list: installed  ###List the INstalled packages
       register: result
     - debug: msg="Result of installed packages using list {{ result }}"
