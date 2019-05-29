@@ -30,8 +30,12 @@
       
     - name: List ansible packages and register result to print with debug later
       yum:
-        #list: ansible
-        list: installed
-          
+        #ist: ansible
+        list={{ item }}
+        with_items:
+        - git
+        - tar
+        - curl
+        #list: installed  ###List the INstalled packages
       register: result
     - debug: msg="Result of installed packages using list {{ result }}"
