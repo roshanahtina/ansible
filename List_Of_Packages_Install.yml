@@ -31,7 +31,7 @@
     - name: List ansible packages and register result to print with debug later
       yum:
         #ist: ansible
-        list="{{ items }}"
+        list: "{{ items }}"
         with_items:
         - git
         - tar
