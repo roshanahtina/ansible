@@ -1,0 +1,30 @@
+---
+- hosts: web
+  remote_user: ansible
+  become: yes
+  tasks:
+    - name: Install HTTPD web server
+      yum:
+        name: httpd
+        state: latest
+    - name: Start and Enabled the service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: Download the tar file
+      get_url:
+        url: http://repo.example.com/website.tgz
+        dest: /tmp/website.tgz
+    - name: change file mode
+      file:
+        path: /tmp/website.tgz
+        mode: 0777
+
+    - debug: msg="Err if not change mode"
+
+    - name: Install web content from downloaded files
+      unarchive:
+        remote_src: yes
+        src: /tmp/website.tgz
+        dest: /var/www/html
