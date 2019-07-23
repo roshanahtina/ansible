@@ -1,7 +1,7 @@
 ---
 # - import_playbook: firstplaybook.yml
 
-- hosts: ansi-clients
+- hosts: ansiclients
   #remote_user: cloud_user
   remote_user: ansible
   become: yes
