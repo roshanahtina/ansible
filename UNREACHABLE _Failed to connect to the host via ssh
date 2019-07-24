@@ -22,3 +22,10 @@ fatal: [roshansyed24d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg"
 fatal: [roshansyed21d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
 fatal: [roshansyed25d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
 fatal: [roshansyed26d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
+
+
+Resolution:
+----------
+Step 1: copy sudo cp -ap /home/ansible/.ssh/id_rsa /var/lib/jenkins/.ssh/
+Step 2: Change the owner of copied key to jenkins
+Step 3: Let give a try... Success is your ouptput.. This Time :)
