@@ -1,0 +1,28 @@
+## Trying private key: 
+debug3: no such identity: /var/lib/jenkins/.ssh/id_rsa: No such file or directory\r\n
+debug1: Trying private key: /var/lib/jenkins/.ssh/id_dsa\r\n
+debug3: no such identity: /var/lib/jenkins/.ssh/id_dsa: No such file or directory\r\n
+debug1: Trying private key: /var/lib/jenkins/.ssh/id_ecdsa\r\n
+debug3: no such identity: /var/lib/jenkins/.ssh/id_ecdsa: No such file or directory\r\n
+debug1: Trying private key: /var/lib/jenkins/.ssh/id_ed25519\r\n
+debug3: no such identity: /var/lib/jenkins/.ssh/id_ed25519: No such file or directory\r\n
+debug1: Trying private key: /var/lib/jenkins/.ssh/id_xmss\r\n
+debug3: no such identity: /var/lib/jenkins/.ssh/id_xmss: No such file or directory\r\ndebug2: we did not send a packet, disable method\r\n
+debug1: No more authentication methods to try.\r\nansible@roshansyed24d.mylabserver.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).\r\n')
+fatal: [xxxxxxxxx.myexampleserver.com]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh
+    
+*Error While running Jenkins Jobs*
+TASK [Gathering Facts] *********************************************************
+task path: /var/lib/jenkins/workspace/Ansible Training/Ansible Runing On Slave Servers/ping.yml:4
+fatal: [roshansyed22d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
+fatal: [roshansyed23d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
+fatal: [roshansyed24d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
+fatal: [roshansyed21d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
+fatal: [roshansyed25d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
+fatal: [roshansyed26d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Host key verification failed.", "unreachable": true}
+
+
+________________|__________________
+________________|__________________
