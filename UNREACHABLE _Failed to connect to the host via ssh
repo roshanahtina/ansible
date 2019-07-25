@@ -27,6 +27,6 @@ fatal: [roshansyed26d.mylabserver.com]: UNREACHABLE! => {"changed": false, "msg"
 
 Resolution:
 -----------
-Step 1: copy sudo cp -ap /home/ansible/.ssh/id_rsa /var/lib/jenkins/.ssh/
-Step 2: Change the owner of copied key to jenkins
+Step 1: copy sudo cp -ap /home/ansible/.ssh/id_rsa /var/lib/jenkins/.ssh/ # Copy "Anible" USer's private key under Jenkins home dir
+Step 2: Change the owner of copied (private key) file to jenkins
 Step 3: Let give a try... Success is your ouptput.. This Time :)
