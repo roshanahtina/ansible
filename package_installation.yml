@@ -1,0 +1,16 @@
+---
+# Package installation on Ansiclietns
+
+- hosts: ansiclients
+  remote_user: ansible
+  become_method: sudo
+  gather_facts: true
+  
+  tasks:
+  
+  - name: Installing a GIT package
+    yum:
+      name: git
+      state: latest
+      
+  - debug: msg="If package is not install show the error"
