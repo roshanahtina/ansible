@@ -4,8 +4,6 @@
 - hosts: ansiclient
   become: yes
   gather_facts: true
-  vars_file:
-    - 
 
   - name: Cloning a REPO
     git:
