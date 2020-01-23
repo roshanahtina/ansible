@@ -11,5 +11,5 @@
   - name: Cloning a REPO
     git:
       repo: https://github.com/roshanahtina/test.git
-      dest: /tmp
+      dest: /tmp/gitrepo
 
