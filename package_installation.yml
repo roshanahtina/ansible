@@ -14,4 +14,4 @@
       name: git
       state: latest
       
-  - debug: msg="If package is not install show the error"
+  - debug: msg="Package is successfully installed "
