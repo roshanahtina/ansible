@@ -12,6 +12,7 @@
   - name: Un-Installing a GIT package
     yum:
       name: git
-      state: absent
+      #state: absent
+      state: latest
       
   - debug: msg="Package is successfully un-installed "
