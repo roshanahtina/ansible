@@ -14,4 +14,4 @@
       name: git
       state: abcent
       
-  - debug: msg="Package is successfully installed "
+  - debug: msg="Package is successfully un-installed "
