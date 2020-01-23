@@ -1,7 +1,7 @@
 ---
 # Clone a Git repo by using git_url and Setting password using valut
 
-- hosts: ansiclient
+- hosts: ansiclients
   become: yes
   gather_facts: true
 
