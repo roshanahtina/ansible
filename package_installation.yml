@@ -12,6 +12,6 @@
   - name: Installing a GIT package
     yum:
       name: git
-      state: latest
+      state: abcent
       
   - debug: msg="Package is successfully installed "
