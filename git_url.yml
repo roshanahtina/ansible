@@ -1,0 +1,12 @@
+---
+# Clone a Git repo by using git_url and Setting password using valut
+
+- hosts: ansiclient
+  become: yes
+  gather_facts: true
+
+  - name: Cloning a REPO
+    git:
+      repo: https://roshanahtina:@github.com/roshanahtina/test.git
+      dest: /tmp
+
