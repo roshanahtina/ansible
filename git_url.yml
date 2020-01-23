@@ -6,10 +6,10 @@
   become_method: sudo
   gather_facts: true
 
-  tasks:
   #vars_files:
-   # - test_vault.txt
+  # - test_vault.txt
   
+  tasks:  
   - name: Cloning a REPO
     git:
       repo: https://github.com/roshanahtina/test.git
