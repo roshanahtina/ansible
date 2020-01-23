@@ -5,8 +5,10 @@
   become: yes
   gather_facts: true
 
+  tasks:
+  
   - name: Cloning a REPO
-      git:
-        repo: https://github.com/roshanahtina/test.git
-        dest: /tmp
+    git:
+      repo: https://github.com/roshanahtina/test.git
+      dest: /tmp
 
