@@ -9,9 +9,9 @@
   
   tasks:
   
-  - name: Installing a GIT package
+  - name: Un-Installing a GIT package
     yum:
       name: git
-      state: abcent
+      state: absent
       
   - debug: msg="Package is successfully un-installed "
