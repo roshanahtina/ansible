@@ -2,8 +2,8 @@
 # Clone a Git repo by using git_url and Setting password using valut
 
 - hosts: ansiclients
-  remote_user: ec2-user
-  become: yes
+  remote_user: ansible
+  become_method: sudo
   gather_facts: true
 
   tasks:
