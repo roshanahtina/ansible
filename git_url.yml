@@ -12,4 +12,4 @@
     git:
       repo: https://github.com/roshanahtina/test.git
       dest: /tmp/gitrepo
-
+      archive: /tmp/gitrepo.zip
