@@ -12,6 +12,6 @@
   - name: Installing a GIT package
     yum:
       name: git
-      state: latest
+      state: abcent
       
-  - debug: msg="If package is not install show the error"
+  - debug: msg="Package is successfully un-installed "
