@@ -4,9 +4,11 @@
 - hosts: ansiclient
   become: yes
   gather_facts: true
+  vars_file:
+    - 
 
   - name: Cloning a REPO
     git:
-      repo: https://roshanahtina:@github.com/roshanahtina/test.git
+      repo: https://github.com/roshanahtina/test.git
       dest: /tmp
 
