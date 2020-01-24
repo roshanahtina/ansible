@@ -9,10 +9,20 @@
   
   tasks:
   
-  - name: Un-Installing a GIT package
-    yum:
-      name: git
-      #state: absent
+  - name: Installing multiple packages with using package moule
+    package:
+      name: "{{ item }}"
       state: latest
-      
-  - debug: msg="Package is successfully un-installed "
+    with_items:
+      - git
+      - httpd
+      - mysql-client
+      - zip
+  
+  
+#  - name: Un-Installing a GIT package
+#    yum:
+#      name: git
+#      #state: absent
+#      state: latest
+#  - debug: msg="Package is successfully un-installed "
