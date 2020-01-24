@@ -14,10 +14,9 @@
       name: "{{ item }}"
       state: absent
     with_items:
-      - git
+      - mysql-server
       - httpd
-      - mysql
-      - zip
+      - php*
     register: echo
     
   - debug: msg="Output {{ echo }}"
