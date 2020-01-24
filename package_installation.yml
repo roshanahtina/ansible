@@ -12,7 +12,7 @@
   - name: Installing multiple packages with using package moule
     package:
       name: "{{ item }}"
-      state: latest
+      state: absent
     with_items:
       - git
       - httpd
