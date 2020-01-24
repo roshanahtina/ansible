@@ -18,7 +18,9 @@
       - httpd
       - mysql-client
       - zip
-  
+    register: echo
+    
+  - debug: msg="{{ echo }}"
   
 #  - name: Un-Installing a GIT package
 #    yum:
