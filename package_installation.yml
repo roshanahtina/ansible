@@ -20,7 +20,7 @@
       - zip
     register: echo
     
-  - debug: msg="Output:  {{ echo }}"
+  - debug: msg="Output {{ echo }}"
   
 #  - name: Un-Installing a GIT package
 #    yum:
