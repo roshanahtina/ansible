@@ -16,11 +16,11 @@
     with_items:
       - git
       - httpd
-      - mysql-client
+      - mysql
       - zip
     register: echo
     
-  - debug: msg="{{ echo }}"
+  - debug: msg=" Output::   {{ echo }}"
   
 #  - name: Un-Installing a GIT package
 #    yum:
