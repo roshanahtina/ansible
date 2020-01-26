@@ -13,8 +13,8 @@
   tasks:
   - name: check the status of following commands
     command: ls -ltrh /var/log
-    #check_mode: "{{ check }}"
-    check_mode: no
+    check_mode: "{{ check }}"
+    #check_mode: no
     register: echo
   
   - debug: msg="Output {{ echo }}"
