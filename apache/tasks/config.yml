@@ -6,7 +6,9 @@
   notify:
     - restart apache server
     
-- name: Copying INde.html file to the path
+- name: Copying index.html file to the path
   copy:
     src: index.html
     dest: /var/www/html
+  notify:
+    - restart apache server
