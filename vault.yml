@@ -8,7 +8,7 @@
   gather_facts: true
   
   vars_files: 
-    - /home/ansible/varsfiles.txt
+    - /etc/ansible/vars/varsfiles.txt
     
   tasks:
   - name: check the status of following commands
