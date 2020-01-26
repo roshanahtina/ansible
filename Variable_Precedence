@@ -1,3 +1,5 @@
+## https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
+
 1. Extra vars
 2. Task vars (only for the task)
 3. Block vars (only for tasks in the block)
