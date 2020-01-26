@@ -1,0 +1,20 @@
+---
+# - vars_file: /home/ansible/varsfiles.txt
+
+- hosts: testclients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  vars_file: 
+    - /home/ansible/varsfiles.txt
+    
+  tasks:
+  - name: check the status of following commands
+    command: ls -ltrh /var/log
+    check_mode: "{{ check }}"
+    register: echo
+  
+  - debug: msg="Output {{ echo }}"
+      
