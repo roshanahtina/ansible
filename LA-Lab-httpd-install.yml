@@ -1,5 +1,5 @@
 ---
-- hosts: ansi-clients 
+- hosts: webclients 
   remote_user: ansible
   become: yes
   become_method: sudo
