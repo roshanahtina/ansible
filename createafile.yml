@@ -22,9 +22,9 @@
     register: output1
   - debug: msg="Reading a file {{ output1 }}"
   
-  - name: Cat a file
-    shell: cat "{{ filepath }}/ansifile.txt"
-  - debug: msg="Cat a file"
+ #- name: Cat a file
+ #  shell: cat "{{ filepath }}/ansifile.txt"
+ #- debug: msg="Cat a file"
   
   #- file:
   #    path: /var/www/html/index.html
