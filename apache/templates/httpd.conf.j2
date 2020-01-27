@@ -20,7 +20,8 @@ ServerAdmin root@localhost
     Require all denied
 </Directory>
 
-DocumentRoot "/var/www/html"
+#DocumentRoot "/var/www/html"
+DocumentRoot "{{ DocumentRoot }}"
 
 <Directory "/var/www">
     AllowOverride None
