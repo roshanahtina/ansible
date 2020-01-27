@@ -8,18 +8,18 @@
   tasks:
   - name: Create A File using vars
     file:
-      path: "{{ inv_file }}"
+      path: "{{ magic_var }}"
       state: touch
       
   - name: Copy a group hosts name in a newly created file
     lineinfile:
-      path: "{{ inv_file }}"
+      path: "{{ magic_var }}"
       line: "{{ groups['AWS_Servers'] | join (' ')}}"
   - debug: msg="OutPut of the Line in a file"
   
   - name: fateching a hostname
     lineinfile:
-      path: "{{ inv_file }}"
+      path: "{{ magic_var }}"
       line: "{{ groups['ansi_1'] | join (' ')}}"
   - debug:
       msg: "Output of the hostnames entries"
