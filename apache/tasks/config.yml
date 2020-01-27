@@ -9,6 +9,6 @@
 - name: Copying index.html file to the path
   template:
     src: index.html.j2
-    dest: /var/www/html
+    dest: /var/www/html/index.html
   notify:
     - restart apache server
