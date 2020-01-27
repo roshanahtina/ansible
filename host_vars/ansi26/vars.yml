@@ -1,4 +1,0 @@
-filepath: /home/ansible/ansifile.txt
-file: touch
-dir: directory
-mode: 0644
