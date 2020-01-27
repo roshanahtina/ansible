@@ -1,7 +1,7 @@
 ---
 - name: Copying the conf file to the path
-  copy:
-    src: httpd.conf
+  template:
+    src: httpd.conf.j2
     dest: /etc/httpd/conf/
   register: results
   notify:
