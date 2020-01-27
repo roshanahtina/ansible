@@ -17,12 +17,11 @@
         
     - name: Installaing a packages a with items
       package:
-        name: "{{ packages }}"
+        name:
+          - wget
+          - zip
+          - git
         state: present
-      with_packages:
-        - wget
-        - zip
-        - git
       tags:
         - packopt
         
