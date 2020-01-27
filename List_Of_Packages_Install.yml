@@ -22,8 +22,10 @@
           - zip
           - git
         state: present
+        register: echoout
       tags:
         - packopt
+    - debug: msg="Output {{ echoout }}"
         
     - name: Install the nginx rpm from a remote repo url
       yum:
