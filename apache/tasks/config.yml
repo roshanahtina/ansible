@@ -3,8 +3,10 @@
   copy:
     src: httpd.conf
     dest: /etc/httpd/conf/
+  register: results
   notify:
     - restart apache server
+- debug: msg="Output {{ results }}"
     
 - name: Copying index.html file to the path
   template:
@@ -15,10 +17,10 @@
     - restart apache server
 - debug: msg="output {{ result }}"
 
-- name: Removing file called index.html
-  file:
-    path: /var/www/html/index.html.j2
-    state: absent
-  register: echo
-- debug: msg="Output {{ echo }}"  
+#- name: Removing file called index.html
+#  file:
+#    path: /var/www/html/index.html.j2
+#    state: absent
+#  register: echo
+#- debug: msg="Output {{ echo }}"  
 
