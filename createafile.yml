@@ -15,7 +15,16 @@
     register: output
   - debug: msg="creation output file {{ output }}"
   
-   
+  - name: Inserting a sentence in a file
+    lineinfile:
+      path: "{{ filepath }}"/ansifile.txt
+      line: '<h1> WelCome To The HostVars files </h1>'
+    register: output1
+  -debug: msg="Reading a file {{ output1 }}"
+  
+  - name: Cat a file
+    shell: 'cat "{{ filepath }}"/ansifile.txt'
+  -debug: msg="Cat a file"
   
   #- file:
   #    path: /var/www/html/index.html
