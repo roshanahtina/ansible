@@ -17,7 +17,7 @@
         
     - name: Installaing a packages a with items
       yum:
-        name: {{ packages }}
+        name: "{{ packages }}"
         state: present
       with_items:
         - wget
