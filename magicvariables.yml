@@ -14,7 +14,7 @@
   - name: Copy a group hosts name in a newly created file
     lineinfile:
       path: "{{ magic_var }}"
-      line: "{{ groups['AWS_Servers'] | join (' ')}}"
+      line: "{{ groups['all'] | join (' ')}}"
   - debug: msg="OutPut of the Line in a file"
   
   #- name: fateching a hostname
