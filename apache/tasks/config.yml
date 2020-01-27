@@ -10,5 +10,15 @@
   template:
     src: index.html.j2
     dest: /var/www/html/index.html
+  register: result
   notify:
     - restart apache server
+- debug: msg="output {{ result }}"
+
+- name: Removing file called index.html
+  file:
+    path: /var/www/html/index.html.j2
+    state: absent
+  register: echo
+- debug: msg="Output {{ echo }}"  
+
