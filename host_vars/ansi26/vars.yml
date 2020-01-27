@@ -1,0 +1,4 @@
+filepath: /home/ansible/
+file: touch
+dir: directory
+mode: 0644
