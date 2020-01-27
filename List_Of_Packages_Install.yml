@@ -16,7 +16,7 @@
         - httpd-tools
         
     - name: Installaing a packages a with items
-      yum:
+      package:
         name: "{{ packages }}"
         state: present
       with_packages:
