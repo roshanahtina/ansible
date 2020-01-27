@@ -23,6 +23,8 @@
         - wget
         - zip
         - git
+      tags:
+        - packopt
         
     - name: Install the nginx rpm from a remote repo url
       yum:
