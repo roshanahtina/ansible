@@ -1,0 +1,16 @@
+---
+# Git usefull link and example https://docs.ansible.com/ansible/2.5/modules/git_module
+- hosts: ansimaster
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_fatcs: true
+  
+  tasks:
+  
+  - name: Git pull task after git repo updates
+    git:
+      repo: https://github.com/roshanahtina/ansible.git
+      dest: /etc/ansible
+      refspec: '+refs/pull/*:refs/head/*'
+  
