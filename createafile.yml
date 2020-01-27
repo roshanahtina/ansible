@@ -8,7 +8,7 @@
   tasks:
   - name: Creating a file using hostvars
     file:
-      path: '"{{ filepath }}"/ansifile.txt'
+      path: "{{ filepath }}/ansifile.txt"
       state: "{{ file }}"
       mode: "{{ mode }}"
       owner: ansible
@@ -17,13 +17,13 @@
   
   - name: Inserting a sentence in a file
     lineinfile:
-      path: '"{{ filepath }}"/ansifile.txt'
+      path: "{{ filepath }}/ansifile.txt"
       line: '<h1> WelCome To The HostVars files </h1>'
     register: output1
   - debug: msg="Reading a file {{ output1 }}"
   
   - name: Cat a file
-    shell: 'cat "{{ filepath }}"/ansifile.txt'
+    shell: cat "{{ filepath }}/ansifile.txt"
   - debug: msg="Cat a file"
   
   #- file:
