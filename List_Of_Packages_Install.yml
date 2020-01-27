@@ -1,5 +1,5 @@
 ---
-- hosts: ansi-clients
+- hosts: ansiclients
   remote_user: ansible
   become: yes
   become_method: sudo
@@ -15,13 +15,22 @@
         - htop
         - httpd-tools
         
-    - name: Install the nginx rpm from a remote repo
+    - name: Installaing a packages a with items
+      yum:
+        name: {{ packages }}
+        state: present
+      with_items:
+        - wget
+        - zip
+        - git
+        
+    - name: Install the nginx rpm from a remote repo url
       yum:
         name: http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
         state: present
         download_only: true
       
-    - name: INstall list of packages in otherway
+    - name: Install list of packages in otherway
       yum:
         name:
           - postgresql-contrib
