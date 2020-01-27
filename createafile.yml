@@ -8,8 +8,9 @@
   tasks:
   - name: Creating a file using hostvars
     file:
-      path: "{{ filepath }}/ansifile11.txt"
-      state: "{{ file }}"
+      path: "{{ filepath }}/ansifolder.txt"
+      #state: "{{ file }}"
+      state: {{ dir }}
       mode: "{{ mode }}"
       owner: ansible
     register: output
