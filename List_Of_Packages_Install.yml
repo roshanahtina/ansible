@@ -22,7 +22,7 @@
           - zip
           - git
         state: present
-        register: echoout
+      register: echoout
       tags:
         - packopt
     - debug: msg="Output {{ echoout }}"
