@@ -21,7 +21,7 @@
           - wget
           - zip
           - git
-        state: present
+        state: absent
       register: echoout
       tags:
         - packopt
