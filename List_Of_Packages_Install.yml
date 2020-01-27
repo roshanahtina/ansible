@@ -44,6 +44,6 @@
       yum:
         list: ansible
       register: result
+    - debug: msg="Result of installed packages using list {{ result }}"
       tags:
         - packlist
-    - debug: msg="Result of installed packages using list {{ result }}"
