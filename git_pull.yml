@@ -4,7 +4,7 @@
   remote_user: ansible
   become: yes
   become_method: sudo
-  gather_fatcs: true
+  gather_facts: true
   
   tasks:
   
