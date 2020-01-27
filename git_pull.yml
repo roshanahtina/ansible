@@ -13,4 +13,7 @@
       repo: https://github.com/roshanahtina/ansible.git
       dest: /etc/ansible
       refspec: '+refs/pull/*:refs/head/*'
+    register: pullresults
+  - debug: 
+      msg: "Output Pull Info {{ pullresults }}"
   
