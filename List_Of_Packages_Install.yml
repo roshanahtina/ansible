@@ -19,7 +19,7 @@
       yum:
         name: "{{ packages }}"
         state: present
-      with_items:
+      with_packages:
         - wget
         - zip
         - git
