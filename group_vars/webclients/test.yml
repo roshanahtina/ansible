@@ -1,3 +1,4 @@
 
 http_port: 80
 DocumentRoot: /var/www/html
+ServerRoot: /etc/httpd
