@@ -23,7 +23,7 @@
   - debug: msg="Reading a file {{ output1 }}"
   
   - name: Cat a file
-    shell: cat "{{ filepath }}/ansifile11.txt"
+    shell: 'cat "{{ filepath }}/ansifile11.txt"'
   - debug: msg="Cat a file"
   
   #- file:
