@@ -1,12 +1,16 @@
 ---
-- hosts: all
-  remote_user: ec2-user
+- hosts: ansi26
+  remote_user: ansible
   become: yes
   become_method: sudo
   gather_facts: true
 
   tasks:
-    - name: "Gathering the ec2-user information"
-      user: 
-        name: jsmith
-        comment: "Admin" #####jsmith:x:1002:1002:Admin:/home/jsmith:/bin/bash####
+  - name: "Gathering the ec2-user information"
+    user: 
+      name: jsmith
+      password: jsmith@123
+      comment: "Admin" #####jsmith:x:1002:1002:Admin:/home/jsmith:/bin/bash####
+    register: useroutput
+  - debug:
+      msg: "Output of the user creation called JSMITH"
