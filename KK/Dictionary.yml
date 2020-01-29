@@ -1,0 +1,10 @@
+---
+# Dictionary in Dictionary in Dictionary
+- employee:
+    name: john
+    gender: male
+    age: 24
+      address:
+        city: edison
+        state: new jersey
+        country: united states
