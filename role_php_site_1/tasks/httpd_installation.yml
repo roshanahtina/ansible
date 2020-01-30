@@ -22,7 +22,7 @@
 
 - name: Deploying the WP-SITE
   copy:
-    src: "{{ wp_site_content }}"
+    src: "{{ wp_site_content_src }}"
     dest: "{{ wp_site_DR }}"
     owner: root
     group: root
@@ -40,4 +40,3 @@
   register: CopiedConfigFIle 
   
 - debug: msg="OutPut Copied CONF File {{ CopiedConfigFIle }}"
-    
