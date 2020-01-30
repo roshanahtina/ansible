@@ -30,3 +30,5 @@ mysqldatabase: phpsite
 mysqlhost: 172.31.46.126
 mysqlport: 3306
 
+wp_site_content: /etc/ansible/wordpress/
+wp_site_config: /etc/ansible/role_php_site_1/files/wp-config.php
