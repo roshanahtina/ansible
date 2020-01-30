@@ -36,7 +36,8 @@
       list: "{{ item }}"
       state: installed
     with_items:
-      - "{{ variables_packages }}"
+      - "{{ group_all_var_packages }}"
+      #- "{{ variables_packages }}"
       #- "{{ packages }}"
     register: output
     tags: variables
