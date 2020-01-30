@@ -42,8 +42,7 @@
   
 - debug: msg="Output mysqldatabases {{ mysqldatabase }}"
 
--
-  mysql_info:
+- mysql_info:
     login_user: "{{ mysqluser }}"
     login_password: "{{ mysqlpassword }}"
     filter: "version,databases,users"
