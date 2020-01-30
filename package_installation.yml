@@ -38,7 +38,7 @@
     with_items: 
       - "{{ packages }}"
     register: output
-    
+    tags: variables
     
   - debug: msg="output {{ output }}"
     
