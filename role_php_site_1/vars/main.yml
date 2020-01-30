@@ -4,6 +4,17 @@ mysqlpackages:
   - MariaDB-server
   - MariaDB-client
   - MariaDB-common
+  
+phppackages:
+  - php
+  - php-mcrypt 
+  - php-cli 
+  - php-gd 
+  - php-curl 
+  - php-mysql 
+  - php-ldap 
+  - php-zip 
+  - php-fileinfo
     
 httpdpackages:
   - httpd
