@@ -10,11 +10,11 @@
     
 - name: Installing mariadb
   yum:
-    name: "{{ item }}"
+    name: "{{ mysqlpackages }}"
     state: latest
     update_cache: yes
-  with_items:
-    - "{{ mysqlpackages }}"
+  #with_items:
+  #  - "{{ mysqlpackages }}"
   notify: mysql restart
   register: installmariadb
    
