@@ -1,0 +1,11 @@
+---
+- name: Installing Apache web server
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ httpdpackages }}"
+  notify: apache restart  
+  register: httpdoutput
+  
+- debug: msg="Output of Installed HTTPD {{ httpdoutput }}"
