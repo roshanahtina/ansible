@@ -15,36 +15,57 @@
           required: true
         - name: zip
           required: true
-  - name: install the listed  {{ packages.name }} 
+  - name: install the listed  {{ packages.item }} 
     yum:
-      name: "{{ packages.name }}"
+      name: "{{ packages.item }}"
       state: present
     when: packages.required == true
       
       
 ---
--
-    name: 'Am I an Adult or a Child?'
+-   name: 'Am I an Adult or a Child?'
     hosts: localhost
     vars:
         age: 25
     tasks:
-        -
-            command: 'echo "I am a Child"'
+        -   command: 'echo "I am a Child"'
             when: "age < 18"
-        -
-            command: 'echo "I am an Adult"'
+        -   command: 'echo "I am an Adult"'
             when: "age >= 18"
             
 ---
--
-    name: 'Add name server entry if not already entered'
+-   name: 'Add name server entry if not already entered'
     hosts: localhost
     tasks:
-        -
-            shell: 'cat /etc/resolv.conf'
+        -   shell: 'cat /etc/resolv.conf'
             register: command_output
-        -
-            shell: 'echo "nameserver 10.0.250.10" >> /etc/resolv.conf'
+        -   shell: 'echo "nameserver 10.0.250.10" >> /etc/resolv.conf'
             when: "command_output.stdout.find(\"10.0.250.10\") == -1"
         
+---
+-
+    name: 'Install required packages'
+    hosts: localhost
+    vars:
+        packages:
+            - httpd
+            - binutils
+            - glibc
+            - ksh
+            - libaio
+            - libXext
+            - gcc
+            - make
+            - sysstat
+            - unixODBC
+            - mongodb
+            - nodejs
+            - grunt
+    tasks:
+        -
+            yum: 
+              name={{ item }} 
+              state=present
+              
+            with_items: "{{ packages }}"
+
