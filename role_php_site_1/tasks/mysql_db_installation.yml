@@ -22,6 +22,8 @@
 
 - name: Creating a Mysql User  
   mysql_user:
+    login_user: "{{ mysqluser }}"
+    login_password: "{{ mysqlpassword }}"
     name: "{{ mysqluser }}"
     password: "{{ mysqlpassword }}"
     priv: '*.*:ALL,GRANT'
