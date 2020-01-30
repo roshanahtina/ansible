@@ -6,4 +6,5 @@
   gather_facts: true  
   
   roles:
-    - apache
+    - role_php_site_1
+    #- apache
