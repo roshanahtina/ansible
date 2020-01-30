@@ -5,7 +5,6 @@
     state: latest
   with_items:
     - "{{ phppackages }}"
-  command: php -m
   register: phpoutput
   
 - debug: msg="Output of Installed PHP {{ phpoutput }}"
@@ -20,3 +19,25 @@
   register: httpdoutput
   
 - debug: msg="Output of Installed HTTPD {{ httpdoutput }}"
+
+- name: Deploying the WP-SITE
+  copy:
+    src: "{{ wp_site_content }}"
+    dest: "{{ wp_site_DR }}"
+    owner: root
+    group: root
+    mode: '0755'
+  register: DocuRootOut
+  
+- debug: msg="WP Content copied to DR {{ DocuRootOut }}"
+
+- name: Copying the Config File to DOCU ROOT
+  template:
+    src: "{{ wp_site_config }}"
+    dest: "{{ wp_site_DR }}"
+    backup: yes
+  register: CopiedConfigFIle 
+  
+- debug: msg="OutPut Cpoied CONF File {{ CopiedConfigFIle }}"
+    
+    
