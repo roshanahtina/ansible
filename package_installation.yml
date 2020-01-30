@@ -4,19 +4,6 @@
   become: yes
   become_method: sudo
   gather_facts: true
-  vars:
-    packages:
-      - httpd
-      - binutils
-      - glibc
-      - ksh
-      - libaio
-      - libXext
-      - gcc
-      - make
-      - sysstat
-      - unixODBC
-      - grunt
   
   tasks:
   - name: Installing multiple packages with using package module
@@ -32,6 +19,19 @@
   - debug: msg="Output {{ echo }}"
   
   - name: Install the packages with variables
+    vars:
+      packages:
+        - httpd
+        - binutils
+        - glibc
+        - ksh
+        - libaio
+        - libXext
+        - gcc
+        - make
+        - sysstat
+        - unixODBC
+        - grunt
     yum:
       list: "{{ item }}"
       state: installed
