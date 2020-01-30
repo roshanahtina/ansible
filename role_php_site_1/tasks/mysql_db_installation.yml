@@ -7,6 +7,8 @@
     gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
     gpgcheck: yes
   notify: yum clean
+  register: installRepo
+- debug: msg=" Output of the Repo installation {{ installRepo }}"
     
 - name: Installing mariadb
   yum:
