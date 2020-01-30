@@ -33,7 +33,7 @@
 
 - name: Copying the Config File to DOCU ROOT
   template:
-    src: "{{ wp_site_config }}"
+    src: wp-config.php.j2
     dest: "{{ wp_site_DR }}"
     backup: yes
   notify: apache restart
