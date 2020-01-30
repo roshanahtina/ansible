@@ -6,9 +6,21 @@
   become: yes
   become_method: sudo
   gather_facts: true
+  vars:
+  packages:
+    - httpd
+    - binutils
+    - glibc
+    - ksh
+    - libaio
+    - libXext
+    - gcc
+    - make
+    - sysstat
+    - unixODBC
+    - grunt
   
   tasks:
-  
   - name: Installing multiple packages with using package moule
     package:
       name: "{{ item }}"
@@ -19,25 +31,9 @@
       - php*
     register: echo
     
-  - debug: 
-      msg:"Output {{ echo }}"
+  - debug: msg="Output {{ echo }}"
   
- # - name: Install the packages with variables
-    var:
-      packages:
-        - httpd
-        - binutils
-        - glibc
-        - ksh
-        - libaio
-        - libXext
-        - gcc
-        - make
-        - sysstat
-        - unixODBC
-        - grunt
-    
-  - name: Install the packages with yum
+  - name: Install the packages with variables
     list: "{{ item }}"
     register: output
     with_items: "{{ packages }}"
