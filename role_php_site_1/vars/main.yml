@@ -29,7 +29,7 @@ mysqlpassword: themysqlpass@098
 mysqldatabase: phpsite
 #mysqlhost: 172.31.46.126
 mysqlport: 3306
-mysqlhost: localhost
+mysqlhost: webclients
 
 wp_site_content_src: /etc/ansible/wordpress/
 wp_site_DR: /var/www/html
