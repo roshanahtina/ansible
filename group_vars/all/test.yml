@@ -1,1 +1,14 @@
 magic_var: /home/ansible/magic.txt
+group_all_var_packages:
+    - httpd
+    - binutils
+    - glibc
+    - ksh
+    - libaio
+    - libXext
+    - gcc
+    - make
+    - sysstat
+    - unixODBC
+    - grunt
+    - libselinux
