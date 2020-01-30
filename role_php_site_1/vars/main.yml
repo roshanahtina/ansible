@@ -12,3 +12,8 @@ mysqlfilter:
   - users
   - databases
   - version
+ 
+mysqluser: root
+mysqlpassword: Shazli@098
+mysqldatabase: phpsite
+mysqlhost: dbclients
