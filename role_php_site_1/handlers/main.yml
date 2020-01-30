@@ -16,3 +16,5 @@
 
 - name: 'yum clean'
   command: yum clean all
+  register: yumclean
+- debug: msg="Output {{ yumclean }}"
