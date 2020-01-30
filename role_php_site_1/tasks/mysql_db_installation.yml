@@ -33,6 +33,8 @@
 - name: Creating a Mysql Databases
   mysql_db:
     name: "{{ mysqldatabase }}"
+    login_user: "{{ mysqluser }}"
+    login_password: "{{ mysqlpassword }}"
     state: present
   register: mysqldatabase
   
