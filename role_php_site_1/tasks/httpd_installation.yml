@@ -1,20 +1,20 @@
 ---
 - name: Installing PHP packages
   yum:
-    name: "{{ item }}"
+    name: "{{ phppackages }}"
     state: latest
-  with_items:
-    - "{{ phppackages }}"
+  #with_items:
+  #  - "{{ phppackages }}"
   register: phpoutput
   
 - debug: msg="Output of Installed PHP {{ phpoutput }}"
 
 - name: Installing Apache web server
   yum:
-    name: "{{ item }}"
+    name: "{{ httpdpackages }}"
     state: latest
-  with_items:
-    - "{{ httpdpackages }}"
+  #with_items:
+  #  - "{{ httpdpackages }}"
   notify: apache restart  
   register: httpdoutput
   
