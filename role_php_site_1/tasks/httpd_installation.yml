@@ -39,5 +39,5 @@
   notify: apache restart
   register: CopiedConfigFIle 
   
-- debug: msg="OutPut Cpoied CONF File {{ CopiedConfigFIle }}"
+- debug: msg="OutPut Copied CONF File {{ CopiedConfigFIle }}"
     
