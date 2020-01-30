@@ -3,5 +3,6 @@
   yum:
     name: "{{ mysqlpackages }}"
     state: latest
+    update_cache: yes
   register: installmariadb
 - debug: msg=" Output of the mariadb installation {{ installmariadb }}"
