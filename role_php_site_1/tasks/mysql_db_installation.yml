@@ -45,7 +45,7 @@
 - mysql_info:
     login_user: "{{ mysqluser }}"
     login_password: "{{ mysqlpassword }}"
-    filter: "version,databases,users"
+    filter: version
   register: mysqlversion
   
 - debug: msg="Output {{ mysqlversion }}"
