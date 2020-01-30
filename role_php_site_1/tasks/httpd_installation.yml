@@ -36,6 +36,7 @@
     src: "{{ wp_site_config }}"
     dest: "{{ wp_site_DR }}"
     backup: yes
+  notify: apache restart
   register: CopiedConfigFIle 
   
 - debug: msg="OutPut Cpoied CONF File {{ CopiedConfigFIle }}"
