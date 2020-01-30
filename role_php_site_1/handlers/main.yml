@@ -13,3 +13,6 @@
     state: restarted
   register: restartmysqld
 - debug: msg="restarted mysql output {{ restartmysqld }}"
+
+- name: 'yum clean'
+  command: yum clean all
