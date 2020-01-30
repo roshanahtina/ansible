@@ -35,7 +35,8 @@
     yum:
       list: "{{ item }}"
       state: installed
-    with_items: "{{ packages }}"
+    with_items: 
+      - "{{ packages }}"
     register: output
     
     
