@@ -1,0 +1,26 @@
+# Condition and loops examples
+- hosts: testclients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  
+  task:
+  - name: install the list packages
+    vars:
+      packages:
+        - name: wget
+          required: true
+        - name: elinks
+          required: true
+        - name: zip
+          required: true
+  - name: install the listed  {{ packages.name }} 
+    yum:
+      name: "{{ packages.name }}"
+      state: present
+    when: packages.required == true
+      
+      
+    
+        
