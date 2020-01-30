@@ -1,10 +1,9 @@
 ---
 # vars file for role_php_site_1
-vars:
-  mysqlpackages:
+mysqlpackages:
     - MariaDB-server
     - MariaDB-client
     - MariaDB-common
     
-  httpdpackages:
+httpdpackages:
     - httpd
