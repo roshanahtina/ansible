@@ -19,7 +19,7 @@
       - grunt
   
   tasks:
-  - name: Installing multiple packages with using package moule
+  - name: Installing multiple packages with using package module
     package:
       name: "{{ item }}"
       state: absent
@@ -34,7 +34,7 @@
   - name: Install the packages with variables
     yum:
       list: "{{ item }}"
-      state: available
+      state: installed
     with_items: "{{ packages }}"
     register: output
     
