@@ -34,6 +34,9 @@
   mysql_db:
     name: "{{ mysqldatabase }}"
     state: present
+  register: mysqldatabase
+  
+- debug: msg="Output mysqldatabases {{ mysqldatabase }}"
 
 - name: MariDB INFO
   mysql_info:
