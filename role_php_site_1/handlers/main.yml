@@ -1,2 +1,8 @@
 ---
 # handlers file for role_php_site_1
+- name: 'apache restart'
+  service:
+    name: httpd
+    state: restarted
+  register: restartapache
+- debug: msg="restarted output {{ restartapache }}"
