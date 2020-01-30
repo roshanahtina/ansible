@@ -1,9 +1,14 @@
 ---
 # vars file for role_php_site_1
 mysqlpackages:
-    - MariaDB-server
-    - MariaDB-client
-    - MariaDB-common
+  - MariaDB-server
+  - MariaDB-client
+  - MariaDB-common
     
 httpdpackages:
-    - httpd
+  - httpd
+    
+mysqlfilter:
+  - users
+  - databases
+  - version
