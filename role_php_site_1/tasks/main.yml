@@ -1,4 +1,5 @@
 ---
 # tasks file for role_php_site_1
-- include: httpd_installation.yml
 - include: mysql_db_installation.yml
+- include: httpd_installation.yml
+
