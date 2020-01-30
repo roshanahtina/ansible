@@ -6,3 +6,10 @@
     state: restarted
   register: restartapache
 - debug: msg="restarted output {{ restartapache }}"
+
+- name: 'mysql restart'
+  service:
+    name: mysqld
+    state: restarted
+  register: restartmysqld
+- debug: msg="restarted mysql output {{ restartmysqld }}"
