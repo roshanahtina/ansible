@@ -42,7 +42,8 @@
   
 - debug: msg="Output mysqldatabases {{ mysqldatabase }}"
 
-- name: MariDB INFO
+
+- name: MariDBINFO
   mysql_info:
     login_user: "{{ mysqluser }}"
     login_password: "{{ mysqlpassword }}"
