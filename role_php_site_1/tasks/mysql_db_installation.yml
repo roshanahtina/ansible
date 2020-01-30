@@ -42,12 +42,12 @@
   
 - debug: msg="Output mysqldatabases {{ mysqldatabase }}"
 
-- mysql_info:
-    login_user: "{{ mysqluser }}"
-    login_password: "{{ mysqlpassword }}"
-    filter: version
-  register: mysqlversion
-  
-- debug: msg="Output {{ mysqlversion }}"
+#- mysql_info:
+#    login_user: "{{ mysqluser }}"
+#    login_password: "{{ mysqlpassword }}"
+#    filter: version
+#  register: mysqlversion
+#  
+#- debug: msg="Output {{ mysqlversion }}"
   
   
