@@ -32,9 +32,12 @@
   - debug: msg="Output {{ echo }}"
   
   - name: Install the packages with variables
-    list: "{{ item }}"
-    register: output
+    yum:
+      list: "{{ item }}"
+      state: available
     with_items: "{{ packages }}"
+    register: output
+    
     
   - debug: msg="output {{ output }}"
     
