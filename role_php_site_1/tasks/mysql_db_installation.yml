@@ -1,0 +1,7 @@
+---
+- name: Installing mariadb
+  yum:
+    name: "{{ mysqlpackages }}"
+    state: latest
+  register: installmariadb
+- debug: msg=" Output of the mariadb installation {{ installmariadb }}"
