@@ -20,7 +20,7 @@
     register: echo
   - debug: msg="Output {{ echo }}"
   
-  - name: Install the packages with variables
+ # - name: Install the packages with variables
     var:
       packages:
         - httpd
