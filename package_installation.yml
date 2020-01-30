@@ -18,6 +18,7 @@
       - httpd
       - php*
     register: echo
+    
   - debug: msg="Output {{ echo }}"
   
  # - name: Install the packages with variables
@@ -38,8 +39,10 @@
   - name: Install the packages with yum
     list: "{{ item }}"
     register: output
-  - debug: msg="output {{ output }}"
     with_items: "{{ packages }}"
+    
+  - debug: msg="output {{ output }}"
+    
     
   
 #  - name: Un-Installing a GIT package
