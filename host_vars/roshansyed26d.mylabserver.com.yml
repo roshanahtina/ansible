@@ -2,3 +2,15 @@ filepath: /home/ansible/
 file: touch
 dir: directory
 mode: 0644
+variables_packages:
+  - httpd
+  - binutils
+  - glibc
+  - ksh
+  - libaio
+  - libXext
+  - gcc
+  - make
+  - sysstat
+  - unixODBC
+  - grunt
