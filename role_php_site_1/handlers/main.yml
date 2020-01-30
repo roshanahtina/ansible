@@ -9,7 +9,7 @@
 
 - name: 'mysql restart'
   service:
-    name: mysqld
+    name: mysql
     state: restarted
   register: restartmysqld
 - debug: msg="restarted mysql output {{ restartmysqld }}"
