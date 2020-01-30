@@ -1,7 +1,7 @@
 ---
 # Package installation on Ansiclietns
 
-- hosts: ansiclients
+- hosts: ansi666
   remote_user: ansible
   become: yes
   become_method: sudo
@@ -19,7 +19,8 @@
       - php*
     register: echo
     
-  - debug: msg="Output {{ echo }}"
+  - debug: 
+      msg:"Output {{ echo }}"
   
  # - name: Install the packages with variables
     var:
