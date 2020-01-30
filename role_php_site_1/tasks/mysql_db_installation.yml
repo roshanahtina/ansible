@@ -43,16 +43,16 @@
 - debug: msg="Output mysqldatabases {{ mysqldatabase }}"
 
 
-- name: MariDBINFO
-  mysql_info:
-    login_user: "{{ mysqluser }}"
-    login_password: "{{ mysqlpassword }}"
-    filter: "version,databases,users"
-  #  filter: "{{ item }}"
-  #with_items:
-  #  - "{{ mysqlfilter }}"
-  register: mysqlversion
-  
-- debug: msg="Output {{ mysqlversion }}"
+#- name: MariDBINFO
+#  mysql_info:
+#    login_user: "{{ mysqluser }}"
+#    login_password: "{{ mysqlpassword }}"
+#    filter: "version,databases,users"
+#  #  filter: "{{ item }}"
+#  #with_items:
+#  #  - "{{ mysqlfilter }}"
+#  register: mysqlversion
+#  
+#- debug: msg="Output {{ mysqlversion }}"
   
   
