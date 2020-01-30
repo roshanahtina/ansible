@@ -1,24 +1,22 @@
----
-# Package installation on Ansiclietns
-
+---  # Package installation on Ansiclietns
 - hosts: ansi666
   remote_user: ansible
   become: yes
   become_method: sudo
   gather_facts: true
   vars:
-  packages:
-    - httpd
-    - binutils
-    - glibc
-    - ksh
-    - libaio
-    - libXext
-    - gcc
-    - make
-    - sysstat
-    - unixODBC
-    - grunt
+    packages:
+      - httpd
+      - binutils
+      - glibc
+      - ksh
+      - libaio
+      - libXext
+      - gcc
+      - make
+      - sysstat
+      - unixODBC
+      - grunt
   
   tasks:
   - name: Installing multiple packages with using package moule
