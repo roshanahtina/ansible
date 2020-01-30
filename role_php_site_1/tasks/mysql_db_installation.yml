@@ -14,29 +14,34 @@
     state: latest
     update_cache: yes
   with_items:
-    - {{ mysqlpackages }}
+    - "{{ mysqlpackages }}"
   notify: mysql restart
   register: installmariadb
    
 - debug: msg=" Output of the mariadb installation {{ installmariadb }}"
 
-- name: Creating a User and Databases
+- name: Creating a Mysql User  
   mysql_user:
-    name: root
-    password: Shazli@098
+    name: "{{ mysqluser }}"
+    password: "{{ mysqlpassword }}"
     priv: '*.*:ALL,GRANT'
     state: present
   register: mysqluser
   
 - debug: msg="Output Mysql User Creation {{ mysqluser }}"
 
+- name: Creating a Mysql Databases
+  mysql_db:
+    name: "{{ mysqldatabase }}"
+    state: present
+
 - name: MariDB INFO
   mysql_info:
     login_user: root
     login_password: Shazli@098
-    filter: {{ item }}
+    filter: "{{ item }}"
   with_items:
-    - {{ mysqlfilter }}
+    - "{{ mysqlfilter }}"
   register: mysqlversion
   
 - debug: msg="Output {{ mysqlversion }}"
