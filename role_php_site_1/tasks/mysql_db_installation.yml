@@ -40,8 +40,8 @@
 
 - name: MariDB INFO
   mysql_info:
-    login_user: root
-    login_password: Shazli@098
+    login_user: "{{ mysqluser }}"
+    login_password: "{{ mysqlpassword }}"
     filter: "{{ item }}"
   with_items:
     - "{{ mysqlfilter }}"
