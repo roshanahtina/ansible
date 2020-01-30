@@ -1,4 +1,13 @@
 ---
+- name: Adding a Repository to download a MariaDB packaegs
+  yum_repository:
+    name: MariaDB
+    description: Mariadb YUM repo
+    baseurl: http://yum.mariadb.org/10.3/centos7-amd64
+    gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    gpgcheck: yes
+  notify: yum clean
+    
 - name: Installing mariadb
   yum:
     name: "{{ item }}"
@@ -6,5 +15,30 @@
     update_cache: yes
   with_items:
     - {{ mysqlpackages }}
+  notify: mysql restart
   register: installmariadb
+   
 - debug: msg=" Output of the mariadb installation {{ installmariadb }}"
+
+- name: Creating a User and Databases
+  mysql_user:
+    name: root
+    password: Shazli@098
+    priv: '*.*:ALL,GRANT'
+    state: present
+  register: mysqluser
+  
+- debug: msg="Output Mysql User Creation {{ mysqluser }}"
+
+- name: MariDB INFO
+  mysql_info:
+    login_user: root
+    login_password: Shazli@098
+    filter: {{ item }}
+  with_items:
+    - {{ mysqlfilter }}
+  register: mysqlversion
+  
+- debug: msg="Output {{ mysqlversion }}"
+  
+  
