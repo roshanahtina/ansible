@@ -1,5 +1,5 @@
 ---  # Package installation on Ansiclietns
-- hosts: ansi666
+- hosts: ansiclietns
   remote_user: ansible
   become: yes
   become_method: sudo
