@@ -14,6 +14,8 @@ mysqlfilter:
   - version
  
 mysqluser: root
-mysqlpassword: Shazli@098
+mysqlpassword: themysqlpass@098
 mysqldatabase: phpsite
 mysqlhost: dbclients
+mysqlport: 3306
+
