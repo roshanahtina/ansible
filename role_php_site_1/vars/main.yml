@@ -4,8 +4,8 @@ mysqlpackages:
   - MariaDB-server
   - MariaDB-client
   - MariaDB-common
-  - MariaDB-Devel
-  - mariadb-devel
+  - MariaDB-devel ## yum load-transaction /tmp/yum_save_tx.2020-01-31.06-51.X7s7rE.yumtx
+  
 
 pippackages:
   - MySQL-python
