@@ -9,6 +9,7 @@ pippackages:
   - MySQL-python
   - mysql-connector-python
   - pymysql
+  - setuptools
   
 phppackages:
   - php
