@@ -44,14 +44,22 @@
 #  register: pythoninstallation
 #- debug: msg="Otput {{ pythoninstallation }}"
     
-- name: pip upgrade
-  command: 'pip install --upgrade pip'
-  register: outputpip
-- debug: msg="Output stdout {{ outputpip }}"
+#- name: pip3.6 upgrade
+#  command: 'pip3.6 install --upgrade pip'
+#  register: outputpip
+#- debug: msg="Output stdout {{ outputpip }}"
+
+- name: YUM Install packages
+  yum:
+    name: "{{ yumpackages }}"
+    state: latest
+  register: yumoutt
+- debug: msg="OUTPUT {{ yumoutt }}"
     
 - name: Install mysql python package
   pip:
     name: "{{ pippackages }}"
+    executable: pip3.6
   register: outputpippack
 - debug: msg="Output stdout {{ outputpippack }}"
 
