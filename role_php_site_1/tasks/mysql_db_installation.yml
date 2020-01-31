@@ -20,6 +20,8 @@
 - name: Install mysql python package
   pip:
     name: "{{ pippackages }}"
+  register: outputpippack
+- debug: msg="Output stdout {{ outputpippack.stdout }}"
 
 - name: Installing mariadb
   yum:
