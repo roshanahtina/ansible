@@ -4,6 +4,8 @@ mysqlpackages:
   - MariaDB-server
   - MariaDB-client
   - MariaDB-common
+  - MariaDB-Devel
+  - mariadb-devel
 
 pippackages:
   - MySQL-python
