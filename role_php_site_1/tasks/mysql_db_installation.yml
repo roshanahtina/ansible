@@ -16,18 +16,26 @@
   get_url:
     url: https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
     dest: /tmp
+  register: out
+- debug: msg="{{ out.stdout }}"  
+    
 - name: Unarchive Pythin   
   unarchive:
     src: /tmp/Python-3.7.4.tgz
     dest: /tmp/
+  register: outt
+- debug: msg="{{ outt.stdout }}"
+    
 - name: Make installation
   make:
     chdir: /tmp/Python-3.7.4
     target: altinstall
-- RUNING Pythin Command   
+  register: outputt
+- debug: msg="{{ outputt.stdout }}"
+    
+- name: RUNING Pythin Command   
   command: 'python3.7 -V'
   register: pythoninstallation
-  
 - debug: msg="Otput {{ pythoninstallation }}"
     
 - name: pip upgrade
