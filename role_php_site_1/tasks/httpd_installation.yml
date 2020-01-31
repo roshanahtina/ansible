@@ -1,4 +1,12 @@
 ---
+- hosts: webclients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  tasks:
+  
 - name: Installing PHP packages
   yum:
     name: "{{ phppackages }}"
