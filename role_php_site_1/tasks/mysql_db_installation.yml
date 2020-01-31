@@ -14,6 +14,8 @@
     
 - name: pip upgrade
   command: 'pip install --upgrade pip'
+  register: outputpip
+- debug: msg="Output stdout {{ outputpip.stdout }}"
     
 - name: Install mysql python package
   pip:
