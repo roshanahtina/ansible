@@ -43,12 +43,19 @@
 #  command: 'python3.7 -V'
 #  register: pythoninstallation
 #- debug: msg="Otput {{ pythoninstallation }}"
-    
+#    
 #- name: pip3.6 upgrade
 #  command: 'pip3.6 install --upgrade pip'
 #  register: outputpip
 #- debug: msg="Output stdout {{ outputpip }}"
-
+#
+#- name: Install mysql python package
+#  pip:
+#    name: "{{ pippackages }}"
+#    executable: pip3.6
+#    extra_args: --user
+#  register: outputpippack
+#- debug: msg="Output stdout {{ outputpippack }}"
 - name: YUM Install packages
   yum:
     name: "{{ yumpackages }}"
@@ -56,21 +63,10 @@
   register: yumoutt
 - debug: msg="OUTPUT {{ yumoutt }}"
     
-- name: Install mysql python package
-  pip:
-    name: "{{ pippackages }}"
-    executable: pip3.6
-    extra_args: --user
-  register: outputpippack
-- debug: msg="Output stdout {{ outputpippack }}"
-
 - name: Installing mariadb
   yum:
     name: "{{ mysqlpackages }}"
     state: latest
-    update_cache: yes
-  #with_items:
-  #  - "{{ mysqlpackages }}"
   notify: mysql restart
   register: installmariadb
    
