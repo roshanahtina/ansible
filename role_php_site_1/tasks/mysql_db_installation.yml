@@ -12,6 +12,21 @@
   register: installRepo
 - debug: msg=" Output of the Repo installation {{ installRepo }}"
     
+- name: Wget Python 3.7
+    - get_url:
+        url: https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+        dest: /tmp
+    - unarchive:
+        src: /tmp/Python-3.7.4.tgz
+        dest: /tmp/Python-3.7.4
+    - make:
+        chdir: /tmp/Python-3.7.4
+        target: altinstall
+    - command: 'python3.7 -V'
+  register: pythoninstallation
+  
+- debug: msg="Otput {{ pythoninstallation }}"
+    
 - name: pip upgrade
   command: 'pip install --upgrade pip'
   register: outputpip
