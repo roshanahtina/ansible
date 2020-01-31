@@ -1,4 +1,12 @@
 ---
+- hosts: dbclients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  tasks:
+  
 - name: Adding a Repository to download a MariaDB packaegs
   yum_repository:
     name: MariaDB
