@@ -18,7 +18,7 @@
         dest: /tmp
     - unarchive:
         src: /tmp/Python-3.7.4.tgz
-        dest: /tmp/Python-3.7.4
+        dest: /tmp/
     - make:
         chdir: /tmp/Python-3.7.4
         target: altinstall
