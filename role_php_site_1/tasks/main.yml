@@ -1,5 +1,7 @@
 ---
 # tasks file for role_php_site_1
 - include: mysql_db_installation.yml
+  hosts: webclients
 - include: httpd_installation.yml
+  hosts: dbclients
 
