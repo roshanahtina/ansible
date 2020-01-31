@@ -12,7 +12,7 @@ pippackages:
   - mysql-connector-python
   - pymysql
   - setuptools ## https://www.okcode.net/article/5918 -> “python setup.py egg_info” failed with error code 1
-  
+               ##https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7
 yumpackages:
   - yum-utils
   - '@groupinstall development'
