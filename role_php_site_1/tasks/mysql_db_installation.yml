@@ -16,43 +16,37 @@
   get_url:
     url: https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
     dest: /tmp/
-  register: downout
-  
-- debug: msg="{{ downout.stdout }}"  
+  register: downout 
+- debug: msg="Output stdout {{ downout.stdout }}"  
     
 - name: Unarchive Pythin   
   unarchive:
     src: /tmp/Python-3.7.4.tgz
     dest: /tmp/
   register: Unarchivoutt
-  
-- debug: msg="{{ Unarchivoutt.stdout }}"
+- debug: msg="Output stdout {{ Unarchivoutt.stdout }}"
     
 - name: Make installation
   make:
     chdir: /tmp/Python-3.7.4
     target: altinstall
   register: outputt
-  
-- debug: msg="{{ outputt.stdout }}"
+- debug: msg="Output stdout {{ outputt.stdout }}"
     
 - name: RUNING Pythin Command   
   command: 'python3.7 -V'
   register: pythoninstallation
-  
 - debug: msg="Otput {{ pythoninstallation }}"
     
 - name: pip upgrade
   command: 'pip install --upgrade pip'
   register: outputpip
-  
 - debug: msg="Output stdout {{ outputpip.stdout }}"
     
 - name: Install mysql python package
   pip:
     name: "{{ pippackages }}"
   register: outputpippack
-  
 - debug: msg="Output stdout {{ outputpippack.stdout }}"
 
 - name: Installing mariadb
