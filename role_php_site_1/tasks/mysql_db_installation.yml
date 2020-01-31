@@ -60,6 +60,7 @@
   pip:
     name: "{{ pippackages }}"
     executable: pip3.6
+    extra_args: --user
   register: outputpippack
 - debug: msg="Output stdout {{ outputpippack }}"
 
