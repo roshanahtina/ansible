@@ -28,7 +28,7 @@
 - debug: msg="Output stdout {{ Unarchivoutt }}"
     
 - name: Configure
-  shell: 'cd Python-3.7.4 ; configure --enable-optimizations'
+  shell: 'cd /tmp/Python-3.7.4 ; ./configure --enable-optimizations'
   register: Unarchivouttt
 - debug: msg="Output stdout {{ Unarchivouttt }}"
    
@@ -39,7 +39,7 @@
   register: outputt
 - debug: msg="Output stdout {{ outputt }}"
     
-- name: RUNING Pythin Command   
+- name: RUNING Python Command   
   command: 'python3.7 -V'
   register: pythoninstallation
 - debug: msg="Otput {{ pythoninstallation }}"
