@@ -12,6 +12,11 @@
   register: installRepo
 - debug: msg=" Output of the Repo installation {{ installRepo }}"
     
+- name: Install mysql python package
+  pip:
+    name: "{{ pippackages }}"
+
+
 - name: Installing mariadb
   yum:
     name: "{{ mysqlpackages }}"
