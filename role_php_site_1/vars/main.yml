@@ -11,7 +11,15 @@ pippackages:
   - MySQL-python
   - mysql-connector-python
   - pymysql
-  - setuptools ## https://www.okcode.net/article/5918 -> “python setup.py egg_info” failed with error code 1 
+  - setuptools ## https://www.okcode.net/article/5918 -> “python setup.py egg_info” failed with error code 1
+  
+yumpackages:
+  - yum-utils
+  - groupinstall development
+  - https://centos7.iuscommunity.org/ius-release.rpm
+  - python36u
+  - python36u-pip
+  - python36u-devel
   
 phppackages:
   - php
