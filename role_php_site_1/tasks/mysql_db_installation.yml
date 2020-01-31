@@ -19,10 +19,11 @@
   register: downout 
 - debug: msg="Output stdout {{ downout }}"  
     
-- name: Unarchive Pythin   
+- name: Unarchive Python   
   unarchive:
     src: /tmp/Python-3.7.4.tgz
     dest: /tmp/
+    remote_src: yes
   register: Unarchivoutt
 - debug: msg="Output stdout {{ Unarchivoutt }}"
     
