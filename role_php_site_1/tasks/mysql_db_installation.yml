@@ -28,7 +28,7 @@
 - debug: msg="Output stdout {{ Unarchivoutt }}"
     
 - name: Configure
-  shell: 'cd /tmp/Python-3.7.4 ; ./configure --enable-optimizations'
+  shell: 'cd /tmp/Python-3.7.4 ; ./configure'
   register: Unarchivouttt
 - debug: msg="Output stdout {{ Unarchivouttt }}"
    
