@@ -24,8 +24,8 @@
 
 - name: Creating a Mysql User  
   mysql_user:
-    login_user: "{{ mysqluser }}"
-    login_password: "{{ mysqlpassword }}"
+    #login_user: "{{ mysqluser }}"
+    #login_password: "{{ mysqlpassword }}"
     name: "{{ mysqluser }}"
     password: "{{ mysqlpassword }}"
     priv: '*.*:ALL,GRANT'
@@ -40,6 +40,7 @@
     login_user: "{{ mysqluser }}"
     login_password: "{{ mysqlpassword }}"
     state: present
+    priv: '*.*:ALL,GRANT'
   register: mysqldatabase
   
 - debug: msg="Output mysqldatabases {{ mysqldatabase }}"
