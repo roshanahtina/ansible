@@ -27,6 +27,11 @@
   register: Unarchivoutt
 - debug: msg="Output stdout {{ Unarchivoutt }}"
     
+- name: Configure
+  shell: 'cd Python-3.7.4 ; configure --enable-optimizations'
+  register: Unarchivouttt
+- debug: msg="Output stdout {{ Unarchivouttt }}"
+   
 - name: Make installation
   make:
     chdir: /tmp/Python-3.7.4
