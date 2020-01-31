@@ -1,13 +1,11 @@
 ---
-- 
-  roles:
-    - role_php_site_1
-#- hosts: webclients
-#  remote_user: ansible
-#  become: yes
-#  become_method: sudo
-#  gather_facts: true  
+
+- hosts: webclients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true  
   
-#- roles:
-#    role_php_site_1
-    #- apache
+  roles:
+    - httpd_installation
+   
