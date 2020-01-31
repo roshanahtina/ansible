@@ -12,37 +12,37 @@
   register: installRepo
 - debug: msg=" Output of the Repo installation {{ installRepo }}"
     
-- name: Wget Python 3.7
-  get_url:
-    url: https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
-    dest: /tmp/
-  register: downout 
-- debug: msg="Output stdout {{ downout }}"  
-    
-- name: Unarchive Python   
-  unarchive:
-    src: /tmp/Python-3.7.4.tgz
-    dest: /tmp/
-    remote_src: yes
-  register: Unarchivoutt
-- debug: msg="Output stdout {{ Unarchivoutt }}"
-    
-- name: Configure
-  shell: 'cd /tmp/Python-3.7.4 ; ./configure'
-  register: Unarchivouttt
-- debug: msg="Output stdout {{ Unarchivouttt }}"
-   
-- name: Make installation
-  make:
-    chdir: /tmp/Python-3.7.4
-    target: altinstall
-  register: outputt
-- debug: msg="Output stdout {{ outputt }}"
-    
-- name: RUNING Python Command   
-  command: 'python3.7 -V'
-  register: pythoninstallation
-- debug: msg="Otput {{ pythoninstallation }}"
+#- name: Wget Python 3.7
+#  get_url:
+#    url: https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+#    dest: /tmp/
+#  register: downout 
+#- debug: msg="Output stdout {{ downout }}"  
+#    
+#- name: Unarchive Python   
+#  unarchive:
+#    src: /tmp/Python-3.7.4.tgz
+#    dest: /tmp/
+#    remote_src: yes
+#  register: Unarchivoutt
+#- debug: msg="Output stdout {{ Unarchivoutt }}"
+#    
+#- name: Configure
+#  shell: 'cd /tmp/Python-3.7.4 ; ./configure'
+#  register: Unarchivouttt
+#- debug: msg="Output stdout {{ Unarchivouttt }}"
+#   
+#- name: Make installation
+#  make:
+#    chdir: /tmp/Python-3.7.4
+#    target: altinstall
+#  register: outputt
+#- debug: msg="Output stdout {{ outputt }}"
+#    
+#- name: RUNING Python Command   
+#  command: 'python3.7 -V'
+#  register: pythoninstallation
+#- debug: msg="Otput {{ pythoninstallation }}"
     
 - name: pip upgrade
   command: 'pip install --upgrade pip'
