@@ -4,10 +4,11 @@ mysqlpackages:
   - MariaDB-server
   - MariaDB-client
   - MariaDB-common
-  - python-pymysql
-  - python3-pymysql
-  - python-apt
-  - python3-apt
+
+pippackages:
+  - MySQL-python
+  - mysql-connector-python
+  - pymysql
   
 phppackages:
   - php
