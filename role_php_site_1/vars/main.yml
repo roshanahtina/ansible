@@ -9,7 +9,7 @@ pippackages:
   - MySQL-python
   - mysql-connector-python
   - pymysql
-  - setuptools
+  - setuptools ## https://www.okcode.net/article/5918 -> “python setup.py egg_info” failed with error code 1 
   
 phppackages:
   - php
