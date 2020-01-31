@@ -51,10 +51,8 @@
 
 - name: YUM Install packages
   yum:
-    name: "{{ item }}"
+    name: "{{ yumpackages }}"
     state: latest
-  with_items:
-    - "{{ yumpackages }}"
   register: yumoutt
 - debug: msg="OUTPUT {{ yumoutt }}"
     
