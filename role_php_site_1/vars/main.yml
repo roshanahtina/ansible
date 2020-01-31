@@ -15,8 +15,8 @@ pippackages:
   
 yumpackages:
   - yum-utils
-  - "groupinstall development"
-  - "https://centos7.iuscommunity.org/ius-release.rpm"
+  - '"groupinstall development"'
+  - '"https://centos7.iuscommunity.org/ius-release.rpm"'
   - python36u
   - python36u-pip
   - python36u-devel
