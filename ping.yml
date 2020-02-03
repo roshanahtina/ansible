@@ -6,7 +6,7 @@
   #become: yes
   become_method: sudo
   gather_facts: true
-  strategy: free
+  #strategy: free
     
   tasks:
   - name: ping to all the ansible-clients
