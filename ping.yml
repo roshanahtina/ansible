@@ -6,7 +6,7 @@
   #become: yes
   become_method: sudo
   gather_facts: true
-  serial: "25%"
+  serial: "40%"
   #serial:
   #  - 1
   #  - 2
