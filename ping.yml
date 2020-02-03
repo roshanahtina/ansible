@@ -6,6 +6,10 @@
   #become: yes
   become_method: sudo
   gather_facts: true
+  serial:
+    - 1
+    - 2
+    - 3
   #strategy: free
     
   tasks:
