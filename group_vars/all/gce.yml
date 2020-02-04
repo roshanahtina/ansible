@@ -1,0 +1,12 @@
+service_account_email: ansible@udemy-ansible-assignment.iam.gserviceaccount.com
+credentials_file: udemy-ansible-assignment-fb21ec2e17c4.json
+project_id: udemy-ansible-assignment
+
+machine_type: n1-standard-1
+image: debian-7
+instance_list:
+  - web-server-1,web-server-2
+  - db-server
+
+region: us-central1
+lb_members: us-central1-a/web-server-1,us-central1-a/web-server-2
