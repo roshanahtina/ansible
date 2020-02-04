@@ -1,4 +1,4 @@
-service_account_email: cli-service-account-1@playground-s-11-c45469.iam.gserviceaccount.com
+service_account_email: lalab-714@playground-s-11-c45469.iam.gserviceaccount.com
 credentials_file: /home/ansible/playground-s-11-c45469-127aefcd2092.json
 project_id: playground-s-11-c45469
 
