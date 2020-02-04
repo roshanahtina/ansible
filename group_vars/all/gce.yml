@@ -1,5 +1,5 @@
 service_account_email: cloud_user_p_a289b7@linuxacademygclabs.com
-credentials_file: udemy-ansible-assignment-fb21ec2e17c4.json
+credentials_file: /home/ansible/playground-s-11-c45469-127aefcd2092.json
 project_id: linuxacademy-ansible-assignment
 
 machine_type: n1-standard-1
