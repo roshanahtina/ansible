@@ -1,8 +1,7 @@
-- name: Create instance(s)
-  hosts: localhost
-  connection: local
-  gather_facts: no
-  tasks:
+    - name: Create instance(s)
+      hosts: localhost
+      gather_facts: no
+      tasks:
     - name: Launch instances
       gce:
          instance_names: "{{ item }}"
