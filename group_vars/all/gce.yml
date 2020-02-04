@@ -1,6 +1,6 @@
 service_account_email: 1009970583834-compute@developer.gserviceaccount.com
 credentials_file: /home/ansible/playground-s-11-c45469-127aefcd2092.json
-project_id: linuxacademy-ansible-assignment #playground-s-11-c45469
+project_id: playground-s-11-c45469
 
 machine_type: n1-standard-1
 image: centos-7
