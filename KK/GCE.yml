@@ -3,7 +3,7 @@
       gather_facts: no
       tasks:
     - name: Launch instances
-      gcp_compute_instance:
+      gce:
          instance_names: "{{ item }}"
          machine_type: "{{ machine_type }}"
          image: "{{ image }}"
