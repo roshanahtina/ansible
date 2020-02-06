@@ -1,7 +1,8 @@
 #!/bin/bash
 name=$1
 
-if [ -n $name ] then
+if [ -n $name ]
+then
 echo "Package is supplied and running Ansible Ad-Hoc Command"
 else
 echo "Package is NoT supplied"
