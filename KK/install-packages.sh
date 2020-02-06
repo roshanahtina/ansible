@@ -9,6 +9,8 @@ echo "Package is NoT supplied"
   exit
 fi
 
-sleep 10
+echo "Sleep 2 Mins"
+
+sleep 2
 
 ansible -i /etc/ansible/inv.ini testclients -m yum -a "name=$name state=present"
