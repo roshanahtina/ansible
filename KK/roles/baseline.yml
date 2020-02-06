@@ -1,0 +1,70 @@
+---
+# tasks file for baseline
+- include_tasks: /home/ansible/resources/web.yml
+
+- name: Copy the templates file to webservers
+  template:
+    src: /home/ansible/resources/motd.j2
+    dest: /etc/motd
+  register: motdoutput
+
+- debug:
+    msg: "Output of the MOTD {{ motdoutput }}"
+
+- name: Install the latest Nagios client.
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gcc
+    - glibc
+    - glibc-common
+    - gd
+    - make
+    - net-snmp
+    - openssl-devel
+    - nrpe
+    - nagios-plugins-users
+    - nagios-plugins-load
+    - nagios-plugins-swap
+    - nagios-plugins-disk
+    - nagios-plugins-procs
+  register: echoout
+
+- debug:
+    msg: "Output {{ echoout  }}"
+
+- name: Add an entry to /etc/hosts for the Nagios server
+  lineinfile:
+    path: /etc/hosts
+    line: 10.0.1.154 nagios.example.com
+  register: nagiosout
+
+- debug:
+    msg: "out Nagios {{ nagiosout  }}"
+
+- name: Add auser noc in webservers
+  user:
+    name: noc
+    comment: NOC User
+
+- name:  Set authorized key taken from file
+  authorized_key:
+    user: noc
+    state: present
+    key: "{{ lookup('file', '/home/ansible/resources/keys/noc_id_rsa.pub') }}"
+  register: authkey
+
+- debug:
+    msg: "Output {{ authkey }}"
+
+- name: File permission
+  file:
+    path: /home/noc/.ssh/authorized_keys
+    owner: noc
+    group: noc
+    mode: '0600'
+  register: perm
+
+- debug:
+    msg: "Output {{ perm }}"
