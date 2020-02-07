@@ -1,0 +1,25 @@
+---
+- hosts: dbsystems
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: Archeving the /var/log/ Directory Use gzip to compress a single archive
+    archive:
+      path: /var/log/
+      dest: /home/ansible/backup_logs.tar.gz
+      owner: ansible
+      group: ansible
+      formate: gz
+      
+  - name: Copying the file from control server
+    fetch:
+      src: /home/ansible/backup_logs.tar.gz
+      dest: logbackup-{{ inventory_hostname }}.tar.gz
+      flat: yes
+      
+  - name: Unarchive the logs folder
+    unarchive:
+      src: logbackup-{{ inventory_hostname }}.tar.gz
+      dest: /home/ansible/logss
+      remote_src: yes
+      
