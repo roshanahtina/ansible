@@ -2,15 +2,18 @@
 - hosts: dbsystems
   become: yes
   gather_facts: yes
-  
-  task:
+
+  tasks:
   - name: Cron job for "df -h >> /tmp/diskspace" on the nodes at 5am and 5pm.
     cron:
       name: "Cron for Disk Space monitor"
-      minuts: "0"
+      minute: "0"
       hour: "5,17"
       job: "df -h >> /tmp/diskspace"
-      
+
   - name: List the cron jobs
     shell: crontab -l
-      
+    register: cron
+  - debug:
+      msg: "msg out {{ cron.stdout  }} "
+  - debug: msg="{{ cron.stderr }}"
