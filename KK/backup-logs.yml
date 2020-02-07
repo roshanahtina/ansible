@@ -9,7 +9,7 @@
       dest: /home/ansible/backup_logs.tar.gz
       owner: ansible
       group: ansible
-      formate: gz
+      format: gz
       
   - name: Copying the file from control server
     fetch:
