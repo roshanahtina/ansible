@@ -1,0 +1,35 @@
+---
+- hosts: dbsystems
+  become: yes
+  gather_facts: yes
+  
+  tasks:
+  - name: Installing the HTTPD Web server
+    yum:
+      name:
+        - httpd
+        - elinks
+        - firewalld
+      state: latest
+      
+  - name: Start A Web server
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+      
+  - name: Port open for Apache
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled
+      
+  - name: Firewalld start
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+      
+      
+      
+      
