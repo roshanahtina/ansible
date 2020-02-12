@@ -1,9 +1,9 @@
 ---
-- hosts: ansi_1
-  remote_user: ec2-user
+- hosts: ansiclients
+  remote_user: ansible
   become: yes
   become_method: sudo
-  gather_facts: fales
+  gather_facts: true
   
   tasks:
   - name: Handle the error
