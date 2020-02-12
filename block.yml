@@ -4,6 +4,9 @@
   become: yes
   become_method: sudo
   gather_facts: true
+  serial:
+    - 2
+    - 3
   
   tasks:
   - name: Handle the error
