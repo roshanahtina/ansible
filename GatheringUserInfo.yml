@@ -13,4 +13,4 @@
       comment: "Admin" #####jsmith:x:1002:1002:Admin:/home/jsmith:/bin/bash####
     register: useroutput
   - debug:
-      msg: "Output of the user creation called JSMITH"
+      msg: "Output of the user creation called JSMITH {{ useroutput }}"
