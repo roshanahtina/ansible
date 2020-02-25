@@ -8,7 +8,7 @@
   tasks:
   - name: "Gathering the ec2-user information"
     user: 
-      name: jsmith
+      name: rmunavar
       password: jsmith@123
       comment: "Admin" #####jsmith:x:1002:1002:Admin:/home/jsmith:/bin/bash####
     register: useroutput
