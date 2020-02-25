@@ -9,8 +9,8 @@
   - name: "Gathering the ec2-user information"
     user: 
       name: rmunavar
-      password: "K2OIL.v47INLFO.KjK3Oq882a1WY8Lcn.TFGXcHMC/fnxCmOceitPOKB9WyG7FJS92pxsau6OEg8brS13Lil90" ## ansible all -i localhost, -m debug -a "msg={{ 'mypassword' | password_hash('sha512', 'testuser123') }}"
-      comment: "Admin" #####jsmith:x:1002:1002:Admin:/home/jsmith:/bin/bash####
+      password: "{{ password }}" 
+      comment: "Admin"
     register: useroutput
   - debug:
       msg: "Output of the user creation called RMUNAVAR {{ useroutput }}"
