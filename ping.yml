@@ -6,12 +6,12 @@
   #become: yes
   become_method: sudo
   gather_facts: true
-  serial: "50%"
+  #serial: "50%"
   #serial:
   #  - 1
   #  - 2
   #  - 3
-  #strategy: free
+  strategy: free
     
   tasks:
   - name: ping to all the ansible-clients

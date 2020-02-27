@@ -1,2 +1,7 @@
 
 password: "$6$mysecretsalt$qMP7.MyUZSGjzlTKG811YGwE0DLy/wse33Oatv0oMzKVgwIvy0oH7AXxNxS7ChGh6ariqIeAaZby2ZLvV8Az.1"
+# ansible all -i localhost, -m debug -a "msg={{ 'testuser@098' | password_hash('sha512', 'mysecretsalt') }}"
+#localhost | SUCCESS => {
+#    "msg": "$6$mysecretsalt$qMP7.MyUZSGjzlTKG811YGwE0DLy/wse33Oatv0oMzKVgwIvy0oH7AXxNxS7ChGh6ariqIeAaZby2ZLvV8Az.1"
+#}
+
