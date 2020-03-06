@@ -8,12 +8,12 @@
   
   vars:
     hostname_control: /home/ansible/hostname
-    hostname_node: /home/ansible/
+    hostname_node: /home/ansible/hostname
   tasks:
   - name: WHO AM I
     command: whoami
     register: whoami_out
-  - debug: msg="{{ whoami_out }}"
+  #- debug: msg="{{ whoami_out }}"
   
   - name: To check the stat of hostname file
     stat:
