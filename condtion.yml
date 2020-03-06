@@ -20,6 +20,6 @@
     copy:
       src: "{{ hostname_control }}"
       dest: "{{ hostname_node }}"
-    when: hostname.stat.exists == true
+    when: hostname.stat.exists == false
       
    
