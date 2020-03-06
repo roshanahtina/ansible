@@ -8,7 +8,7 @@
   
   vars:
     hostname_control: /home/ansible/hostname
-    hostname_node: /home/ansible/
+    hostname_node: /home/ansible/hostname
   tasks:
   - name: WHO AM I
     command: whoami
