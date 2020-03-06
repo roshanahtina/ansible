@@ -10,6 +10,9 @@
     hostname_control: /home/ansible/hostname
     hostname_node: /home/ansible/
   tasks:
+  - name: WHO AM I
+    command: whoami
+  
   - name: To check the stat of hostname file
     stat:
       path: "{{ hostname_control }}"
