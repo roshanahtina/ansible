@@ -22,9 +22,10 @@
   - debug: msg="{{ hostname }}"
   
   - name: To copy a hostname from controler to node
-    copy:
-      src: "{{ hostname_control }}"
-      dest: "{{ hostname_node }}"
+    command: cp "{{ hostname_control }}" "{{ hostname_node }}"
+    #copy:
+    #  src: "{{ hostname_control }}"
+    #  dest: "{{ hostname_node }}"
     when: hostname.stat.exists == false
       
    
