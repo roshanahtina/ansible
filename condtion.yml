@@ -8,7 +8,7 @@
   
   vars:
     hostname_control: /home/ansible/hostname
-    hostname_node: /home/ansible/
+    hostname_node: /home/ansible/hostname1
   tasks:
   - name: WHO AM I
     command: whoami
@@ -22,10 +22,10 @@
   - debug: msg="{{ hostname }}"
   
   - name: To copy a hostname from controler to node
-    command: cp "{{ hostname_control }}" "{{ hostname_node }}"
-    #copy:
-    #  src: "{{ hostname_control }}"
-    #  dest: "{{ hostname_node }}"
+    #command: cp "{{ hostname_control }}" "{{ hostname_node }}"
+    copy:
+      src: "{{ hostname_control }}"
+      dest: "{{ hostname_node }}"
     when: hostname.stat.exists == false
       
    
