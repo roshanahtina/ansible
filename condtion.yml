@@ -14,6 +14,7 @@
     stat:
       path: "{{ hostname_control }}"
     register: hostname
+  - debug: msg="{{ hostname }}"
   
   - name: To copy a hostname from controler to node
     copy:
