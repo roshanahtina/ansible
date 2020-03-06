@@ -1,0 +1,24 @@
+---
+- name: Playbook for When condition test
+  hosts: dbclients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  
+  vars:
+    hostname_control: /home/ansible/hostname
+    hostname_node: /home/ansible/
+  tasks:
+  - name: To check the stat of hostname file
+    stat:
+      path: "{{ hostname_control }}"
+    register: hostname
+  
+  - name: To copy a hostname from controler to node
+    copy:
+      src: "{{ hostname_control }}"
+      dest: "{{ hostname_node }}"
+    when: hostname.stat.exists == true
+      
+   
