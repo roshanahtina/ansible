@@ -31,3 +31,5 @@
       name: "{{ item }}"
       state: started
     loop: "{{ service_lists }}"
+    tags:
+      - servicelist
