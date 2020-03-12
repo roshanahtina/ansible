@@ -5,6 +5,10 @@
   become: yes
   become_method: sudo
   gather_facts: true
+  serial: 
+    - 1
+    - 2
+    - 2
   
   #vars_files:
   #  - vars.yml
