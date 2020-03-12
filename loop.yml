@@ -19,7 +19,6 @@
       - zip
       - git
       - httpd
-      - nfs
       - mariadb
       
   - name: Starting the service using the service module
