@@ -19,6 +19,7 @@
       - zip
       - git
       - httpd
+      - ntp
       - mariadb
       
   - name: Starting the service using the service module
