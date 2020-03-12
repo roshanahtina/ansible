@@ -1,5 +1,5 @@
 ---
-service_list:
+service_lists:
   - httpd
   - ntp
   - mariadb
