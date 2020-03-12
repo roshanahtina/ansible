@@ -25,4 +25,4 @@
     service:
       name: "{{ item }}"
       state: started
-      loop: "{{ service_lists }}"
+    loop: "{{ service_lists }}"
