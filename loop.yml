@@ -1,0 +1,29 @@
+---
+- name: Loops is replaced with with_items
+  hosts: ansiclients
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  
+  vars_files: 
+    - vars.yml
+  
+  tasks:
+  - name: Installing list of packages with loop style
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - wget
+      - zip
+      - git
+      - httpd
+      - nfs
+      - mariadb
+      
+  - name: Starting the service using the service module
+    service:
+      name: "{{ item }}"
+      state: started
+      loop: "{{ service_list }}"
