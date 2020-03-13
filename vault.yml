@@ -19,3 +19,22 @@
   
   - debug: msg="Output {{ echo }}"
       
+#- hosts: localhost
+#  become: yes
+#  vars_files:
+#         - /home/ansible/vault
+#
+#  tasks:
+#          - name: create a file and putting a secret init
+#            lineinfile:
+#                    path: /home/ansible/secret.txt
+#                    create: yes
+#                    line: "{{ secret }}"
+#            no_log: true
+#            register: vaultout
+#
+#          - debug: msg="{{ vaultout }}"
+
+# ansible-vault encrypt --vault-id dev@prompt vault # vault is file
+# ansible-playbook -i /etc/ansible/inv.ini vault_file.yml   --vault-password-file=password.txt # password.txt is plain text file
+# ansible-playbook -i /etc/ansible/inv.ini vault_file.yml --vault-id=dev@prompt
