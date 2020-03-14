@@ -13,9 +13,9 @@
     
   - name: Failed and Changed When Condition on same play
     command: /etc/ansible/failed_changed_condition.sh ##what To check the condition
-    register: scriptout
-    #changed_when: '"CHANGED" changed in scriptout.stdout'
-    #failed_when: '"FAILED" failed in scriptout.stdout'
+    register: cmddout
+    changed_when: '"No such file or directory" changed in cmddout.stdout'
+    #failed_when: '"FAILED" failed in cmddout.stdout'
     #tags:
     #  - condition_change_failed
   - debug: 
