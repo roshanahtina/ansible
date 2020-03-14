@@ -18,6 +18,6 @@
     failed_when: '"FAILED" failed in cmddout.stdout'
     tags:
       - condition_change_failed
-  - debug: 
+    debug: 
       msg: "Output {{ cmddout }}"
   
