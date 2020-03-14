@@ -19,5 +19,5 @@
     #tags:
     #  - condition_change_failed
   - debug: 
-      msg: "Output {{ scriptout }}"
+      msg: "Output {{ cmddout }}"
   
