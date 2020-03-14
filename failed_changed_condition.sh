@@ -1,8 +1,8 @@
 #!/bin/bash
 if [ -z $1]
 then
-echo "CHANGED When COndition"
+echo "I CHANGED somehing"
 exit
 else
-echo "FAILED WHEN Condition"
+echo "I FAILED"
 fi
