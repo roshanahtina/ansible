@@ -7,7 +7,7 @@
   tasks:
   - name: Ignore errors directive placed
     command: /bin/flase
-    #ignore_errors: yes
+    ignore_errors: yes ##To Avoid - fatal: FAILED! => {"changed": false, "cmd": "/bin/flase", "msg": "[Errno 2] No such file or directory", "rc": 2}
     tags:
       - ignoreerrors
     
