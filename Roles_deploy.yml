@@ -5,19 +5,19 @@
   become: yes
   gather_facts: true  
   
- # roles:
+  roles:
  #   - role_php_site_1
- #   - /home/ansible/.ansible/roles/ansiblebit.httpd
+    - /home/ansible/.ansible/roles/ansiblebit.httpd
  
-  tasks:
-  - name: I Use
-    debug:
-      msg: "I Use Role"
-  - name: run ansible galaxy
-    local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
-  - name: Use Role
-    include_role:
-      name: /home/ansible/.ansible/roles/ansiblebit.httpd
+  #tasks:
+  #- name: I Use
+  #  debug:
+  #    msg: "I Use Role"
+  #- name: run ansible galaxy
+  #  local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
+  #- name: Use Role
+  #  include_role:
+  #    name: /home/ansible/.ansible/roles/ansiblebit.httpd
  
  
   
