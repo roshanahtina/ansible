@@ -1,6 +1,6 @@
 ---
 - name: This is the yml play_file of combination of limit and changed when and failed when
-  hosts: ansiclients
+  hosts: ansi22
   become: yes
   gather_facts: yes
   
@@ -18,3 +18,5 @@
     failed_when: '"FAIL" failed in scriptout.stdout'
     tags:
       - condition_change_failed
+  - debug: msg="{{ scriptout }}"    
+  
