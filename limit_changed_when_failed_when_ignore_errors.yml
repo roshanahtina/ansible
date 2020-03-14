@@ -1,0 +1,20 @@
+---
+- name: This is the yml play_file of combination of limit and changed when and failed when
+  hosts: ansiclients
+  become: yes
+  gather_facts: yes
+  
+  tasks:
+  - name: Ignore errors directive placed
+    command: /bin/flase
+    #ignore_errors: yes
+    tags:
+      - ignoreerrors
+    
+  - name: Failed and Changed When Condition on same play
+    command: /bin/sh /etc/ansible/failed_changed_condition.sh what
+    register: scriptout
+    changed_when: '"CHANGED" When changed is scriptout.stdout'
+    failed_when: '"FAILED" When failed is scriptout.stdout'
+    tags:
+      - condition_change_failed
