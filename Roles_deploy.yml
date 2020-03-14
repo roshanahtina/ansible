@@ -1,10 +1,20 @@
 ---
-- hosts: webclients
+- hosts: ansi23
   remote_user: ansible
   become: yes
-  become_method: sudo
   gather_facts: true  
   
-  roles:
-    - role_php_site_1
+ # roles:
+ #   - role_php_site_1
+ #   - /home/ansible/.ansible/roles/ansiblebit.httpd
+ 
+ tasks:
+ - name: I Use
+   debug:
+     msg: "I Use Role"
+ - name: Use Role
+   include_role:
+     name: /home/ansible/.ansible/roles/ansiblebit.httpd
+ 
+ 
   
