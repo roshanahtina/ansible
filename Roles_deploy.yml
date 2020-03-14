@@ -12,6 +12,8 @@
   - name: I Use
     debug:
       msg: "I Use Role"
+  - name: run ansible galaxy
+    local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
   - name: Use Role
     include_role:
       name: /home/ansible/.ansible/roles/ansiblebit.httpd
