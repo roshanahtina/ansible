@@ -12,7 +12,7 @@
       - ignoreerrors
     
   - name: Failed and Changed When Condition on same play
-    command: /bin/sh /etc/ansible/failed_changed_condition.sh what
+    command: /bin/sh /etc/ansible/failed_changed_condition.sh #what To check the condition
     register: scriptout
     changed_when: '"CHANGED" changed in scriptout.stdout'
     failed_when: '"FAIL" failed in scriptout.stdout'
