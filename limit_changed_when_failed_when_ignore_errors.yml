@@ -14,10 +14,10 @@
   - name: Failed and Changed When Condition on same play
     command: failed_changed_condition.sh ##what To check the condition
     register: cmddout
-    changed_when: '"No such file or directory" changed in cmddout.stdout'
-    #failed_when: '"FAILED" failed in cmddout.stdout'
-    #tags:
-    #  - condition_change_failed
+    changed_when: '"CHANGED" changed in cmddout.stdout'
+    failed_when: '"FAILED" failed in cmddout.stdout'
+    tags:
+      - condition_change_failed
   - debug: 
       msg: "Output {{ cmddout }}"
   
