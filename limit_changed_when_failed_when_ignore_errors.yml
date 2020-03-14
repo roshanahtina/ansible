@@ -14,9 +14,9 @@
   - name: Failed and Changed When Condition on same play
     command: /etc/ansible/failed_changed_condition.sh #what To check the condition
     register: scriptout
-    changed_when: '"CHANGED" changed in scriptout.stdout'
-    failed_when: '"FAIL" failed in scriptout.stdout'
+    changed_when: '"changed" changed in scriptout.stdout'
+    failed_when: '"FAILED" failed in scriptout.stdout'
     tags:
       - condition_change_failed
-  - debug: msg="{{ scriptout }}"    
+  - debug: msg="Output {{ scriptout }}"    
   
