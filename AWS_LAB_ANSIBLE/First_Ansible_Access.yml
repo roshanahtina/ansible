@@ -3,7 +3,7 @@
   gather_facts: yes
   
   vars_files:
-    - AWS_LAB_ANSIBLE/key_files
+    - /etc/ansible/AWS_LAB_ANSIBLE/key_files
   
   tasks:
   - name: We are going to access and action the from localhost to aws ec2
