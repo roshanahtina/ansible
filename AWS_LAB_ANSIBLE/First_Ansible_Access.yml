@@ -6,7 +6,7 @@ vars_files:
   - AWS_LAB_ANSIBLE/key_files
 
 tasks:
-- name: We are going to access the from localhost to aws ec2
+- name: We are going to access and action the from localhost to aws ec2
   ec2:
     aws_access_key: "{{ aws_access_key }}"
     aws_secret_key: "{{ aws_secret_key }}"
