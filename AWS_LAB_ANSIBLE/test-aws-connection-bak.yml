@@ -2,14 +2,15 @@
 - hosts: localhost
   gather_facts: yes
   
-  vars-files:
-  - /etc/ansible/AWS_LAB_ANSIBLE/key_files
+  vars_files:
+    - /etc/ansible/AWS_LAB_ANSIBLE/key_files
   
   tasks:
-  ec2-instance-info:
+  - name: To get the instances information...
+    ec2-instance-info:
       aws_access_key: "{{ aws_access_key }}"
       aws_secret_key: "{{ aws_secret_key }}"
       aws_region: "{{ aws_region }}"
       register: output
-- debug:
-    msg: output.instances
+  - debug:
+      msg: output.instances
