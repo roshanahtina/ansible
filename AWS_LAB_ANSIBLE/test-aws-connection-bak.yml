@@ -1,15 +1,16 @@
----
-- hosts: localhost
-  gather_facts: yes
-  vars_files:
+--- 
+- 
+  gather_facts: true
+  hosts: localhost
+  tasks: 
+    - 
+      ec2_instance_info: 
+        aws_access_key: "{{ aws_access_key }}"
+        aws_region: "{{ aws_region }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        register: output
+    - 
+      debug: 
+        msg: output.instances
+  vars_files: 
     - /etc/ansible/AWS_LAB_ANSIBLE/key_files
-  
-  tasks:
-  - 
-    ec2_instance_info:
-      aws_access_key: "{{ aws_access_key }}"
-      aws_secret_key: "{{ aws_secret_key }}"
-      aws_region: "{{ aws_region }}"
-      register: output
-  - debug:
-      msg: output.instances
