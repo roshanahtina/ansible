@@ -13,7 +13,7 @@
       aws_region: "{{ aws_region }}"
       aws_secret_key: "{{ aws_secret_key }}"
     register: output
-  - name: Output of the register module
-    debug: 
-      msg: output.instances
+  
+  - debug: 
+    msg: output.instances
 
