@@ -1,0 +1,69 @@
+Vim Survival Commands :::
+
+Text Manipulation
+
+i insert before cursor
+r replace single character
+I insert at start of line
+cc replace line
+a insert after cursor
+A insert at the end of line
+cw replace the end of word
+c$ replace the end of line
+o add new line below cursor
+O add new line above cursor
+s substitute character
+S substitute line
+ea insert at the end of the line
+u undo
+Esc exit insert mode
+Ctrl redo
+Text Manipulation Cont.
+
+y yank/copy
+yw yank a word
+yy yank a line
+x delete character
+D delete the end of line
+/string search for "string"
+y$ yank to end of line
+p paste after cursor
+P paste before cursor
+dd delete/cut a line
+dw delete a word
+Visual Mode
+
+v enter visual mode
+V enter linewise visual mode
+Ctrl start visual block mode
+">" shift text left (without double quotes)
+"<" shift text right (without double quotes)
+">>" shift left by shiftwidth (without double quotes)
+<< shift right by shiftwidth
+== auto-indent line
+~ change case
+Esc exit visual mode
+Save & Exit
+
+ZZ save and quit
+ZQ quit without saving
+:w write/save
+:q quit (fails if there are changes)
+:wq write and quit
+:x write and quit
+:q! force quit without saving
+:qa quit all vim buffers
+Navigation
+
+k move cursor up
+gg jump to first line document
+h move cursor left
+b move to start of previous word
+O move to start of line
+B move to start of previous word (inc. punctuation)
+j move cursor down
+G jump to last line in document
+l move cursor right
+w move to start of next word
+$ move to end of line
+W move to start of next word (inc. punctuation)
