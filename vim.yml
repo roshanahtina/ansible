@@ -31,6 +31,7 @@ p paste after cursor
 P paste before cursor
 dd delete/cut a line
 dw delete a word
+
 Visual Mode
 
 v enter visual mode
