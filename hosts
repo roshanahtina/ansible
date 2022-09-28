@@ -56,3 +56,11 @@
 #ansible_ssh_user=ansible
 #ansible_ssh_private_key_file=/home/ansible/.ssh/id_rsa
 
+[web]
+7c0437ebc42c.mylabserver.com
+
+[db]
+7c0437ebc43c.mylabserver.com
+
+[lb]
+7c0437ebc41c.mylabserver.com
