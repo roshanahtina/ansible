@@ -1,7 +1,8 @@
 ---
 # - import_playbook: firstplaybook.yml
+# - hosts: ansiclients
 
-- hosts: ansiclients
+- hosts: all
   remote_user: ansible
   #become: yes
   become_method: sudo
