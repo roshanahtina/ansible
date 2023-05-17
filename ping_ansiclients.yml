@@ -1,0 +1,23 @@
+---
+# - import_playbook: firstplaybook.yml
+# - hosts: ansiclients
+
+# - hosts: all
+- hosts: ansiclients
+  remote_user: ansible
+  #become: yes
+  become_method: sudo
+  gather_facts: true
+  #serial: "50%"
+  #serial:
+  #  - 1
+  #  - 2
+  #  - 3
+  #strategy: free
+    
+  tasks:
+  - name: ping to all the ansible-clients
+    ping:
+  - debug:
+      msg: "If ping failed to ping to target server"
+      
