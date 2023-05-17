@@ -1,0 +1,27 @@
+---
+- hosts: dbclients
+  remote_user: ansible
+ # become: yes
+  become_method: sudo
+  gather_facts: true
+    
+  tasks:
+  - name: Run 'Yum clean all'
+    ansible.builtin.shell: yum clean all
+    register: yumcleanstatus
+
+  - debug:
+      msg: "{{ yumcleanstatus }}"
+
+  - ansible.builtin.command: yum update --disablerepo=* --enablerepo=baseos*
+    register: yumupdatestatus
+
+  - debug:
+      msg: "{{ yumupdatestatus }}"
+
+  - name: Reboot the machine with all defaults
+    ansible.builtin.reboot:
+    register: rebootstatus
+    tags: reboot  
+  - debug:
+      msg: "{{ rebootstatus }}"
