@@ -35,5 +35,5 @@
     tags: withuid
     
   - debug:
-      msg: "{{ CreateOutputWithuid.stdout }}"
+      msg: "{{ CreateOutputWithuid }}"
     tags: withuid
