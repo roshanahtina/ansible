@@ -17,6 +17,7 @@
     tags: withoutuid
     
   - debug: msg="{{ CreateOutputWithOutuid }}"
+    tags: withoutuid
     
   - name: Creating a user with uid
     user:
@@ -35,3 +36,4 @@
     
   - debug:
       msg: "{{ CreateOutputWithuid.stdout }}"
+    tags: withuid
