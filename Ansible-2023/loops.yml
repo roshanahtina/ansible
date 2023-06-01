@@ -16,7 +16,7 @@
     register: CreateOutputWithOutuid
     tags: withoutuid
     
-  - debug: msg="{{ CreateOutputWithOutuid.stdout }}"
+  - debug: msg="{{ CreateOutputWithOutuid }}"
     
   - name: Creating a user with uid
     user:
