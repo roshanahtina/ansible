@@ -1,5 +1,5 @@
 ---
-- hosts: globe
+- hosts: web
   gather_facts: False
   become: yes
   
