@@ -1,0 +1,9 @@
+---
+hosts: all
+gather_facts: True
+become: yes
+
+tasks:
+- name: Ping the servers for pingtest
+  ping:
+  
