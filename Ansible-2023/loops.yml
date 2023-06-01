@@ -33,5 +33,5 @@
     register: CreateOutputWithuid
     tags: withuid
     
-    - debug:
-        msg: "{{ CreateOutputWithuid.stdout }}"
+  - debug:
+      msg: "{{ CreateOutputWithuid.stdout }}"
