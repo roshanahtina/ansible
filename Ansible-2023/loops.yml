@@ -1,0 +1,38 @@
+---
+- hosts: globe
+  gather_facts: False
+  become: yes
+  
+  tasks:
+  - name: Creaing a user with loop
+    user:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - jack
+      - andy
+      - sandy
+      - carl
+    register: CreateOutputWithOutuid
+    tags: withoutuid
+    
+  - debug:
+      msg="{{ CreateOutputWithOutuid.stdout }}"
+    
+  - name: Creating a user with uid
+    user:
+      name: "{{ item.name }}"
+      state: present
+      uid: "{{ item.uid }}"
+    loop:
+      - name: woofoo
+        uid: 2001
+      - name: lucy
+        uid: 2002
+      - name: sandyy
+        uid: 2003
+    register: CreateOutputWithuid
+    tags: withuid
+    
+    - debug:
+        msg: "{{ CreateOutputWithuid.stdout }}"
