@@ -2,6 +2,8 @@
 - hosts: globe
   gather_facts: True
   become: yes
+  become_sudo: yes
+  sudo_user: cloud_user
 
   tasks:
   - name: Ping the servers for pingtest
