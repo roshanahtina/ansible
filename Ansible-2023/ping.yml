@@ -2,7 +2,6 @@
 - hosts: globe
   gather_facts: True
   become: yes
-  become_sudo: yes
   remote_user: cloud_user
 
   tasks:
