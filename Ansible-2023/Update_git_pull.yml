@@ -7,7 +7,7 @@
   - name: Git pull task after git repo updates
     git:
       repo: https://github.com/roshanahtina/ansible.git
-      dest: /home/cloud_user/repos/ansible/Ansible-2023/
+      dest: /home/cloud_user/repos/ansible
       refspec: '+refs/pull/*:refs/head/*'
     register: pullresults
   - debug: 
