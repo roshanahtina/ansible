@@ -1,0 +1,21 @@
+## Ansible-playbook Pipeline
+pipeline{
+    agent any
+    environment { 
+        cloud_user_pass=credentials('fa449096-61cd-49c9-9e29-76bea9e3dcf3')
+        }
+    stages{
+        
+        stage('SCM Checkout'){
+            steps{
+                git 'https://github.com/roshanahtina/ansible/'
+            }
+        }
+        
+        stage('Execute Ansible'){
+            steps{
+                ansiblePlaybook credentialsId: 'fa449096-61cd-49c9-9e29-76bea9e3dcf3', installation: 'ansible', inventory: '$WORKSPACE/Ansible-2023/host.ini', playbook: '$WORKSPACE/Ansible-2023/$PlaybookName'
+            }
+        }
+    }
+}
