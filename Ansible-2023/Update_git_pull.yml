@@ -1,6 +1,5 @@
 - hosts: ansimaster
-  remote_user: cloud_user
-  gather_facts: False
+  gather_facts: True
   
   tasks:
   
