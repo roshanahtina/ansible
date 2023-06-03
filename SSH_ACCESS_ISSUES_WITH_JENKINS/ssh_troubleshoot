@@ -1,3 +1,4 @@
+#
 Login as ->
   * su -s /bin/bash jenkins
   
@@ -12,8 +13,7 @@ Password:
 
 
 =====================================
-
-
+#
 Login under Jenkins
 
 sudo su jenkins
@@ -24,3 +24,38 @@ Rename the keys
 
 mv id_rsa_github id_rsa
 mv id_rsa_github.pub id_rsa.pub
+
+
+=====================================
+#
+Adding new global credentials -> https://www.jenkins.io/doc/book/using/using-credentials/
+
+
+=====================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
