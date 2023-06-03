@@ -1,0 +1,11 @@
+Login as ->
+  * su -s /bin/bash jenkins
+  
+And just add fingerprint in jenkins know_hosts file:
+
+bash-4.4$ ssh 7c******41c.mylabserver.com
+The authenticity of host '7c******41c.mylabserver.com (7c******41c.mylabserver.com)' can't be established.
+ECDSA key fingerprint is SHA256:*******************.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '7c******41c.mylabserver.com,43.*.*.225' (ECDSA) to the list of known hosts.
+Password: 
