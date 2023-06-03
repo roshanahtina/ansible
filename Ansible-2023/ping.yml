@@ -1,9 +1,8 @@
 ---
 - hosts: globe
   gather_facts: True
-  #become: yes
-  #remote_user: cloud_user
-
+  become: yes
+  
   tasks:
   - name: Ping the servers for pingtest
     ping:
