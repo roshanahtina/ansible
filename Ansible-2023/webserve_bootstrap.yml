@@ -31,7 +31,9 @@
     service:
       name: httpd
       state: started
+    tags: httpd
     register: httpdoutput
   
   - debug:
-          msg: "{{ httpdoutput }}"
+          msg: "{{ httpdoutput.state }}"
+    tags: httpd
