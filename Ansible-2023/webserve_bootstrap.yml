@@ -1,0 +1,31 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: yes
+
+  tasks:
+  - name: Install the HTTPD Server...
+    yum:
+      name: httpd
+      state: latest
+    regitster: httpdoutput
+
+  - name: Create a Index.html file
+    file:
+      name: /var/www/html/index.html
+      state: touch
+    register: writefile
+
+  - name: Content in the file
+    lineinfile:
+      line: '"Hello", I am web server...!'
+      path: /var/www/html/index.html
+
+  - name: Start the httpd service
+    service:
+      name: httpd
+      state: started
+    register: httpdoutput
+  
+  - debug:
+          msg: "{{ httpdoutput.stdout }}"
