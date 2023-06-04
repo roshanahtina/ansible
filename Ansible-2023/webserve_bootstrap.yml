@@ -8,13 +8,19 @@
     yum:
       name: httpd
       state: latest
-    register: httpdoutput
+    register: httpdoutputt
+    
+  - debug:
+          msg: "{{ httpdoutputt }}"
 
   - name: Create a Index.html file
     file:
       name: /var/www/html/index.html
       state: touch
     register: writefile
+    
+  - debug:
+          msg: "{{ writefile }}"
 
   - name: Content in the file
     lineinfile:
