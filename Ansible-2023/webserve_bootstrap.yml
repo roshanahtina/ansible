@@ -28,4 +28,4 @@
     register: httpdoutput
   
   - debug:
-          msg: "{{ httpdoutput.stdout }}"
+          msg: "{{ httpdoutput }}"
