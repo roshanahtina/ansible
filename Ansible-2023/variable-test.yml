@@ -55,7 +55,7 @@
           msg:
             - "{{ httpdstatuslinesoutput.cmd }}"
             - "{{ httpdstatuslinesoutput.start }}"
-            - "{{ httpdstatuslinesoutput.stdout }}"
+            - "{{ httpdstatuslinesoutput.failed }}"
     tags: httpdstatuslines
     
   - name: Check the status of Apache service...
@@ -73,8 +73,8 @@
     tags: httpdstatus
     changed_when: false
   - debug:
-          #msg: "{{ httpdstatusoutput }}"
-          msg: "{{ httpdstatusoutput.stdout_lines }}"
+          msg: "{{ httpdstatusoutput }}"
+          #msg: "{{ httpdstatusoutput.stdout_lines }}"
           #msg: "{{ httpdstatusoutput.stdout.split('\n')[:-1] }}"
     tags: httpdstatus
 
