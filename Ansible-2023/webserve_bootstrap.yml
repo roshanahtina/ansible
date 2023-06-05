@@ -43,6 +43,6 @@
   - debug:
       msg: "{{ httpdstatus.stdout_lines }}"
     tags: httpdstate
-    changed_when: false
+    changed_when: true
     
   
