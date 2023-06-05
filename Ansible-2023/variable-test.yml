@@ -74,7 +74,7 @@
     changed_when: false
   - debug:
           #msg: "{{ httpdstatusoutput }}"
-          #msg: "{{ httpdstatusoutput.stdout_lines }}"
-          msg: "{{ httpdstatusoutput.stdout.split('\n')[:-1] }}"
+          msg: "{{ httpdstatusoutput.stdout_lines }}"
+          #msg: "{{ httpdstatusoutput.stdout.split('\n')[:-1] }}"
     tags: httpdstatus
 
