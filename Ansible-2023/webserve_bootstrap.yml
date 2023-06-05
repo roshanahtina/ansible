@@ -35,5 +35,5 @@
     register: httpdoutput
   
   - debug:
-          msg: "{{ httpdoutput.state }}"
+          msg: "{{ httpdoutput }}"
     tags: httpd
