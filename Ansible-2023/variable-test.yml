@@ -10,6 +10,10 @@
     service_restart: restarted
     service_stop: stopped
     service_reload: reloaded
+    message: |
+           This is the COMMAND OUTPUT {{ httpdstatuslinesoutputput.cmd }}.
+           This is the START OUTPUT {{ httpdstatuslinesoutputput.start }}.
+           This is the STDOUT OUTPUT{{ httpdstatuslinesoutputput.stdout }}.
 
   tasks:
   - name: START the httpd service
@@ -58,14 +62,9 @@
     ansible.builtin.shell: systemctl status "{{ service_name }}"
     register: httpdstatuslinesoutputput
     tags: httpdstatusliness
-    changed_when: false
-    vars:
-      message: |
-           This is the COMMAND OUTPUT {{ httpdstatuslinesoutputput.cmd }}.
-           This is the START OUTPUT {{ httpdstatuslinesoutputput.start }}.
-           This is the STDOUT OUTPUT{{ httpdstatuslinesoutputput.stdout }}.
+    changed_when: false      
   - debug:
-      msg: "{{ message.split('\n') }}"
+          msg: "{{ message.split('\n') }}"
     tags: httpdstatusliness
     
   - name: Check the status of Apache service...
