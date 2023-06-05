@@ -12,6 +12,43 @@
     service_reload: reloaded
 
   tasks:
+  - name: START the httpd service
+    ansible.builtin.service:
+      name: "{{ service_name }}"
+      state: "{{ service_start }}"
+    register: httpdoutput
+    tags: httpdstart
+  - debug:
+          msg: "{{ httpdoutput }}"
+    tags: httpdstart
+    
+  - name: STOP the httpd service
+    ansible.builtin.service:
+      name: "{{ service_name }}"
+      state: "{{ service_stop }}"
+    register: httpdstopoutput
+    tags: httpdstop
+  - debug:
+          msg: "{{ httpdstopoutput }}"
+    tags: httpdstop
+  
+  - name: RESTART the httpd service
+    ansible.builtin.service:
+      name: "{{ service_name }}"
+      state: "{{ service_restart }}"
+    register: httpdresartoutput
+    tags: httpdrestart
+  - debug:
+          msg: "{{ httpdstopoutput }}"
+    tags: httpdrestart
+  
   - name: Check the status of Apache service...
     ansible.builtin.service:
+      name: "{{ service_name }}"
+      state: "{{ service_status }}"
+    register: httpdstatus
+    tags: httpdstatus
+  - debug:
+          msg: "{{ httpdstopoutput }}"
+    tags: httpdstatus
 
