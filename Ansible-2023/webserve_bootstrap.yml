@@ -9,16 +9,14 @@
       name: httpd
       state: latest
     register: httpdoutputt
-    
   - debug:
-          msg: "{{ httpdoutputt }}"
+      msg: "{{ httpdoutputt }}"
 
   - name: Create a Index.html file
     file:
       name: /var/www/html/index.html
       state: touch
     register: writefile
-    
   - debug:
           msg: "{{ writefile }}"
 
@@ -33,7 +31,6 @@
       state: started
     tags: httpd
     register: httpdoutput
-  
   - debug:
           msg: "{{ httpdoutput }}"
     tags: httpd
