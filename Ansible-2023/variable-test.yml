@@ -39,7 +39,7 @@
     register: httpdresartoutput
     tags: httpdrestart
   - debug:
-          msg: "{{ httpdstopoutput }}"
+          msg: "{{ httpdresartoutput }}"
     tags: httpdrestart
   
   - name: Check the status of Apache service...
