@@ -3,6 +3,9 @@
   become: yes
   gather_facts: yes
 
+  vars:
+    service_name: httpd
+
   tasks:
   - name: Install the HTTPD Server...
     yum:
@@ -37,12 +40,12 @@
     tags: httpdstart
     
   - name: Print httpd service status
-    command: systemctl status httpd -f
+    command: systemctl status {{ service_name }} -f
     tags: httpdstate
     register: httpdstatus
   - debug:
       msg: "{{ httpdstatus.stdout_lines }}"
     tags: httpdstate
-    changed_when: true
+    changed_when: flase
     
   
