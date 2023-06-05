@@ -29,9 +29,18 @@
     service:
       name: httpd
       state: started
-    tags: httpd
+    tags: httpdstart
     register: httpdoutput
-    changed_when: True
+    changed_when: False
   - debug:
           msg: "{{ httpdoutput }}"
-    tags: httpd
+    tags: httpdstart
+    
+  - name: Print httpd service status
+    command: systemctl status httpd -f
+    tags: httpdstate
+    register: httpdstatus
+  - debug:
+      msg: "{{ httpdstatus }}"
+    
+  
