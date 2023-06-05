@@ -2,5 +2,16 @@
 - hosts: globe
   gather_facts: True
   become: yes
+ 
   vars:
-    
+    service_name: httpd
+    service_status: status
+    service_start: started
+    service_restart: restarted
+    service_stop: stopped
+    service_reload: reloaded
+
+  tasks:
+  - name: Check the status of Apache service...
+    ansible.builtin.service:
+
