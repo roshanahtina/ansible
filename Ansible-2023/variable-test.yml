@@ -65,7 +65,7 @@
            This is the START OUTPUT {{ httpdstatuslinesoutputput.start }}.
            This is the STDOUT OUTPUT{{ httpdstatuslinesoutputput.stdout }}.
   - debug:
-      message: "{{ message.split('\n') }}"
+      msg: "{{ message.split('\n') }}"
     tags: httpdstatusliness
     
   - name: Check the status of Apache service...
