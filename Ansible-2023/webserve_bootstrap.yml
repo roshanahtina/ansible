@@ -31,6 +31,7 @@
       state: started
     tags: httpd
     register: httpdoutput
+    changed_when: True
   - debug:
           msg: "{{ httpdoutput }}"
     tags: httpd
