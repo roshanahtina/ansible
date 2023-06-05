@@ -54,17 +54,19 @@
             - "{{ httpdstatuslinesoutput.stdout }}"
     tags: httpdstatuslines
     
- - name: Check the status of Apache service...
+  - name: Check the status of Apache service...
     ansible.builtin.shell: systemctl status "{{ service_name }}"
     register: httpdstatuslinesoutputput
     tags: httpdstatusliness
     changed_when: false
+    vars:
+      msg: |
+           This is the COMMAND OUTPUT {{ httpdstatuslinesoutputput.cmd }}
+           This is the START OUTPUT {{ httpdstatuslinesoutputput.start }}
+           This is the STDOUT OUTPUT{{ httpdstatuslinesoutputput.stdout }}
   - debug:
-          msg: |
-               This is the COMMAND OUTPUT {{ httpdstatuslinesoutputput.cmd }}
-               This is the START OUTPUT {{ httpdstatuslinesoutputput.start }}
-               This is the STDOUT OUTPUT{{ httpdstatuslinesoutputput.stdout }}
-    tags: httpdstatusliness
+      msg: "{{ msg.split('\n') }}"
+      tags: httpdstatusliness
     
   - name: Check the status of Apache service...
     ansible.builtin.shell: systemctl status "{{ service_name }}"
