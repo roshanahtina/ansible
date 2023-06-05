@@ -44,11 +44,12 @@
   
   - name: Check the status of Apache service...
     ansible.builtin.service:
-      name: "{{ service_name }}"
+      name: systemctl status "{{ service_name }}"
       state: "{{ service_status }}"
     register: httpdstatus
     tags: httpdstatus
+    changed_when: false
   - debug:
-          msg: "{{ httpdstopoutput }}"
+          msg: "{{ httpdstopoutput.stdout_lines }}"
     tags: httpdstatus
 
