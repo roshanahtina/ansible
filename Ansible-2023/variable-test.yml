@@ -48,7 +48,7 @@
     tags: httpdstatuslines
     changed_when: false
   - debug:
-          msg: "{{ httpdstatuslinesoutput.stdout_lines }}"
+          msg: "{{ httpdstatuslinesoutput.cmd }}"
     tags: httpdstatuslines
     
   - name: Check the status of Apache service...
