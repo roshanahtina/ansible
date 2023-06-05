@@ -1,0 +1,6 @@
+service_name: httpd
+service_status: status
+service_start: started
+service_restart: restarted
+service_stop: stopped
+service_reload: reloaded
