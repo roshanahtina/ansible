@@ -43,13 +43,20 @@
     tags: httpdrestart
   
   - name: Check the status of Apache service...
-    ansible.builtin.service:
-      name: systemctl status "{{ service_name }}"
-      state: "{{ service_status }}"
-    register: httpdstatus
+    ansible.builtin.shell: systemctl status "{{ service_name }}"
+    register: httpdstatuslinesoutput
+    tags: httpdstatuslines
+    changed_when: false
+  - debug:
+          msg: "{{ httpdstatuslinesoutput.stdout_lines }}"
+    tags: httpdstatuslines
+    
+  - name: Check the status of Apache service...
+    ansible.builtin.shell: systemctl status "{{ service_name }}"
+    register: httpdstatusoutput
     tags: httpdstatus
     changed_when: false
   - debug:
-          msg: "{{ httpdstopoutput.stdout_lines }}"
+          msg: "{{ httpdstatusoutput }}"
     tags: httpdstatus
 
