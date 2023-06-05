@@ -42,5 +42,6 @@
     register: httpdstatus
   - debug:
       msg: "{{ httpdstatus }}"
+    tags: httpdstate
     
   
