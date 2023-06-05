@@ -50,7 +50,8 @@
   - debug:
           msg:
             - "{{ httpdstatuslinesoutput.cmd }}"
-            - "{{ httpdstatuslinesoutput.stdout_lines }}"
+            - "{{ httpdstatuslinesoutput.start }}"
+            - "{{ httpdstatuslinesoutput.stdout }}"
     tags: httpdstatuslines
     
   - name: Check the status of Apache service...
