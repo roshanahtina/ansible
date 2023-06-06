@@ -4,12 +4,12 @@
   become: yes
  
   vars:
-    service_name: httpd
-    service_status: status
-    service_start: started
-    service_restart: restarted
-    service_stop: stopped
-    service_reload: reloaded
+    #service_name: httpd
+    #service_status: status
+    #service_start: started
+    #service_restart: restarted
+    #service_stop: stopped
+    #service_reload: reloaded
     message: |
            This is the COMMAND OUTPUT {{ httpdstatuslinesoutputput.cmd }}.
            This is the START OUTPUT {{ httpdstatuslinesoutputput.start }}.
@@ -78,8 +78,8 @@
           msg: "{{ httpdstatusoutput.stdout.split('\n')[:-1] }}"
     tags: httpdstatus
 
-  - name: Check the status of Apache service...
-    ansible.builtin.shell: echo 'Apache-HTTPD Service Is Not Runnning .... :( :('
+  - name: Check the status of Apache HTTPD service...
+    ansible.builtin.shell: systemctl status "{{ service_name }}" -f
     register: httpdsserviceoutput
     tags: httpdstatusdead
     filed_when:
