@@ -83,8 +83,8 @@
     register: httpdsserviceoutput
     tags: httpdstatusdead
     filed_when:
-      - "{{httpd_status }} in httpdsserviceoutput.stdout"
-      - "{{ httpd_status_dead }} in httpdsserviceoutput"
+      - '"{{httpd_status }}" in httpdsserviceoutput.stdout'"
+      - '"{{ httpd_status_dead }}" in httpdsserviceoutput'"
   - debug:
           #msg: "{{ httpdstatusoutput }}"
           #msg: "{{ httpdstatusoutput.stdout_lines }}"
