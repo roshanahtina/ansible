@@ -87,6 +87,6 @@
       - '"{{ httpd_status_dead }}" in httpdsserviceoutput'
   - debug:
           #msg: "{{ httpdstatusoutput }}"
-          #msg: "{{ httpdstatusoutput.stdout_lines }}"
-          msg: "{{ httpdsserviceoutput.stdout.split('\n')[:-1] }}"
+          msg: "{{ httpdstatusoutput.stdout_lines }}"
+          #msg: "{{ httpdsserviceoutput.stdout.split('\n')[:-1] }}"
     tags: httpdstatusdead
