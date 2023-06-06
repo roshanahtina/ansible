@@ -68,7 +68,7 @@
     tags: httpdstatusliness
     
   - name: Check the status of Apache service...
-    ansible.builtin.shell: systemctl status "{{ service_name }}"
+    ansible.builtin.shell: systemctl status "{{ service_name }}" -f
     register: httpdstatusoutput
     tags: httpdstatus
     changed_when: false
