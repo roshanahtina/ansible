@@ -83,7 +83,7 @@
     register: httpdsserviceoutput
     tags: httpdstatusdead
     changed_when:
-      - '"{{ httpd_status }}" in httpdsserviceoutput.stdout'
+      - '"Stopped The Apache HTTP Server" in httpdsserviceoutput.stdout'
       - '"{{ httpd_status_dead }}" in httpdsserviceoutput'
   - debug:
           #msg: "{{ httpdstatusoutput }}"
