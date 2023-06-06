@@ -81,7 +81,7 @@
   - name: Check the status of Apache service...
     ansible.builtin.shell: echo "Apache-HTTPD Service Is Not Runnning .... :( :\ :|"
     register: httpdsserviceoutput
-    tags: httpdstatus
+    tags: httpdstatusdead
     filed_when:
       - "{{httpd_status }} in httpdsserviceoutput.stdout"
       - "{{ httpd_status_dead }} in httpdsserviceoutput"
@@ -89,4 +89,4 @@
           #msg: "{{ httpdstatusoutput }}"
           #msg: "{{ httpdstatusoutput.stdout_lines }}"
           msg: "{{ httpdsserviceoutput.stdout.split('\n')[:-1] }}"
-    tags: httpdstatus
+    tags: httpdstatusdead
