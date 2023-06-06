@@ -79,7 +79,7 @@
     tags: httpdstatus
 
   - name: Check the status of Apache service...
-    ansible.builtin.shell: echo "Apache-HTTPD Service Is Not Runnning .... :( :\ :|"
+    ansible.builtin.shell: echo 'Apache-HTTPD Service Is Not Runnning .... :( :\ :|"\'
     register: httpdsserviceoutput
     tags: httpdstatusdead
     filed_when:
