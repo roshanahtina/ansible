@@ -5,4 +5,4 @@ service_restart: restarted
 service_stop: stopped
 service_reload: reloaded
 httpd_status: dead
-httpd_status_dead: "Active: inactive (dead)"
+httpd_status_dead: "{{Active: inactive (dead)}}"
