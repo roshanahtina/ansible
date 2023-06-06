@@ -79,10 +79,10 @@
     tags: httpdstatus
 
   - name: Check the status of Apache HTTPD service...
-    ansible.builtin.shell: systemctl status "{{ service_name }}" -f
+    ansible.builtin.shell: systemctl restart "{{ service_name }}" -f
     register: httpdsserviceoutput
     tags: httpdstatusdead
-    filed_when:
+    changed_when:
       - '"{{httpd_status }}" in httpdsserviceoutput.stdout'
       - '"{{ httpd_status_dead }}" in httpdsserviceoutput'
   - debug:
