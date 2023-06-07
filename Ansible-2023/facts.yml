@@ -1,0 +1,4 @@
+---
+- hosts: web
+  gather_facts: True
+  become: yes
