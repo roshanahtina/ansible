@@ -3,7 +3,7 @@
   become: yes
   gather_facts: true
 
-  task:
+  tasks:
   - name: install the list packages
     vars:
       packages:
