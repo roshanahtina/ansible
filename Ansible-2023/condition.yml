@@ -4,7 +4,7 @@
   gather_facts: true
   
   tasks:
-  - name: install the listed  {{ packages.name }} 
+  - name: install the listed packages...
     yum:
       name: "{{ packages.name }}"
       state: present
