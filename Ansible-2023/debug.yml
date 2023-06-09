@@ -14,7 +14,7 @@
       
   - name: Print ansible_facts variables of DB host..
     debug:
-      msg: ansible_facts['default_ipv4']
+      var: ansible_facts['default_ipv4']
     register: ansifact
     tags: ansifacts
   - debug: msg="{{ ansifact }}"
