@@ -9,4 +9,4 @@
       name: "{{ packages.name }}"
       state: present
     when: 
-      - "{{ packages.required }}" == "true"
+      - "{{ packages.required }} == true"
