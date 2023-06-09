@@ -23,5 +23,5 @@
     
   - name: Pring when failed to meet the conditions
     debug: msg="{{ ansiblefact }}"
-    changed_when: false
+    changed_when: true
     tags: ansifacts
