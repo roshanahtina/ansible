@@ -21,7 +21,7 @@
     register: ansiblefact
     tags: ansifacts
     
-  - name: Pring when failed to meet the conditions
+  - name: Print when failed to meet the conditions
     debug: msg="{{ ansiblefact }}"
-    changed_when: true
+    failed_when: "'fatal' in {{ ansiblefact }}"
     tags: ansifacts
