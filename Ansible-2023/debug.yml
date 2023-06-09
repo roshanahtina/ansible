@@ -23,5 +23,5 @@
     
   - name: Print when failed to meet the conditions
     debug: msg="{{ ansiblefact }}"
-    failed_when: "'fatal' in ansiblefact"
+    failed_when: "'Conditional result was False' in ansiblefact"
     tags: ansifacts
