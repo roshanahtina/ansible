@@ -11,4 +11,8 @@
   - name: Print debug variables of DB host..
     debug:
       var: ansible_facts
+      
+  - name: Print ansible_facts variables of DB host..
+    debug:
+      var: "ansible_facts['hw_timestamp_filters']"
     
