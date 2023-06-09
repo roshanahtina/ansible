@@ -8,4 +8,4 @@
     yum:
       name: "{{ packages.name }}"
       state: present
-    when: packages.required == "true"
+    when: "{{ packages.required}}" == "true"
