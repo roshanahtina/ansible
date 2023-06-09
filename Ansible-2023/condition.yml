@@ -1,4 +1,4 @@
-  ---
+---
 - hosts: db
   become: yes
   gather_facts: true
