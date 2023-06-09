@@ -3,9 +3,12 @@
   become: yes
   gather_facts: true
   
+  vars:
+    var_name: "roshan's lab"
+  
   tasks:
   
   - name: Print debug of DB host..
     debug:
-      var:
+      var: "{{ var_name }}"
     
