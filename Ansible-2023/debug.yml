@@ -6,4 +6,6 @@
   tasks:
   
   - name: Print debug of DB host..
+    debug:
+      var:
     
