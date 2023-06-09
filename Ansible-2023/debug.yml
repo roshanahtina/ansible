@@ -16,5 +16,5 @@
     debug:
       var: ansible_facts['default_ipv4']['address']
     register: ansiblefact
-    when: "'172.31.127.70' in {{ansiblefact}}"
+    when: ansible_facts['default_ipv4']['address'] == '172.31.127.70'
     tags: ansifacts
