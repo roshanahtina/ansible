@@ -22,5 +22,6 @@
     tags: ansifacts
     
   - name: Pring when failed to meet the conditions
-    debig: msg="{{ ansiblefact }}"
+    debug: msg="{{ ansiblefact }}"
     failed_when: true
+    tags: ansifacts
