@@ -1,0 +1,9 @@
+---
+- hosts: db
+  become: yes
+  gather_facts: true
+  
+  tasks:
+  
+  - name: Print debug of DB host..
+    
