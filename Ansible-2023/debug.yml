@@ -15,4 +15,6 @@
   - name: Print ansible_facts variables of DB host..
     debug:
       var: ansible_facts['default_ipv4']['address']
+    register: ansiblefact
+    when: "'172.31.127.70' in {{ansiblefact}}"
     tags: ansifacts
