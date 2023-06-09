@@ -17,4 +17,4 @@
     yum:
       name: "{{ packages.name }}"
       state: present
-    when: 'true in "{{ packages.required }}"'
+    when: "'true' in packages.required"
