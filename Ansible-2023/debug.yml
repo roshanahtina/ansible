@@ -17,6 +17,6 @@
       msg: "ansible_facts['hw_timestamp_filters']"
     register: ansifact
     tags: ansifacts
-  - debug: msg="{{ ansifact.stdout }}"
+  - debug: msg="{{ ansifact }}"
     tags: ansifacts
     
