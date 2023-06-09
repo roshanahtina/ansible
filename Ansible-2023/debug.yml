@@ -8,7 +8,7 @@
   
   tasks:
   
-  - name: Print debug of DB host..
+  - name: Print debug variables of DB host..
     debug:
-      msg: "{{ var_name }}"
+      var: ansible_facts
     
