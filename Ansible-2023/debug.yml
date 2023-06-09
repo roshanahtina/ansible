@@ -17,11 +17,6 @@
       var: ansible_facts['default_ipv4']['address']
     when: 
       - ansible_facts['default_ipv4']['address'] == '172.31.127.70'
-      - ansible_facts['default_ipv4']['macaddress'] == '02:94:d1:be:23:41'
+      - ansible_facts['default_ipv4']['macaddress'] == '02:94:d1:be:23:40'
     register: ansiblefact
-    tags: ansifacts
-    
-  - name: Print when failed to meet the conditions
-    debug: msg="{{ ansiblefact }}"
-    failed_when: "'Conditional result was False' in ansiblefact"
     tags: ansifacts
