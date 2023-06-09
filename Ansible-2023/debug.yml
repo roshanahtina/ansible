@@ -15,4 +15,8 @@
   - name: Print ansible_facts variables of DB host..
     debug:
       var: "ansible_facts['hw_timestamp_filters']"
+    register: ansifact
+    tags: ansifacts
+  - debug: msg="{{ ansifact.stdout }}"
+    tags: ansifacts
     
