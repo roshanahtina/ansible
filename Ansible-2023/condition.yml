@@ -13,8 +13,8 @@
         required: true
   
   tasks:
-  - name: Read the required inputs..
-    shell: "{{ packages.required }}"
+  - name: Read the required input
+    shell: "My Required input is: {{ packages.required }}"
     register: packagesrequired
     
   - name: install the listed packages...
