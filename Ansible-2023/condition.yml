@@ -14,7 +14,7 @@
   
   tasks:
   - name: Read the required input
-    shell: "My Required input is: {{ packages.required }}"
+    command: "My Required input is: {{ packages.required }}"
     register: packagesrequired
     
   - name: install the listed packages...
