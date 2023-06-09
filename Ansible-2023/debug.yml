@@ -18,5 +18,5 @@
     register: ansiblefact
     when: 
       - ansible_facts['default_ipv4']['address'] == '172.31.127.70'
-      - ansible_facts['default_ipv4']['macaddress'] == '02:94:d1:be:23:40'
+      - ansible_facts['default_ipv4']['macaddress'] == '02:94:d1:be:23:41'
     tags: ansifacts
