@@ -15,8 +15,12 @@
   - name: Print ansible_facts variables of DB host..
     debug:
       var: ansible_facts['default_ipv4']['address']
-    register: ansiblefact
     when: 
       - ansible_facts['default_ipv4']['address'] == '172.31.127.70'
       - ansible_facts['default_ipv4']['macaddress'] == '02:94:d1:be:23:41'
+    register: ansiblefact
     tags: ansifacts
+    
+  - name: Pring when failed to meet the conditions
+    debig: msg="{{ ansiblefact }}"
+    failed_when: true
