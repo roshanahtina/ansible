@@ -13,12 +13,11 @@
         required: true
   
   tasks:
-  - name: Read the required input
-    command: "My Required input is: {{ packages.required }}"
-    register: packagesrequired
-    
   - name: install the listed packages...
     yum:
       name: "{{ packages.name }}"
       state: present
-    when: "'true' in packagesrequired"
+    register: packagesoutput
+    
+  - debug:
+      msg: "{{ packagesoutput.stdout }}"
