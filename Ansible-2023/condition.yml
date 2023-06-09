@@ -3,6 +3,15 @@
   become: yes
   gather_facts: true
   
+  vars:
+  packages:
+    - name: wget
+      required: true
+    - name: elinks
+      required: true
+    - name: zip
+      required: true
+  
   tasks:
   - name: install the listed packages...
     yum:
