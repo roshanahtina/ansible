@@ -8,5 +8,4 @@
     shell: systemctl status httpd.service
     register: httpdoutput
   - debug:
-      msg: "{{ httpdoutput }}"
-    when_failed: yes
+      msg: "Apche-HTTPD Server Status {{ httpdoutput.stdout_lines }}"
