@@ -9,4 +9,4 @@
     register: httpdoutput
   - debug:
       msg: "{{ httpdoutput.stdout_lines }}"
-    changed_when: true
+    changed_when: false
