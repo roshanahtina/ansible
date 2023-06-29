@@ -8,4 +8,4 @@
     shell: systemctl status httpd.service -f
     register: httpdoutput
   - debug:
-      msg: "THIS the APACHE_HTTPD Servcie Status {{ httpdoutput.stdout }} and {{ httpdoutput.stdout_lines }}"
+      msg: "THIS the APACHE_HTTPD Servcie Status {{ httpdoutput.stdout_lines }}"
