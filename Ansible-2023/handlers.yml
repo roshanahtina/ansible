@@ -5,8 +5,8 @@
   
   tasks:
   - name: Checking the HTTPD Service...
-    shell: systemctl status httpd.service
+    shell: systemctl status httpd.service -f
     register: httpdoutput
     
   - debug:
-      msg: "Apche-HTTPD Server Status {{ httpdoutput.stdout }}"
+      msg: "{{ httpdoutput.stdout_lines }}"
