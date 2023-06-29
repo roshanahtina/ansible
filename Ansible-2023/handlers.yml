@@ -1,0 +1,11 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: yes
+  
+  tasks:
+  - name: Checking the HTTPD Service...
+    shell: systemctl status httpd.service
+    register: httpdoutput
+  - debug:
+      msg: "{{ httpdoutput }}"
