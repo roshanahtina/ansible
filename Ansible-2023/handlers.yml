@@ -5,8 +5,7 @@
   
   tasks:
   - name: Checking the HTTPD Service...
-    shell: systemctl status httpd.service -f
+    command: systemctl status httpd.service -f
     register: httpdoutput
-    
   - debug:
       msg: "{{ httpdoutput.stdout_lines }}"
