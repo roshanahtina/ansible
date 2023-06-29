@@ -7,5 +7,6 @@
   - name: Checking the HTTPD Service...
     shell: systemctl status httpd.service
     register: httpdoutput
+    
   - debug:
-      msg: "Apche-HTTPD Server Status {{ httpdoutput.stdout_lines }}"
+      msg: "Apche-HTTPD Server Status {{ httpdoutput.stdout }}"
