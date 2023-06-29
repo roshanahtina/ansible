@@ -9,3 +9,4 @@
     register: httpdoutput
   - debug:
       msg: "{{ httpdoutput }}"
+    when_failed: yes
