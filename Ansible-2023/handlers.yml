@@ -13,4 +13,4 @@
  
   - name: SKIPPED WHEN HTTPD is RUNNING :) 
     shell: echo "HTTPD-Service is not running so please restart httpd service"
-    when: httpdoutput.rc != "3"
+    when: httpdoutput.rc == "0"
