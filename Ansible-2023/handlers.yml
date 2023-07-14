@@ -7,8 +7,8 @@
   - name: Checking the HTTPD Service...
     shell: systemctl status httpd.service -f
     register: httpdoutput
-#  - debug:
-#      msg: "{{ httpdoutput.stdout_lines }}"
+  - debug:
+      msg: "{{ httpdoutput.stdout_lines }}"
  
   - name: When HTTPD-Service is not running then restart with handlers task
     ansible.builtin.shell: echo "HTTPD-Service is not running so please restart httpd service..."
