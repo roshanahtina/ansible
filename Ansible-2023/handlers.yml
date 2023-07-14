@@ -10,6 +10,6 @@
   - debug:
       msg: "{{ httpdoutput.stdout_lines }}"
  
-  - name: When HTTPD-Service is not running then restart with handlers task
+  - name: SKIPPED WHEN HTTPD is RUNNING :) 
     ansible.builtin.shell: echo "HTTPD-Service is not running so please restart httpd service..."
     when: httpdoutput.rc == "3"
