@@ -10,5 +10,5 @@
     register: filesystem
     
   - debug:
-      msg: File Attr "{{ filesystem.split('\n') }}"
+      msg: File Attr "{{ filesystem }}"
     tags: FSYS
