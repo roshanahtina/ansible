@@ -11,4 +11,4 @@
     
   - debug:
       msg: File Attr {{ fs }}
-    tags: FS
+    tags: FSYS
