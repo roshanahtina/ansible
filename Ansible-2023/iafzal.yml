@@ -34,6 +34,10 @@
 
   - name: Read a file
     shell: cat /tmp/roshan.txt
+    register: fileout
+    tags: createfile
+  - debug:
+      msg: "{{ fileout }}"
     tags: createfile
     
   - name: Delete a file
