@@ -1,0 +1,33 @@
+---
+- name: Stop httpd
+  service:
+    name: httpd
+    state: stopped
+  register: httpdstr
+- debug:
+    msg: "{{ httpdstr }}"
+
+- name: Install httpd package
+  yum:
+    name: httpd
+    state: absent
+  register: httpdout
+- debug:
+    msg: "{{ httpdout }}"
+   
+- name: Open port for http
+  firewalld:
+    service: http
+    permanent: true
+    state: disabled
+  register: httpenbl
+- debug:
+    msg: "{{ httpenbl }}"
+   
+- name: Restart firewalld
+  service:
+    name: firewalld
+    state: reloaded
+  register: firewalldout
+- debug:
+    msg: "{{ firewalldout }}"
