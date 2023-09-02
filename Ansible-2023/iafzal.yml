@@ -110,10 +110,6 @@
   #with_items: "{{ running_process.stdout_lines }}"
     
 #####
-  - name: Installing Fullinstall Tasks
-    rolse:
-      - iafzal
-    tags: FI
 
 
 
