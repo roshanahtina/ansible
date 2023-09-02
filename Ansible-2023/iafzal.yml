@@ -90,6 +90,6 @@
     register: cuser
     tags: createuser
   - debug:
-      mag: "{{ cuser }}"
+      msg: "{{ cuser }}"
     tags: createuser
 #####
