@@ -4,7 +4,7 @@
   gather_facts: False
 
   vars:
-    newpassword=123456
+    - newpassword=123456
   
   tasks:
   - name: Check the filesystems
