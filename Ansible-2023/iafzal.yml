@@ -10,5 +10,5 @@
     register: fs
     
   - debug:
-      msg: File Attr {{ fs }}
+      msg: "File Attr {{ fs }}"
     tags: FSYS
