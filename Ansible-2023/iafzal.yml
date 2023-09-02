@@ -117,7 +117,7 @@
     register: wgetout
     tags: wgetpack
   - debug:
-      msg: "{{ wgetout }}"
+      msg: "{{ wgetout.results }}"
     tags: wgetpack
 #####
 
