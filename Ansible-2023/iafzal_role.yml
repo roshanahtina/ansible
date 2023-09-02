@@ -1,0 +1,5 @@
+---
+  - name: Installing Fullinstall Tasks
+    hosts: web
+    rolse:
+      - iafzal
