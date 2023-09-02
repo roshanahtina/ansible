@@ -5,6 +5,7 @@
 
   vars:
     - newpassword: 123456789
+    - dpack: wget
   
   tasks:
   - name: Check the filesystems
@@ -107,12 +108,18 @@
  #- name: Kill running processes
   #ignore_errors: yes
   #shell: "kill {{ item }}"
-  #with_items: "{{ running_process.stdout_lines }}"
-    
+  #with_items: "{{ running_process.stdout_lines }}"   
 #####
-
-
-
+  - name: Install httpd package
+    yum:
+      name: "{{ dpack }}"
+      state: present
+    register: wgetout
+    tags: wgetpack
+  - debug:
+      msg: "{{ wgetout }}"
+    tags: wgetpack
+#####
 
 
 
