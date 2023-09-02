@@ -77,3 +77,19 @@
       msg: "{{ lstomcat }}"
     tags: createdir
 #####
+  - name: Create a USER and Change a password
+    user:
+      name: "{{ item }}"
+      update_password: always
+      password: "{{ newpassword|password_hash('sha512') }}"
+    loop:
+      - jack
+      - andy
+      - sandy
+      - carl
+    register: cuser
+    tags: createuser
+  - debug:
+      mas: "{{ cuser }}"
+    tags: createuser
+#####
