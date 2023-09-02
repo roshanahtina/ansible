@@ -110,7 +110,7 @@
   #shell: "kill {{ item }}"
   #with_items: "{{ running_process.stdout_lines }}"   
 #####
-  - name: Install httpd package
+  - name: Install DPACK package
     yum:
       name: "{{ dpack }}"
       state: present
