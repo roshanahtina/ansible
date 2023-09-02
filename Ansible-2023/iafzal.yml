@@ -1,7 +1,7 @@
 ---
 - hosts: web
   become: yes
-  gather_facts: False
+  gather_facts: True
 
   tasks:
   - name: Check the filesystem
