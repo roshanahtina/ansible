@@ -7,8 +7,8 @@
   - name: Check the filesystem
     stat:
       path: /etc/hosts
-    register: fs
+    register: filesystem
     
   - debug:
-      msg: "File Attr {{ fs }}"
+      msg: "File Attr {{ filesystem }}"
     tags: FSYS
