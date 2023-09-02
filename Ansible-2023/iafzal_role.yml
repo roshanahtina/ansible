@@ -1,5 +1,7 @@
 ---
   - name: Installing Fullinstall Tasks
     hosts: web
+    become: yes
+    gather_facts: yes
     roles:
       - iafzal
