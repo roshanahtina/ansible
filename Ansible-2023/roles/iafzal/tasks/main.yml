@@ -5,7 +5,7 @@
     state: present
   register: httpdout
 #- debug:
-#    msg: "{{}}"
+#    msg: "{{ httpdout }}"
    
 - name: Start httpd
   service:
