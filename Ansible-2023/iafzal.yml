@@ -10,5 +10,5 @@
     register: filesystem
     
   - debug:
-      msg: "File Attr {{ filesystem }}"
+      msg: "File Attr {{ filesystem.split[-1] }}"
     tags: FSYS
