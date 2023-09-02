@@ -30,4 +30,4 @@
     state: reloaded
   register: firewalldout
 - debug:
-    msg: "{{ firewalldout }}"
+    msg: "{{ firewalldout.status.ActiveState }}"
