@@ -37,9 +37,9 @@
       path: /tmp/roshan.txt
       state: absent
     register: delfile
-    tags: delfile
+    tags: dfile
     
   - debug:
       msg: "{{ delfile }}"
-    tags: delfile
+    tags: dfile
 ####
