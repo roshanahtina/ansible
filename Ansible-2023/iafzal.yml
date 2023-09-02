@@ -32,6 +32,10 @@
       block: Everything you need to know about Linux Automation with Ansible - Roshan
     tags: createfile
 
+  - name: Read a file
+    shell: cat /tmp/roshan.txt
+    tags: createfile
+    
   - name: Delete a file
     file: 
       path: /tmp/roshan.txt
