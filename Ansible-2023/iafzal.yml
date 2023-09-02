@@ -10,5 +10,5 @@
     register: filesystem
     
   - debug:
-      msg: "{{ filesystem }}"
+      msg: "File ATTR: {{ filesystem }}"
     tags: FSYS
