@@ -8,6 +8,7 @@
     stat:
       path: /etc/hosts
     register: filesystem
+    tags: FSYS
     
   - debug:
       msg: File ATTR "{{ filesystem }}"
