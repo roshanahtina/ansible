@@ -1,0 +1,7 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: False
+
+  tasks:
+  - name: 
