@@ -1,7 +1,7 @@
 ---
 - hosts: web
   become: yes
-  gather_facts: True
+  gather_facts: False
 
   tasks:
   - name: Check the filesystems
@@ -50,4 +50,30 @@
   - debug:
       msg: "{{ delfile }}"
     tags: dfile
-####
+#####
+  - name: Create a Directory
+    file:
+      path: /opt/tomcat/
+      state: directory
+      mode: 755
+      owner: root
+      group: root
+    tags: createdir
+
+  - name: Download a Tomcat package
+    get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.93/bin/apache-tomcat-8.5.93.tar.gz
+      dest: /opt/tomcat/
+      mode: 755
+      owner: root
+      group: root
+    tags: createdir
+
+  - name: List the Tomcat file
+    shell: ls -ltrh /opt/tomcat/
+    register: lstomcat
+    tags: createdir
+  - debug:
+      msg: "{{ lstomcat }}"
+    tags: createdir
+#####
