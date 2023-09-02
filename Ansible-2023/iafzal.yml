@@ -9,6 +9,6 @@
       path: /etc/hosts
     register: filesystem
     tags: FSYS
-    
   - debug:
       msg: "{{ filesystem }}"
+    tags: FSYS
