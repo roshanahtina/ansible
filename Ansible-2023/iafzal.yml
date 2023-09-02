@@ -96,3 +96,24 @@
       msg: "{{ cuser }}"
     tags: createuser
 #####
+  - name: Find a process and kill it
+    ignore_errors: yes
+    shell: "ps -few | grep top | awk '{print $2}'"
+    register: running_process
+    tags: RP
+  - debug:
+      msg: {{ running_process.stdout_lines }}
+    tags: RP
+#####
+
+
+
+
+
+
+
+
+
+
+
+    
