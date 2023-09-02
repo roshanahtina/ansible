@@ -7,7 +7,7 @@
 - debug:
     msg: "{{ httpdstr }}"
 
-- name: Install httpd package
+- name: UNInstall httpd package
   yum:
     name: httpd
     state: absent
@@ -15,7 +15,7 @@
 - debug:
     msg: "{{ httpdout }}"
    
-- name: Open port for http
+- name: Close port for http
   firewalld:
     service: http
     permanent: true
