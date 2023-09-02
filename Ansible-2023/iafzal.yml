@@ -119,6 +119,16 @@
   - debug:
       msg: "{{ wgetout.results }}"
     tags: wgetpack
+
+  - name: UNInstall DPACK package
+    yum:
+      name: wget
+      state: absent
+    register: dpackremove
+    tags: dpackrmv
+  - debug:
+      msg: "{{ dpackremove.results }}"
+    tags: dpackrmv
 #####
 
 
