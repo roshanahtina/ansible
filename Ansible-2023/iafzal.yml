@@ -104,6 +104,11 @@
   - debug:
       msg: "{{ running_process.stdout_lines }}"
     tags: RP
+ #- name: Kill running processes
+  #ignore_errors: yes
+  #shell: "kill {{ item }}"
+  #with_items: "{{ running_process.stdout_lines }}"
+    
 #####
 
 
