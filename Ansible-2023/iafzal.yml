@@ -14,3 +14,32 @@
       #msg: "File ATTR {{ filesystem }}"
       msg: "{{ filesystem }}"
     tags: FSYS
+####
+  - name: Create a file
+    file:
+      path: /tmp/roshan.txt
+      state: touch
+    tags: createfile
+    
+  - name: Check the file
+    stat:
+      path: /tmp/roshan.txt
+    tags: createfile
+
+  - name: Add text file in the file
+    blockinfile:
+      path: /tmp/roshan.txt
+      block: Everything you need to know about Linux Automation with Ansible - Roshan
+    tags: createfile
+
+  - name: Delete a file
+    file: 
+      path: /tmp/roshan.txt
+      state: absent
+    register: delfile
+    tags: delfile
+    
+  - debug:
+      msg: "{{ delfile }}"
+    tags: delfile
+####
