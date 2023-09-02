@@ -1,5 +1,5 @@
 ---
   - name: Installing Fullinstall Tasks
     hosts: web
-    rolse:
+    roles:
       - iafzal
