@@ -4,4 +4,10 @@
   gather_facts: False
 
   tasks:
-  - name: 
+  - name: Check the filesystem
+    stat:
+      path: /etc/hosts
+    register: fs
+  - debug:
+      msg: "File Attr {{ fs }}"
+    tags: FS
