@@ -2,6 +2,9 @@
 - hosts: web
   gather_facts: False
   become: yes
+
+  vars:
+    newpassword=123456
   
   tasks:
   - name: Creaing a user with loop
