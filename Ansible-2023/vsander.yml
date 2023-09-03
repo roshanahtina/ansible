@@ -37,9 +37,9 @@
     tags: ftp
   - debug:
       msg: 
-        -  "{{ ftpsrv.name }}"
-        -  "{{ ftpsrv.state }}"
-        -  "{{ ftpsrv.status.ActiveState }}"
+        -  "Package Name: {{ ftpsrv.name }}"
+        -  "Service State: {{ ftpsrv.state }}"
+        -  "Service running: {{ ftpsrv.status.ActiveState }}"
     tags: ftp
 #### 
 
