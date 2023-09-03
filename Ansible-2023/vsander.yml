@@ -39,7 +39,7 @@
       msg: 
         -  "{{ ftpsrv.name }}"
         -  "{{ ftpsrv.state }}"
-        -  "{{ ftpsrv.ActiveState }}"
+        -  "{{ ftpsrv.status.ActiveState }}"
     tags: ftp
 #### 
 
