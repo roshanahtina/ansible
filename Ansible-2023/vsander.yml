@@ -14,23 +14,23 @@
     tags: AV
 ####
   - name: Install VSFTPD packages
-    hosts: db
     yum:
       name: vsftpd
       state: present
     register: ftpout
+    delegate_to: db
     tags: ftp
   - debug:
       msg: "{{ ftpout.stdout_lines }}"
     tags: ftp
 
   - name: Start the VSFTPD service
-    hosts: db
     service:
       name: vsftpd
       state: started
       enable: false
     register: ftpsrv
+    delegate_to: db
     tags: ftp
   - debug:
       msg: "{{ ftpsrv.stdout_line }}"
