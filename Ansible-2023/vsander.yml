@@ -5,7 +5,7 @@
 
   tasks:
   - name: To know about ANSIBLE Version :)
-      ansible.builtin.command: ansible --version
+    ansible.builtin.command: ansible --version
     register: anisversion
     tags: AV
   - debug:
