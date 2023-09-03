@@ -9,5 +9,5 @@
     register: anisversion
     tags: AV
   - debug:
-      msg: "{{ anisversion }}"
+      msg: "{{ anisversion.stdout_lines }}"
     tags: AV
