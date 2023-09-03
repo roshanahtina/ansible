@@ -14,7 +14,7 @@
     tags: AV
 ####
   - name: Install VSFTPD packages
-    host: db
+    hosts: db
     yum:
       name: vsftpd
       state: present
@@ -25,7 +25,7 @@
     tags: ftp
 
   - name: Start the VSFTPD service
-    host: db
+    hosts: db
     service:
       name: vsftpd
       state: started
