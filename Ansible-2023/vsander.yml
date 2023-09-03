@@ -4,4 +4,10 @@
   gather_facts: True
 
   tasks:
-  -  name: 
+  - name: To know about ANSIBLE Version :)
+      shell: 'ansible --verison'
+    register: anisversion
+    tags: AV
+  - debug:
+      msg: "{{ anisversion }}"
+    tags: AV
