@@ -5,6 +5,7 @@
 
   vars:
     - db: 7c0437ebc42c.mylabserver.com
+    - wait_seconds: 10
 
   tasks:
 ####
@@ -50,6 +51,12 @@
     register: ftpsrvs
     delegate_to: "{{ db }}"
     tags: ftps
+    
+  - name: Pause debug before for 10sec
+    ansible.builtin.pause:
+      seconds: "{{ wait_seconds | int }}"
+    tags: ftps
+    
   - debug:
       msg: 
         -  "Package Name: {{ ftpsrvs.name }}"
