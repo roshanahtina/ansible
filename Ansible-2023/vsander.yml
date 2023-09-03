@@ -13,8 +13,10 @@
       msg: "{{ anisversion.stdout_lines }}"
     tags: AV
 ####
+---
+- host: db
+  tasks:
   - name: Install VSFTPD packages
-    host: db
     yum:
       name: vsftpd
       state: present
@@ -33,6 +35,7 @@
   - debug:
       msg: "{{ ftpsrv.stdout_line }}"
     tags: ftp
+...
 #### 
 
 
