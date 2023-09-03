@@ -13,11 +13,8 @@
       msg: "{{ anisversion.stdout_lines }}"
     tags: AV
 ####
----
-- name: VSFTPD INSTALL
-  host: db
-  tasks:
   - name: Install VSFTPD packages
+    host: db
     yum:
       name: vsftpd
       state: present
@@ -28,6 +25,7 @@
     tags: ftp
 
   - name: Start the VSFTPD service
+    host: db
     service:
       name: vsftpd
       state: started
