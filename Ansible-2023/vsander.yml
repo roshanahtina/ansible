@@ -31,7 +31,7 @@
     service:
       name: vsftpd
       state: started
-      enable: false
+      enabled: false
     register: ftpsrv
     delegate_to: "{{ db }}"
     tags: ftp
