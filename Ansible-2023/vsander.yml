@@ -41,6 +41,21 @@
         -  "Service State: {{ ftpsrv.state }}"
         -  "Service running: {{ ftpsrv.status.ActiveState }}"
     tags: ftp
+
+  - name: Stop the VSFTPD service
+    service:
+      name: vsftpd
+      state: started
+      enabled: false
+    register: ftpsrvs
+    delegate_to: "{{ db }}"
+    tags: ftps
+  - debug:
+      msg: 
+        -  "Package Name: {{ ftpsrvs.name }}"
+        -  "Service State: {{ ftpsrvs.state }}"
+        -  "Service running: {{ ftpsrvs.status.ActiveState }}"
+    tags: ftps
 #### 
 
 
