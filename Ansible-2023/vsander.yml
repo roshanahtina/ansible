@@ -5,7 +5,7 @@
 
   vars:
     - db: 7c0437ebc42c.mylabserver.com
-    - wait_seconds: 10
+    - wait_seconds: 20
 
   tasks:
 ####
