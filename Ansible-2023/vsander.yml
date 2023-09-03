@@ -45,7 +45,7 @@
   - name: Stop the VSFTPD service
     service:
       name: vsftpd
-      state: started
+      state: stopped
       enabled: false
     register: ftpsrvs
     delegate_to: "{{ db }}"
