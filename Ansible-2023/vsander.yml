@@ -4,6 +4,7 @@
   gather_facts: True
 
   tasks:
+####
   - name: To know about ANSIBLE Version :)
     ansible.builtin.command: ansible --version
     register: anisversion
@@ -11,3 +12,35 @@
   - debug:
       msg: "{{ anisversion.stdout_lines }}"
     tags: AV
+####
+  - name: Install VSFTPD packages
+    host: db
+    yum:
+      name: vsftpd
+      state: present
+    register: ftpout
+    tags: ftp
+  - debug:
+      msg: "{{ ftpout.stdout_lines }}"
+    tags: ftp
+
+  - name: Start the VSFTPD service
+    service:
+      name: vsftpd
+      state: started
+      enable: false
+    register: ftpsrv
+  - debug:
+      msg: "{{ ftpsrv.stdout_line }}"
+    tags: ftp
+#### 
+
+
+
+
+
+
+
+
+
+  
