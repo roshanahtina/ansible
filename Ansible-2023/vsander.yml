@@ -14,7 +14,8 @@
     tags: AV
 ####
 ---
-- host: db
+- name: VSFTPD INSTALL
+  host: db
   tasks:
   - name: Install VSFTPD packages
     yum:
