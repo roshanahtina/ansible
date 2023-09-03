@@ -13,7 +13,7 @@
     register: anisversion
     tags: AV
   - debug:
-      msg: "{{ anisversion.stdout_lines }}"
+      msg: "{{ anisversion }}"
     tags: AV
 ####
   - name: Install VSFTPD packages
@@ -24,7 +24,7 @@
     delegate_to: "{{ db }}"
     tags: ftp
   - debug:
-      msg: "{{ ftpout.stdout_lines }}"
+      msg: "{{ ftpout }}"
     tags: ftp
 
   - name: Start the VSFTPD service
