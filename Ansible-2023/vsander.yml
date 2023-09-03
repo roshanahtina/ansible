@@ -3,6 +3,9 @@
   become: yes
   gather_facts: True
 
+  vars:
+    - db: 7c0437ebc42c.mylabserver.com
+
   tasks:
 ####
   - name: To know about ANSIBLE Version :)
