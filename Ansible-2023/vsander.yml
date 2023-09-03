@@ -33,6 +33,7 @@
       state: started
       enable: false
     register: ftpsrv
+    tags: ftp
   - debug:
       msg: "{{ ftpsrv.stdout_line }}"
     tags: ftp
