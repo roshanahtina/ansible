@@ -36,7 +36,10 @@
     delegate_to: "{{ db }}"
     tags: ftp
   - debug:
-      msg: "{{ ftpsrv }}"
+      msg: 
+        -  "{{ ftpsrv.name }}"
+        -  "{{ ftpsrv.state }}"
+        -  "{{ ftpsrv.ActiveState }}"
     tags: ftp
 #### 
 
