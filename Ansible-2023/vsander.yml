@@ -18,7 +18,7 @@
       name: vsftpd
       state: present
     register: ftpout
-    delegate_to: db
+    delegate_to: {{ db }}
     tags: ftp
   - debug:
       msg: "{{ ftpout.stdout_lines }}"
@@ -30,7 +30,7 @@
       state: started
       enable: false
     register: ftpsrv
-    delegate_to: db
+    delegate_to: {{ db }}
     tags: ftp
   - debug:
       msg: "{{ ftpsrv.stdout_line }}"
