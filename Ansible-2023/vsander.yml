@@ -67,10 +67,10 @@
   - name: Line Breaker
     key: > Your long
     string here.
-
+    tags: LineB
+  - name: Line Breaker1
     key: |
     ### Heading
-
     * Bullet
     * Points
     tags: LineB
