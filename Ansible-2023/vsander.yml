@@ -79,7 +79,8 @@
     tags: dbuser
 ####
   - name: Set variables
-    shell: id jack 
+    user:
+      name: jack
     register: setvars
     tags: sv
   - name: Debug VARS
