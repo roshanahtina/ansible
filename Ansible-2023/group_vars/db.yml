@@ -1,3 +1,4 @@
+user: linda
 vars:
   packages:
     - name: wget
@@ -6,4 +7,3 @@ vars:
       required: true
     - name: zip
       required: true
-user: linda
