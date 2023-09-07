@@ -89,7 +89,7 @@
     tags: sv
   - name: Debug MSGS
     debug:
-      msg: "{{ setvars }}"
+      msg: "The password is {{ passwd }}"
     tags: sv
 ####
 
