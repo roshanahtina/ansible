@@ -4,4 +4,4 @@ service_start: started
 service_restart: restarted
 service_stop: stopped
 service_reload: reloaded
-user: hostbob
+user: hostdb
