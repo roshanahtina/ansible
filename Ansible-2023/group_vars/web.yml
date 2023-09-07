@@ -7,3 +7,4 @@ service_reload: reloaded
 httpd_status: dead
 httpd_status_dead: '{{ Active: inactive (dead) }}'
 user: bobweb
+passwd: passwd
