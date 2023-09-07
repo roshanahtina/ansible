@@ -1,7 +1,7 @@
 ---
 - hosts: web
   become: yes
-  gather_facts: True
+  gather_facts: False
 
   vars:
     - db: 7c0437ebc42c.mylabserver.com
