@@ -84,11 +84,11 @@
     tags: sv
   - name: Debug VARS
     debug:
-      var: {{ setvars }
+      var: {{ setvars }}
     tags: sv
   - name: Debug MSGS
     debug:
-      msg: {{ setvars }
+      msg: {{ setvars }}
     tags: sv
 ####
 
