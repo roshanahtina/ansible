@@ -1,4 +1,4 @@
-user: linda
+user: lindadb
 vars:
   packages:
     - name: wget
