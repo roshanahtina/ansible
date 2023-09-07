@@ -16,4 +16,4 @@
     register: cron
   - debug:
       msg: "Message out {{ cron.stdout  }} "
-  - debug: msg="Error: {{ cron.stderr }}"
+  - debug: msg="Error {{ cron.stderr }}"
