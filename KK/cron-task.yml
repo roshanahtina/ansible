@@ -15,5 +15,5 @@
     shell: crontab -l
     register: cron
   - debug:
-      msg: "msg out {{ cron.stdout  }} "
-  - debug: msg="{{ cron.stderr }}"
+      msg: "Message out {{ cron.stdout  }} "
+  - debug: msg="Error: {{ cron.stderr }}"
