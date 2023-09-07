@@ -1,7 +1,7 @@
 ---
-- hosts: dbsystems
+- hosts: dbl
   become: yes
-  gather_facts: yes
+  gather_facts: False
 
   tasks:
   - name: Cron job for "df -h >> /tmp/diskspace" on the nodes at 5am and 5pm.
