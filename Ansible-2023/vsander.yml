@@ -75,9 +75,15 @@
     * Points
     tags: LineB
 ####
-
-
-
+  - name: Create a user using a variable
+    debug:
+      msg: The user name is db {{ user }}
+    delegate_to: "{{ db }}"
+    tags: dbuser
+  - debug:
+      msg: The user name is form web {{ user }}
+    tags: dbuser
+####
 
 
 
