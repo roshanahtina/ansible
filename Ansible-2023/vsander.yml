@@ -1,5 +1,5 @@
 ---
-- hosts: dbl
+- hosts: web
   become: yes
   gather_facts: False
 
