@@ -10,6 +10,6 @@
     tags: allhosts
 
   - name: Print All Hosts One By One...
-    shell: echo "My Host Name is {{ item }}"
-    loops: "{{ groups['web'] }}"
+    shell: ping -c 2 {{ item }}
+    with_items: "{{ groups['web'] }}"
     tags: allgroup
