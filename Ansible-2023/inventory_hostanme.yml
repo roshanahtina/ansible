@@ -16,7 +16,8 @@
     tags: allgroup
 
   - debug:
-      msg: "{{ shellout }}"
+      msg: "{{ item.stdout_lines }}"
+    loop: "{{ shellout.results }}"
     tags: allgroup
 
   - name: Print All Hosts One By One...
