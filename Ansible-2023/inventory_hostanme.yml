@@ -1,5 +1,5 @@
 ---
-- hosts: web
+- hosts: localhost
   become: yes
   gather_facts: True
 
@@ -11,7 +11,7 @@
 
   - name: Print All Hosts One By One...
     shell: ping -c 2 {{ item }}
-    with_items: "{{ groups['web'] }}"
+    with_items: "{{ groups['globe'] }}"
     register: shellout
     tags: allgroup
 
