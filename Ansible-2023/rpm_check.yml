@@ -1,10 +1,18 @@
-- name: Check if rpm is already installed
-  yum:
-    list: my-rpm
-  # If not installed yum_list.results[*].yumstate != installed
-  register: yum_list
+---
+- hosts: db
+  gather_facts: False
 
-- name: Conditionally do next thing
-  debug:
-    msg: "Not installed"
-  when: yum_list.results | selectattr("yumstate", "match", "installed") | list | length == 0
+  tasks:
+  
+  - name: Check if rpm is already installed...
+    yum:
+      list: wget
+    # If not installed yum_list.results[*].yumstate != installed
+    register: yum_list
+    tags: yuml
+
+  - name: Conditionally Checking The Package Is Installed or not...
+    debug:
+      msg: "Not installed"
+    when: yum_list.results | selectattr("yumstate", "match", "installed") | list | length == 0
+    tags: yuml
