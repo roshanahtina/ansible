@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: ansimaster
   become: yes
   gather_facts: True
 
@@ -10,6 +10,6 @@
     tags: allhosts
 
   - name: Print All Hosts One By One...
-    shell: echo "My Host Name is '{{ item }}'"
-    with_items: "{{ groups['web'] }}"
+    shell: echo "My Host Name is {{ item }}"
+    loops: "{{ groups['web'] }}"
     tags: allgroup
