@@ -2,6 +2,7 @@
 - hosts: ansimaster
   become: yes
   gather_facts: True
+  ignore_errors: True
 
   tasks:
   - name: What is my ansible_hostname
