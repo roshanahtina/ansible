@@ -22,7 +22,7 @@
         - "{{ yum_list.results.name }}"
         - "{{ yum_list.results.nevra }}"
         - "{{ yum_list.results.yumstate }}"
-    when: '"installed" in yum_list.results'
+    when: "'installed' in yum_list.results"
     tags: yuml
     
   - name: Conditionally Checking The Package Is Installed or not...
