@@ -16,5 +16,5 @@
     tags: allgroup
 
   - debug:
-      msg: "{{ shellout.results.stdout_lines }}"
+      msg: "{{ shellout.stdout_lines }}"
     tags: allgroup
