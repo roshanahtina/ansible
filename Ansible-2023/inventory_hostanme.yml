@@ -10,7 +10,7 @@
     tags: allhost
 
   - name: Print All Hosts One By One...
-    shell: ping -c 2 {{ item }}
+    shell: ping -c 1 {{ item }}
     with_items: "{{ groups['globe'] }}"
     register: shellout
     tags: allgroup
