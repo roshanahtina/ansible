@@ -7,7 +7,7 @@
   - name: What is my ansible_hostname
     debug: 
       var: "{{ groups['all'] }}"
-    tags: allhosts
+    tags: allhost
 
   - name: Print All Hosts One By One...
     shell: ping -c 2 {{ item }}
@@ -16,5 +16,15 @@
     tags: allgroup
 
   - debug:
-      msg: "{{ shellout.stdout_lines }}"
+      msg: "{{ shellout }}"
     tags: allgroup
+
+  - name: Print All Hosts One By One...
+    shell: echo "My Name is {{ item }}"
+    with_items: "{{ groups['web'] }}"
+    register: shellout
+    tags: allhosts
+
+  - debug:
+      msg: "{{ shellout }}"
+    tags: allhosts
