@@ -12,4 +12,8 @@
   - name: Print All Hosts One By One...
     shell: ping -c 2 {{ item }}
     with_items: "{{ groups['web'] }}"
+    register: shellout
     tags: allgroup
+
+  - debug:
+      msg: "{{ shellout }}"
