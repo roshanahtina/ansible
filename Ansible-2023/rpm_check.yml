@@ -16,7 +16,7 @@
       msg: "{{ yum_list }}"
     tags: yuml
 
-  - name: Checking The Package Is Installed or not...
+  - name: Checking The Package Is Installed...
     debug:
       msg: 
         - "{{ yum_list.results.name }}"
