@@ -7,7 +7,9 @@
   - name: What is my ansible_hostname
     debug: 
       var: "{{ groups['all'] }}"
+    tags: allhosts
 
   - name: Print All Hosts One By One...
-    shell: echo "My Host Name is {{ item }}"
+    shell: echo "My Host Name is '{{ item }}'"
     with_items: "{{ groups['web'] }}"
+    tags: allgroup
