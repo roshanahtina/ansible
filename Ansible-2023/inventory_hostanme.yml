@@ -1,5 +1,5 @@
 ---
-- hosts: ansimaster
+- hosts: web
   become: yes
   gather_facts: True
 
