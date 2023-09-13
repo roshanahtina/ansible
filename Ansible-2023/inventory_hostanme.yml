@@ -24,8 +24,9 @@
     with_items: "{{ groups['web'] }}"
     register: shellecho
     tags: allhosts
-
+  
   - debug:
       msg: "{{ item.stdout_lines }}"
+      when: item.rc = 0
       loops: "{{ shellecho.results }}"
     tags: allhosts
