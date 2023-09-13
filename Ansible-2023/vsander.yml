@@ -78,15 +78,15 @@
       msg: The user name is form web {{ user }}
     tags: dbuser
 ####
-  - name: Set variables
-    user:
-      name: jack
-    register: setvars
-    tags: sv
-  - name: Debug VARS
-    debug:
-      var: setvars
-    tags: sv
+# - name: Set variables
+#    user:
+#      name: jack
+#    register: setvars
+#    tags: sv
+#  - name: Debug VARS
+#    debug:
+#      var: setvars
+#    tags: sv
 #  - name: Debug MSGS
 #    debug:
 #     msg: "The password is {{ passwd }}"
