@@ -87,10 +87,10 @@
     debug:
       var: setvars
     tags: sv
-  - name: Debug MSGS
-    debug:
-      msg: "The password is {{ passwd }}"
-    tags: sv
+#  - name: Debug MSGS
+#    debug:
+#     msg: "The password is {{ passwd }}"
+#    tags: sv
 # ansible-playbook -i host.ini --vault-password-file=../../passwd vsander.yml --tags=sv
 # ansible-playbook -i host.ini --ask-vault-pass vsander.yml --tags=sv
 # Vault password: 
