@@ -6,4 +6,4 @@
   tasks:
   - name: What is my ansible_hostname
     debug: 
-      var: "{{ansible_hostname}}"
+      var: "{{ groups['all'] }}"
