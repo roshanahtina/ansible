@@ -11,6 +11,11 @@
     register: yum_list
     tags: yuml
 
+  - name: Checking The Package Is Installed or not...
+    debug:
+      msg: "{{ yum_list }}"
+    tags: yuml
+    
   - name: Conditionally Checking The Package Is Installed or not...
     debug:
       msg: "Not installed"
