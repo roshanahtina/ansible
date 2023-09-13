@@ -19,7 +19,7 @@
   - name: Conditionally Checking The Package Is Installed or not...
     debug:
       msg: "Not installed"
-    when: yum_list.results | selectattr("yumstate", "match", "installed") | list | length == 0
+    when: yum_list.results | selectattr("yumstate", "match", "available") | list | length == 0
     tags: yumnotins
 
   - name: set package version
