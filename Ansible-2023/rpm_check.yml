@@ -15,4 +15,9 @@
     debug:
       msg: "Not installed"
     when: yum_list.results | selectattr("yumstate", "match", "installed") | list | length == 0
-    tags: yuml
+    tags: yumnotins
+
+  - name: set package version
+    set_fact:
+      package_name_version: "{{ yum_list.results|selectattr('yumstate','equalto','installed')|map(attribute='version')|list|first }}"
+    tags: yumins
