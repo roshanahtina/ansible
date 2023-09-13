@@ -27,6 +27,5 @@
   
   - debug:
       msg: "{{ item.stdout_lines }}"
-      when: item.rc = 0
-      loops: "{{ shellecho.results }}"
+    loop: "{{ shellecho.results }}"
     tags: allhosts
