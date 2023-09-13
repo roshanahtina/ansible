@@ -10,4 +10,4 @@
 
   - name: Print All Hosts One By One...
     shell: echo "My Host Name is {{ item }}"
-    with_items: "{{ groups['all'] }}"
+    with_items: "{{ groups['web'] }}"
