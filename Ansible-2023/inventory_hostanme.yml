@@ -26,6 +26,6 @@
     tags: allhosts
 
   - debug:
-      msg: "{{ items.stdout_lines }}"
+      msg: "{{ item.stdout_lines }}"
       loops: "{{ shellecho.results }}"
     tags: allhosts
