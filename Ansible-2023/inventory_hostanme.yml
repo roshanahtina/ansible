@@ -22,9 +22,9 @@
   - name: Print All Hosts One By One...
     shell: echo "My Name is {{ item }}"
     with_items: "{{ groups['web'] }}"
-    register: shellout
+    register: shellecho
     tags: allhosts
 
   - debug:
-      msg: "{{ shellout.stdout_lines }}"
+      msg: "{{ shellecho.stdout }}"
     tags: allhosts
