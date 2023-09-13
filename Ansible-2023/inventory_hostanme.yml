@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: ansimaster
   become: yes
   gather_facts: True
   ignore_errors: True
