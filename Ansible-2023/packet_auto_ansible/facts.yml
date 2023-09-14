@@ -7,6 +7,12 @@
   - name: custom facts
     ansible.builtin.shell: git -version
     resgister: gitout
-
+    tags: go
   - debug:
       msg: "{{ gitout }}"
+    tags: go
+
+  - name: Print all available facts
+    ansible.builtin.debug:
+    var: ansible_facts
+    tags:af
