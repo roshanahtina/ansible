@@ -35,6 +35,11 @@
     debug: 
       msg: "This is my {{ groups }}"
     tags: inv_hosts5
+
+  - name: Print the INV HOSTNAME
+    debug: 
+      msg: "This is my {{ groups.keys }}"
+    tags: inv_hosts6
     
   - name: What is my ansible_hostname
     debug: 
