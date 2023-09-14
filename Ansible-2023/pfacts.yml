@@ -6,7 +6,7 @@
   tasks:
   - name: custom facts
     ansible.builtin.shell: git -version
-    resgister: gitout
+    register: gitout
     tags: go
   - debug:
       msg: "{{ gitout }}"
