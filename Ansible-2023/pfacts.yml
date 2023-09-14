@@ -14,5 +14,5 @@
 
   - name: Print all available facts
     ansible.builtin.debug:
-    var: ansible_facts
-    tags:af
+      var: ansible_facts
+    tags: af
