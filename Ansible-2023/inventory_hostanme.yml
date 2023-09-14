@@ -5,6 +5,11 @@
   ignore_errors: True
 
   tasks:
+  ##IMP##
+  - name: Print the INV HOSTNAME
+    debug: 
+      msg: "This is my inventory hostnames"
+    tags: inv_hosts
   - name: What is my ansible_hostname
     debug: 
       var: "{{ groups['all'] }}"
@@ -32,3 +37,4 @@
       msg: "{{ item.stdout_lines }}"
     loop: "{{ shellecho.results }}"
     tags: allhosts
+
