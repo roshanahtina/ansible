@@ -17,4 +17,5 @@
       var: ansible_facts
     tags: af
   - debug: 
-      msg: "{{ ansible_facts['hostname'] }} == 7c0437ebc43c"
+      msg: "{{ ansible_facts }}"
+    when: '"7c0437ebc43c" in ansible_facts'
