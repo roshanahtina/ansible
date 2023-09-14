@@ -40,11 +40,6 @@
     debug: 
       msg: "This is my {{ groups.keys() }}"
     tags: inv_hosts6
-
-  - name: Print the INV HOSTNAME
-    debug: 
-    var=groups
-    tags: inv_hosts7
     
   - name: What is my ansible_hostname
     debug: 
