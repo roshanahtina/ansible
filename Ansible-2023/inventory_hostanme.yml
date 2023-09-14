@@ -8,13 +8,18 @@
   ##IMP##
   - name: Print the INV HOSTNAME
     debug: 
-      var=inventory_hostnames
+      msg: this is my inventory_hostname
     tags: inv_hosts
     
   - name: Print the INV HOSTNAME
     debug: 
-      msg: "This is my {{ inventory_hostnames }}"
+      var=inventory_hostname
     tags: inv_hosts1
+    
+  - name: Print the INV HOSTNAME
+    debug: 
+      msg: "This is my {{ inventory_hostname }}"
+    tags: inv_hosts2
     
   - name: What is my ansible_hostname
     debug: 
