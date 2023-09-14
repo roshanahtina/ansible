@@ -20,6 +20,21 @@
     debug: 
       msg: "This is my {{ inventory_hostname }}"
     tags: inv_hosts2
+
+  - name: Print the INV HOSTNAME
+    debug: 
+      msg: "This is my {{ inventory_hostname_short }}"
+    tags: inv_hosts3
+
+  - name: Print the INV HOSTNAME
+    debug: 
+      var=groups
+    tags: inv_hosts4
+
+  - name: Print the INV HOSTNAME
+    debug: 
+      msg: "This is my {{ groups }}"
+    tags: inv_hosts5
     
   - name: What is my ansible_hostname
     debug: 
