@@ -68,7 +68,7 @@
       msg: "{{ item.stdout_lines }}"
     loop: "{{ shellecho.results }}"
     tags: allhosts
-...
+
 ---
 - hosts: localhost
   become: no
@@ -94,5 +94,4 @@
   - debug:
       msg: "{{ ks_output }}"
     tags: knifestatus
-...
 
