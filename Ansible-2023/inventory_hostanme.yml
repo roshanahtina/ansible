@@ -43,7 +43,7 @@
 
   - name: Print the INV HOSTNAME
     debug: 
-    var=groups.keys()
+    var=groups
     tags: inv_hosts7
     
   - name: What is my ansible_hostname
