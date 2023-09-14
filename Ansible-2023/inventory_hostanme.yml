@@ -68,4 +68,31 @@
       msg: "{{ item.stdout_lines }}"
     loop: "{{ shellecho.results }}"
     tags: allhosts
+...
+---
+- hosts: localhost
+  become: no
+  gather_facts: False
+
+  tasks:
+  - name: Verify the NginX version after upgraded to 1.24.1
+    shell: rpm -qa | grep nginx
+    #ansible.builtin.yum:
+    #  list: nginx
+    register: nginxout
+  - debug:
+      msg: "{{ nginxout.stdout_lines }}"
+
+  - name: Checking Knife Status...
+    #command: knife status -r fqdn:{{ item }}
+    command: ping -c 2 {{ item }}
+    #loop: "{{ groups['node'] }}"
+    loop: "{{ groups['ANode'] }}"
+    register: ks_output
+    tags: knifestatus
+
+  - debug:
+      msg: "{{ ks_output }}"
+    tags: knifestatus
+...
 
