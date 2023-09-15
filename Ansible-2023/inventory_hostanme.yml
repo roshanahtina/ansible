@@ -28,7 +28,7 @@
 
   - name: Print the INV HOSTNAME
     debug: 
-      var=groups
+      var: groups
     tags: inv_hosts4
 
   - name: Print the INV HOSTNAME
