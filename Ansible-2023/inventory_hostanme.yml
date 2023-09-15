@@ -12,8 +12,7 @@
     tags: inv_hosts
     
   - name: Print the INV HOSTNAME
-    debug: 
-      var=inventory_hostname
+    debug: var=inventory_hostname
     tags: inv_hosts1
     
   - name: Print the INV HOSTNAME
@@ -69,12 +68,12 @@
     loop: "{{ shellecho.results }}"
     tags: allhosts
 
----
-- hosts: localhost
-  become: no
-  gather_facts: False
+#---
+#- hosts: localhost
+#  become: no
+#  gather_facts: False
 
-  tasks:
+# tasks:
   - name: Verify the NginX version after upgraded to 1.24.1
     shell: rpm -qa | grep nginx
     #ansible.builtin.yum:
