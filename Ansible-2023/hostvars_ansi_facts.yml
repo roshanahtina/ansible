@@ -1,7 +1,7 @@
 ---
 - hosts: web #all
   become: yes
-  gather_facts: false
+  gather_facts: true
 
   tasks:
     - name: Get Inventory_hostname details...
