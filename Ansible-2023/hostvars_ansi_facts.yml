@@ -12,3 +12,8 @@
       debug: #var=hostvars[inventory_hostname] #hostvars[web]
         msg: "{{ hostvars }}"
       tags: ho_vars
+
+    - name: Get HostVars and print the values...
+      debug: var=ansible_facts
+      tags: ansi_vars
+
