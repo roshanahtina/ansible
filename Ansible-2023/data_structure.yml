@@ -19,6 +19,7 @@
   - name: Print the values of data structure...
     debug:  #var=Packs
       var: Packs
+    tags: varsp
 
   - name: Print the values in list formates with VAR... #NOT WORKING#
     debug:
@@ -34,11 +35,14 @@
         - "{{ Packs }}"
         - "{{ Packss }}"
         - "{{ web_servers }}"
+    tags: ftmsg
 
   - name: Print the First Values
     debug:
       var: Packss[0]
+    tags: index
 
   - name: Print the values of KEYS
     debug:
       var: "{{ web_serverss.keys() }}"
+    tags: keys
