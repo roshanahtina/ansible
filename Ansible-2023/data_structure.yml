@@ -17,8 +17,8 @@
       - Web_Server: Tomcat
   tasks:
   - name: Print the values of data structure...
-    debug:
-      msg:
-        - "{{ Packs }}"
-        - "{{ Packss }}"
-        - "{{ web_server }}"
+    debug: var=Packs
+      #msg:
+      #  - "{{ Packs }}"
+       # - "{{ Packss }}"
+        #- "{{ web_server }}"
