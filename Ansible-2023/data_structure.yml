@@ -25,7 +25,8 @@
       var:
         - Packs
         - Packss
-        - web_server
+        - web_servers
+        - web_serverss
       #msg:
       #  - "{{ Packs }}"
        # - "{{ Packss }}"
