@@ -1,0 +1,20 @@
+---
+- hosts: web
+  become: yes
+  gather_facts: False
+
+  vars:
+    x: 097984538475
+    my_name: roshan roshan
+  vars_promt:
+    name: Promt_values
+    prompt: Please Enter The Promt Name
+    Private: no
+    
+  tasks:
+    - name: Read and Print the value
+      debug:
+        msg:
+          - "This is valueof X: {{x}}"
+          - "This is my value of my_name: {{my_name}}"
+          - "This is the prompt value: {{Promt_values}}"
