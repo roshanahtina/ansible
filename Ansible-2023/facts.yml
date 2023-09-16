@@ -10,5 +10,6 @@
   - debug: 
       msg:
         - "{{ listout }}"
+        - "{{ listout.stdout_lines }}"
   
       
