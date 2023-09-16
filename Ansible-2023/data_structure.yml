@@ -21,5 +21,3 @@
         - var: "{{ Packs }}"
         - var: "{{ Packss }}"
         - msg: "{{ web_server }}"
-      
-      
