@@ -5,7 +5,7 @@
 
   tasks:
   - name: Print the facts values
-    ansible.builtin.shell: shell --version
+    ansible.builtin.shell: bash --version
     register: listout
 
   - debug: var=listout.stdout.split()[0].
