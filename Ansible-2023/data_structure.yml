@@ -13,8 +13,8 @@
         - 'ntpd'
     - web_servers: {'Apache': 'HTTPD', 'Web_Server': 'Tomcat'}
     - web_serverss:
-        - 'Apache': 'HTTPD'
-        - 'Web_Server': 'Tomcat'
+        - Apache: HTTPD
+        - Web_Server: Tomcat
   tasks:
   - name: Print the values of data structure...
       debug: 
