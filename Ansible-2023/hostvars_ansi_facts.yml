@@ -1,9 +1,9 @@
 ---
-- hosts: web, all
+- hosts: web
   become: yes
   gather_facts: false
 
   tasks:
     - name: Get Inventory_hostname details...
-      debug: var=inventory_hostname
+      debug: var=inventory_hostname #inventory_hostname[all]
       tags: in_host
