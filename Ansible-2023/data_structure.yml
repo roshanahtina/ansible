@@ -44,5 +44,5 @@
 
   - name: Print the values of KEYS
     debug:
-      var: "{{ web_serverss.keys() }}"
+      var: web_serverss.keys()
     tags: keys
