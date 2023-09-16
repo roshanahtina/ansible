@@ -2,3 +2,10 @@
 - hosts: web
   gather_facts: True
   become: yes
+
+  tasks:
+  - name: Print the facts values
+    ansible.builtin.shell: ls -ltrh
+    register: listout
+  - debug: var=listout
+      
