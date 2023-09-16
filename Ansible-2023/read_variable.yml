@@ -6,10 +6,11 @@
   vars:
     x: 097984538475
     my_name: roshan roshan
+    
   vars_prompt:
     name: Promt_values
     prompt: Please Enter The Promt Name
-    Private: no
+    Private: False
     
   tasks:
     - name: Read and Print the value
