@@ -8,6 +8,7 @@
     ansible.builtin.shell: ls -ltrh /tmp
     register: listout
   - debug: 
-      var=listout
+      var
+        - "{{ listout }}"
   
       
