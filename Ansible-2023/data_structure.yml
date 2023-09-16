@@ -1,0 +1,21 @@
+---
+- hosts: ansimaster
+  gather_facts: False
+  become: yes
+  ignore_errors: yes
+
+  vars: 
+    My_Num: 0987654311
+    Packs: ['vim', 'nano', 'wget', 'ntpd']
+    Packss:
+      - 'vim'
+      - 'nano'
+      - 'wget'
+      - 'ntpd'
+
+  tasks:
+
+  - name: Print the values
+    debug:
+      - var=Packs
+      - var=Packss
