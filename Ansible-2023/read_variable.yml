@@ -8,9 +8,12 @@
     my_name: roshan roshan
     
   vars_prompt:
-    name: Promt_values
-    prompt: Please Enter The Promt Name
-    Private: False
+    - name: Promt_values
+      prompt: Please Enter The Promt Name
+      private: no
+    - name: Promt_Secret
+      prompt: Please Enter The Promt Secret
+      private: yes
     
   tasks:
     - name: Read and Print the value
