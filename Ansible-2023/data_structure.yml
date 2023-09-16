@@ -21,6 +21,7 @@
       var: Packs
 
   - name: Print the values in list formates
+    debug:  
       var:
         - Packs
         - Packss
