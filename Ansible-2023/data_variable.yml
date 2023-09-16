@@ -9,7 +9,7 @@
     - my_num: 0987654321
     - MY_RMS: no  #false [OR] False
 
-  vars_file:
+  vars_files:
     - variables.txt
     
   tasks:
