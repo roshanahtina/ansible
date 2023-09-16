@@ -23,7 +23,7 @@
   - name: Print the values in list formates with VAR...
     debug:
       var:
-        - "{{ Packs }}"
+        - Packs
         #- Packss
         #- web_servers
         #- web_serverss
