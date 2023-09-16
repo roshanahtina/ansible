@@ -7,6 +7,9 @@
   - name: Print the facts values
     ansible.builtin.shell: ls -ltrh /tmp
     register: listout
+
+  - debug: var=listout.cmd
+  
   - debug: 
       msg:
         - "{{ listout }}"
