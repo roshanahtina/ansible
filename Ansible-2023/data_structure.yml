@@ -17,17 +17,17 @@
       - Web_Server: Tomcat
   tasks:
   - name: Print the values of data structure...
-    debug: 
+    debug:  #var=Packs
       var: Packs
 
   - name: Print the values in list formates
     debug:  
-      var:
-        - Packs
-        - Packss
-        - web_servers
-        - web_serverss
-      #msg:
-      #  - "{{ Packs }}"
-       # - "{{ Packss }}"
-        #- "{{ web_server }}"
+      #var:
+       # - Packs
+       # - Packss
+       # - web_servers
+       # - web_serverss
+      msg:
+        - "{{ Packs }}"
+        - "{{ Packss }}"
+        - "{{ web_servers }}"
