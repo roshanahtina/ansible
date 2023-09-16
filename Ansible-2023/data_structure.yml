@@ -2,17 +2,20 @@
 - hosts: ansimaster
   gather_facts: False
   become: yes
-  ignore_errors: yes
+  #ignore_errors: yes
 
   vars: 
-    My_Num: 0987654311
-    Packs: ['vim', 'nano', 'wget', 'ntpd']
-    Packss:
-      - 'vim'
-      - 'nano'
-      - 'wget'
-      - 'ntpd'
-    web_server: {'Apache': 'HTTPD', 'Web_Server': 'Tomcat'}
+    - My_Num: 0987654311
+    - Packs: ['vim', 'nano', 'wget', 'ntpd']
+    - Packss:
+        - 'vim'
+        - 'nano'
+        - 'wget'
+        - 'ntpd'
+    #web_servers: {'Apache': 'HTTPD', 'Web_Server': 'Tomcat'}
+    - web_servers:
+        - 'Apache': 'HTTPD'
+        - 'Web_Server': 'Tomcat'
   tasks:
   - name: Print the values
     debug: 
