@@ -19,6 +19,12 @@
   - name: Print the values of data structure...
     debug: 
       var: Packs
+
+  - name: Print the values in list formates
+      var:
+        - Packs
+        - Packss
+        - web_server
       #msg:
       #  - "{{ Packs }}"
        # - "{{ Packss }}"
