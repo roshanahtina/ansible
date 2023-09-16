@@ -6,7 +6,7 @@
   vars:
     x: 097984538475
     my_name: roshan roshan
-  vars_promt:
+  vars_prompt:
     name: Promt_values
     prompt: Please Enter The Promt Name
     Private: no
