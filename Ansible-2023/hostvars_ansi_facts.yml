@@ -30,8 +30,8 @@
           - "{{ item.mount }}"
           - "{{ item.device }}"
           - "{{ item.uuid }}"
-        with_items:
-          - "{{ ansible_mounts }}"
+      with_items:
+        - "{{ ansible_mounts }}"
       tags: ansi_vars
 
  #   - debug: msg={{item.mount}} 
