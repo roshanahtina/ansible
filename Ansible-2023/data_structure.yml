@@ -20,13 +20,15 @@
     debug:  #var=Packs
       var: Packs
 
-  - name: Print the values in list formates
-    debug:  
-      #var:
-       # - Packs
-       # - Packss
-       # - web_servers
-       # - web_serverss
+  - name: Print the values in list formates with MSG...
+      var:
+        - "{{ Packs }}"
+        #- Packss
+        #- web_servers
+        #- web_serverss
+
+  - name: Print the values in list formates with MSG...
+    debug:
       msg:
         - "{{ Packs }}"
         - "{{ Packss }}"
