@@ -20,6 +20,6 @@
           - "The OS Family: {{ ansible_os_family }}"
           - "This is the FQDN: {{ ansible_nodename }}"
           - "This is the Node Name: {{ ansible_hostname }}"
-          - "This is the IPV4 IP ADDRESS: {{ ansible_lo.ipv4.keys() }}"
+          - "This is the IPV4 IP ADDRESS: {{ ansible_lo.ipv4.keys('address') }}"
       tags: ansi_vars
 
