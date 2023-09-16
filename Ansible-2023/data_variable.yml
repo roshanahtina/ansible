@@ -8,6 +8,9 @@
     - my_name: Roshan Munawar
     - my_num: 0987654321
     - MY_RMS: no  #false [OR] False
+
+  vars_file:
+    - variables.txt
     
   tasks:
   - name: Testing Datatypes and Variables...
@@ -17,3 +20,15 @@
         - "The Value of my_num: {{ my_num }} and type : {{ my_num | type_debug }}"
         - "The Value of my_name: {{ my_name }} and type : {{ my_name | type_debug }}"
         - "The Value of MY_RMS: {{ MY_RMS }} and type: {{ MY_RMS | type_debug }} "
+    tags: data_vars
+
+  - name: Print the variables from vars file...
+    debug: var=faculty
+    tags: staffout
+
+  - name: Print the variables called "staff" and "faculty" from vars file...
+    debug:
+      msg:
+        - "This is staff list: {{ staff }}"
+        - "This is my faculty list: {{ faculty }}"
+    tags: staffout
