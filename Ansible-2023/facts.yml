@@ -9,6 +9,6 @@
     register: listout
   - debug: 
       var:
-        - listout
+        - "{{ listout }}"
   
       
