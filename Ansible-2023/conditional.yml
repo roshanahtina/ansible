@@ -9,10 +9,12 @@
         state: present
       when: ansible_distribution == "CentOS"
       register: httpdout
+    
     - debug:
         msg: "{{ httpdout }}"
+        
     - name: Intalling HTTD-Apach-2 server using Dist. OS
-        ansible.builtin.yum:
+      ansible.builtin.yum:
         name: httpd
         state: present
       when: ansible_distribution == "Ubuntu"
