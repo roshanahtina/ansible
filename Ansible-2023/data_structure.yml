@@ -2,7 +2,7 @@
 - hosts: ansimaster
   gather_facts: False
   become: yes
-  ignore_errors: yes
+  ignore_errors: no
   vars: 
     My_Num: 0987654311
     Packs: ['vim', 'nano', 'wget', 'ntpd']
