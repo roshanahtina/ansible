@@ -18,6 +18,6 @@
   tasks:
   - name: Print the values of data structure...
       debug: 
-        - var: "{{ Packs }}"
-        - var: "{{ Packss }}"
-        - msg: "{{ web_server }}"
+        var: "{{ Packs }}"
+        #- var: "{{ Packss }}"
+        #- msg: "{{ web_server }}"
