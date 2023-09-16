@@ -34,3 +34,7 @@
         - "{{ Packs }}"
         - "{{ Packss }}"
         - "{{ web_servers }}"
+
+  - name: Print the First Values
+    debug:
+      var: Packss[0]
