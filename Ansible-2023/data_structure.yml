@@ -20,7 +20,7 @@
     debug:  #var=Packs
       var: Packs
 
-  - name: Print the values in list formates with VAR...
+  - name: Print the values in list formates with VAR... #NOT WORKING#
     debug:
       var:
         - "{{ Packs }}"
@@ -38,3 +38,7 @@
   - name: Print the First Values
     debug:
       var: Packss[0]
+
+  - name: Print the values of KEYS
+    debug:
+      var: web_serverss.keys()
