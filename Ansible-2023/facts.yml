@@ -5,7 +5,7 @@
 
   tasks:
   - name: Print the facts values
-    ansible.builtin.shell: ls -ltrh
+    ansible.builtin.shell: ls -ltrh /tmp
     register: listout
   - debug: var=listout
       
