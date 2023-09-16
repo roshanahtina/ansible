@@ -30,6 +30,5 @@
     debug:
       msg:
         - "This is staff list: {{ staff }}"
-        - "This is my faculty list: {{ item }}"
-      loop: "{{ faculty }}"
+        - "This is my faculty list: {{ faculty }}"
     tags: staffout
