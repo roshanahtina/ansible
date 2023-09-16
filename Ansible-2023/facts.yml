@@ -8,7 +8,7 @@
     ansible.builtin.shell: ls -ltrh /tmp
     register: listout
 
-  - debug: var=listout.stdout.split(\n)
+  - debug: var=listout.stdout.split(\n)[0]
   
   - debug: 
       msg:
