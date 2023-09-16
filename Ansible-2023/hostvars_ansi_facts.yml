@@ -5,9 +5,9 @@
 
   tasks:
     - name: Get Inventory_hostname details...
-      debug: var=inventory_hostname[all] #inventory_hostname[all]
+      debug: var=inventory_hostname[all] #inventory_hostname[web]
       tags: in_host
 
     - name: Get HostVars and print the values...
-      debug: var=hostvars
+      debug: var=hostvars[inventory_hostname] #hostvars[web]
       tags: ho_vars
