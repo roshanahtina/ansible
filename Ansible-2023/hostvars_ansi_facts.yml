@@ -9,5 +9,6 @@
       tags: in_host
 
     - name: Get HostVars and print the values...
-      debug: var=hostvars[inventory_hostname] #hostvars[web]
+      debug: #var=hostvars[inventory_hostname] #hostvars[web]
+        msg: "{{ hostvars }}"
       tags: ho_vars
