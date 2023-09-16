@@ -21,6 +21,6 @@
           - "This is the FQDN: {{ ansible_nodename }}"
           - "This is the Node Name: {{ ansible_hostname }}"
           - "This is the IPV4 IP ADDRESS: {{ ansible_lo.ipv4['address'] }}" #{{ ansible_lo.ipv4.keys() }}
-          - "This is the Devices mounts: {{ ansible_mounts }}"# AND The devices: {{ ansible_mounts['device'] }}"
+          - "This is the Devices mounts: {{ ansible_mounts.mount }}"# AND The devices: {{ ansible_mounts['device'] }}"
       tags: ansi_vars
 
