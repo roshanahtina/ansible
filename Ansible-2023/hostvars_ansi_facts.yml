@@ -10,3 +10,4 @@
 
     - name: Get HostVars and print the values...
       debug: var=hostvars
+      tags: ho_vars
