@@ -14,8 +14,12 @@
       tags: ho_vars
 
     - name: Get HostVars and print the values...
-      debug: 
-        var: ansible_facts
-      
+      debug: #var=ansible_facts
+        #var: ansible_facts
+        msg:
+          - "The OS Family: {{ ansible_os_family }}"
+          - "This is the FQDN: {{ ansible_nodename }}"
+          - "This is the Node Name: {{ ansible_hostname }}"
+          - "This is the IPV4 IP ADDRESS: {{ ansible_lo.ipv4. }}"
       tags: ansi_vars
 
