@@ -1,5 +1,5 @@
 ---
-- hosts: web, all #all
+- hosts: web #all
   become: yes
   gather_facts: false
 
@@ -7,3 +7,6 @@
     - name: Get Inventory_hostname details...
       debug: var=inventory_hostname[all] #inventory_hostname[all]
       tags: in_host
+
+    - name: Get HostVars and print the values...
+      debug: var=hostvars
