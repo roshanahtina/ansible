@@ -7,7 +7,7 @@
     - x: 39
     - my_name: Roshan Munawar
     - my_num: 0987654321
-    - MY_RMS: false # [OR] False
+    - MY_RMS: no  #false [OR] False
     
   tasks:
   - name: Testing Datatypes and Variables...
