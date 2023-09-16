@@ -23,12 +23,12 @@
     tags: data_vars
 
   - name: Print the variables from vars file...
-    debug: var=faculty
+    debug: var=my_name
     tags: staffout
 
   - name: Print the variables called "staff" and "faculty" from vars file...
     debug:
       msg:
         - "This is staff list: {{ staff }}"
-        - "This is my faculty list: {{ faculty }}"
+        - "This is my faculty list: {{ faculty.split('\n') }}"
     tags: staffout
