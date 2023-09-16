@@ -8,7 +8,7 @@
     ansible.builtin.shell: bash --version
     register: listout
 
-  - debug: var=listout.stdout.split()[0].
+  - debug: var=listout.stdout.split(\n)
   
   - debug: 
       msg:
