@@ -3,7 +3,6 @@
   gather_facts: False
   become: yes
   ignore_errors: yes
-
   vars: 
     - My_Num: 0987654311
     - Packs: ['vim', 'nano', 'wget', 'ntpd']
@@ -12,12 +11,12 @@
         - 'nano'
         - 'wget'
         - 'ntpd'
-    #web_servers: {'Apache': 'HTTPD', 'Web_Server': 'Tomcat'}
-    - web_servers:
+    - web_servers: {'Apache': 'HTTPD', 'Web_Server': 'Tomcat'}
+    - web_serverss:
         - 'Apache': 'HTTPD'
         - 'Web_Server': 'Tomcat'
   tasks:
-    - name: Print the values
+  - name: Print the values of data structure...
       debug: 
         - var: "{{ Packs }}"
         - var: "{{ Packss }}"
