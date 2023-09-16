@@ -5,14 +5,14 @@
 
   tasks:
   - name: Print the facts values
-    ansible.builtin.shell: ls -ltrh /tmp
+    ansible.builtin.shell: shell --version
     register: listout
 
-  - debug: var=listout.stdout.split()[0]
+  - debug: var=listout.stdout.split()[0].
   
   - debug: 
       msg:
         - "{{ listout }}"
-        - "{{ listout.stdout_lines }}"
+        - "{{ listout.stdout_lines[] }}"
   
       
