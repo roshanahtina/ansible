@@ -17,10 +17,10 @@
         - 'Apache': 'HTTPD'
         - 'Web_Server': 'Tomcat'
   tasks:
-  - name: Print the values
-    debug: 
-      - var: Packs
-      - var: Packss
-      - msg: web_server
+    - name: Print the values
+      debug: 
+        - var: Packs
+        - var: Packss
+        - msg: web_server
       
       
