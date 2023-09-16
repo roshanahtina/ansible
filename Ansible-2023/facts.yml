@@ -8,7 +8,10 @@
     ansible.builtin.shell: bash --version
     register: listout
 
-  - debug: var=listout.stdout.split("\n")[0].split()[4]
+  - set_fact: 
+      bash_version: "{{ listout.stdout.split('\n')[0].split()[4] }}"
+
+  - debug: var=bash_version
   
   - debug: 
       msg:
