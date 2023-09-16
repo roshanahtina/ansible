@@ -21,7 +21,7 @@
           - "This is the FQDN: {{ ansible_nodename }}"
           - "This is the Node Name: {{ ansible_hostname }}"
           - "This is the IPV4 IP ADDRESS: {{ ansible_lo.ipv4['address'] }}" #{{ ansible_lo.ipv4.keys() }}
-          - "This is BOOT IMAGE: {{ ansible_proc_cmdline.BOOT_IMAGE }}"
+          - "This is BOOT IMAGE: {{ ansible_proc_cmdline.BOOT_IMAGE.split('\n') }}"
       tags: ansi_vars
 
     - name: Find the MOUNT options...
@@ -32,7 +32,7 @@
           - "{{ item.uuid }}"
       with_items:
         - "{{ ansible_mounts }}"
-      tags: ansi_vars
+      tags: ansi_mount
 
  #   - debug: msg={{item.mount}} 
   #    with_items: ansible_mounts 
