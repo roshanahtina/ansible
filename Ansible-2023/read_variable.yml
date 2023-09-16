@@ -21,4 +21,4 @@
         msg:
           - "This is valueof X: {{x}}"
           - "This is my value of my_name: {{my_name}}"
-          - "This is the prompt value: {{Promt_values}}"
+          - "This is the prompt value: {{Promt_values}} and {{ Promt_Secret }}"
