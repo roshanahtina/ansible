@@ -2,7 +2,7 @@
 - hosts: ansimaster
   gather_facts: False
   become: yes
-  #ignore_errors: yes
+  ignore_errors: yes
 
   vars: 
     - My_Num: 0987654311
@@ -19,8 +19,8 @@
   tasks:
     - name: Print the values
       debug: 
-        - var: Packs
-        - var: Packss
-        - msg: web_server
+        - var: "{{ Packs }}"
+        - var: "{{ Packss }}"
+        - msg: "{{ web_server }}"
       
       
