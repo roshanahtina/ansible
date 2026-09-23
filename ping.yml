@@ -19,4 +19,5 @@
     ping:
   - debug:
       msg: "If ping failed to ping to target server"
-      
+    failed_when: true
+    
