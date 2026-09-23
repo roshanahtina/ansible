@@ -16,8 +16,12 @@
     
   tasks:
   - name: ping to all the ansible-clients
-    ping:
-  - debug:
-      msg: "If ping failed to ping to target server"
-    failed_when: true
+    ansible.builtin.ping:
+    register: ping_result
+  
+  - name: Show message if ping failed
+    ansible.builtin.debug:
+      msg: "Failed to ping target server: {{ inventory_hostname }}"
+    when: ping_result is failed
+    #failed_when: false
     
