@@ -20,6 +20,7 @@
     stat:
       path: "{{ hostname_control }}"
     register: hostname
+  
   - debug: msg="{{ hostname }}"
   
   - name: To copy a hostname from controler to node
@@ -28,4 +29,3 @@
       src: "{{ hostname_control }}"
       dest: /home/ansible/hostname1
     when: not hostname.stat.exists
-...
