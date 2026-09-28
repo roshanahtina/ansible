@@ -18,7 +18,7 @@
   
   - name: To check the stat of hostname file
     stat:
-      path: "{{ hostname_control }}"
+      path: "{{ hostname_node }}"
     register: hostname
   
   - debug: msg="{{ hostname }}"
