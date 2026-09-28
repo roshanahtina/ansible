@@ -28,4 +28,8 @@
     copy:
       src: "{{ hostname_control }}"
       dest: "{{ hostname_node }}"
+      owner: ansible
+      group: ansible
+      mode: '0644'
+      backup: yes
     when: not hostname.stat.exists
