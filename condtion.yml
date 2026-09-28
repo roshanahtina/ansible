@@ -27,5 +27,5 @@
     #command: cp "{{ hostname_control }}" "{{ hostname_node }}"
     copy:
       src: "{{ hostname_control }}"
-      dest: /home/ansible/hostname1
+      dest: /home/ansible/
     when: not hostname.stat.exists
