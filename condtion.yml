@@ -32,4 +32,5 @@
       group: ansible
       mode: '0644'
       backup: yes
-    when: not hostname.stat.exists
+    when: not hostname.stat.exists | default(false)
+    delegate_to: localhost
