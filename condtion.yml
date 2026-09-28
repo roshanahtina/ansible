@@ -24,7 +24,7 @@
   - debug: msg="{{ hostname }}"
   
   - name: To copy a hostname from controler to node
-    #command: cp "{{ hostname_control }}" "{{ hostname_node }}"
+    # command: cp "{{ hostname_control }}" "{{ hostname_node }}"
     copy:
       src: "{{ hostname_control }}"
       dest: "{{ hostname_node }}"
@@ -33,4 +33,4 @@
       mode: '0644'
       backup: yes
     when: not hostname.stat.exists | default(false)
-    delegate_to: localhost
+    # delegate_to: localhost
