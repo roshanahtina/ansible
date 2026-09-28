@@ -27,6 +27,5 @@
     copy:
       src: "{{ hostname_control }}"
       dest: /home/ansible/hostname1
-    when: hostname.stat.exists
-      
-   
+    when: hostname.stat.exists = 'false'
+  ...
