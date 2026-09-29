@@ -24,7 +24,7 @@
   
   - name: Show the variables of the file...
     debug:
-      var: "{{ hostname }}"
+      var: "{{ hostname.stat }}"
 
   - name: Show file existence
     debug:
