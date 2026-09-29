@@ -21,10 +21,12 @@
       path: "{{ hostname_node }}"
     register: hostname
   
-  - debug:
+  - name: Show the variables of the file...
+    debug:
       var: "{{ hostname }}"
 
-  - debug:
+  - name: Show file existence
+    debug:
       msg: " File Exists? {{ hostname.stat.exists }}"
   
   - name: To copy a hostname from controler to node
