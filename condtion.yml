@@ -21,7 +21,8 @@
       path: "{{ hostname_node }}"
     register: hostname
   
-  - debug: msg="{{ hostname }}"
+  - debug:
+      var: "{{ hostname }}"
   
   - name: To copy a hostname from controler to node
     # command: cp "{{ hostname_control }}" "{{ hostname_node }}"
