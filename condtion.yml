@@ -33,4 +33,9 @@
       mode: '0644'
       backup: yes
     when: not hostname.stat.exists | default(false)
+    register: copy_stats
     # delegate_to: localhost
+
+  - name: Print the Copy status...
+    ansible.builtin.debug:
+      msg: "{{ copy_stats }}"
