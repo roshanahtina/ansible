@@ -23,6 +23,9 @@
   
   - debug:
       var: "{{ hostname }}"
+
+  - debug:
+      msg: " File Exists? {{ hostname.stat.exists }}"
   
   - name: To copy a hostname from controler to node
     # command: cp "{{ hostname_control }}" "{{ hostname_node }}"
