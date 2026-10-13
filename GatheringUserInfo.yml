@@ -10,7 +10,7 @@
     user: 
       name: ansible
       password: "{{ ansible_user_password }}" 
-      comment: "Admin"
+      comment: "Controller Ansible Admin"
     register: userinfo
   - debug:
       msg: "Output of the user creation called ANSIBLE: {{ userinfo }}"
