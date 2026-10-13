@@ -8,9 +8,9 @@
   tasks:
   - name: "Gathering the ec2-user information"
     user: 
-      name: rmunavar
-      password: "{{ password }}" 
+      name: ansible
+      password: "{{ ansible_user_password }}" 
       comment: "Admin"
-    register: useroutput
+    register: userinfo
   - debug:
-      msg: "Output of the user creation called RMUNAVAR {{ useroutput }}"
+      msg: "Output of the user creation called ANSIBLE: {{ userinfo }}"
