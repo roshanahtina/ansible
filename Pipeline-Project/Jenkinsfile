@@ -17,6 +17,16 @@ pipeline {
             defaultValue: 'ping.yml',
             description: 'Ansible playbook to run'
         )
+        booleanParam(
+            name: 'DRY_RUN',
+            defaultValue: false,
+            description: 'Check mode — no changes made'
+        )
+        booleanParam(
+            name: 'VERBOSE',
+            defaultValue: false,
+            description: 'Enable verbose output (-vvv)'
+        )
     }
 
     stages {
