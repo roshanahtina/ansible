@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    environment {
+        VAULT_PASS_FILE = credentials('ansible-vault-password')
+    }
+
+    // ── Parameters ───────────────────────────────────────────────
+    parameters {
+        choice(
+            name: 'Choose_Environment',
+            choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster', 'all', 'localhost'],
+            description: 'Target deployment environment'
+        )
+        string(
+            name: 'Choose_Playbook',
+            defaultValue: 'ping.yml',
+            description: 'Ansible playbook to run'
+        )
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/roshanahtina/ansible.git'
+            }
+        }
+        
+        stage('Ansible Playbook') {
+            steps {
+                withCredentials([
+                    file(
+                        credentialsId: 'ansible-vault-password',
+                        variable: 'VAULT_PASS_FILE'
+                    )
+                ]) {
+                    sh '''
+                        ansible-playbook \
+                            -i inv.ini \
+                            -l "${Choose_Environment}" \
+                            "${Choose_Playbook}" \
+                            --vault-password-file $VAULT_PASS_FILE
+                    '''
+                }
+            }
+        }
+    }
+}
