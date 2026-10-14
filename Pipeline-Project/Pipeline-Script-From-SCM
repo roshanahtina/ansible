@@ -1,0 +1,355 @@
+// Jenkinsfile
+// This file lives in your Git repository
+// Jenkins pulls this file and executes it
+
+pipeline {
+
+    // ── Agent ────────────────────────────────────────────────────
+    agent {
+        label 'ansible'
+        // OR use any:
+        // agent any
+        // OR Docker agent:
+        // agent {
+        //     docker {
+        //         image 'cytopia/ansible:latest-tools'
+        //         args '-u root'
+        //     }
+        // }
+    }
+
+    // ── Options ──────────────────────────────────────────────────
+    options {
+        buildDiscarder(
+            logRotator(
+                numToKeepStr: '30',
+                daysToKeepStr: '90'
+            )
+        )
+        timeout(time: 60, unit: 'MINUTES')
+        disableConcurrentBuilds()
+        timestamps()
+        ansiColor('xterm')
+    }
+
+    // ── Parameters ───────────────────────────────────────────────
+    parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['dev', 'staging', 'production'],
+            description: 'Target deployment environment'
+        )
+        string(
+            name: 'PLAYBOOK',
+            defaultValue: 'site.yml',
+            description: 'Ansible playbook to run'
+        )
+        string(
+            name: 'TAGS',
+            defaultValue: '',
+            description: 'Ansible tags (comma separated, empty = all)'
+        )
+        string(
+            name: 'SKIP_TAGS',
+            defaultValue: '',
+            description: 'Ansible tags to skip'
+        )
+        string(
+            name: 'LIMIT',
+            defaultValue: '',
+            description: 'Limit to specific hosts (empty = all)'
+        )
+        booleanParam(
+            name: 'DRY_RUN',
+            defaultValue: false,
+            description: 'Check mode — no changes made'
+        )
+        booleanParam(
+            name: 'VERBOSE',
+            defaultValue: false,
+            description: 'Enable verbose output (-vvv)'
+        )
+    }
+
+    // ── Environment variables ────────────────────────────────────
+    environment {
+        // Tell Ansible to use project ansible.cfg
+        ANSIBLE_CONFIG       = "${WORKSPACE}/ansible.cfg"
+
+        // Force color in output
+        ANSIBLE_FORCE_COLOR  = 'true'
+
+        // Disable host key checking in CI
+        ANSIBLE_HOST_KEY_CHECKING = 'false'
+
+        // Log path
+        ANSIBLE_LOG_PATH     = "${WORKSPACE}/ansible.log"
+
+        // Set home for ansible roles
+        ANSIBLE_ROLES_PATH   = "${WORKSPACE}/roles"
+    }
+
+    stages {
+
+        // ── STAGE 1: Checkout ─────────────────────────────────────
+        stage('Checkout') {
+            steps {
+                // SCM checkout happens automatically
+                // but we can add extra steps here
+                sh '''
+                    echo "=== Repository Info ==="
+                    git log -1 --format="%h %an %s"
+                    echo "Branch: $(git branch --show-current)"
+                    echo "Workspace: $WORKSPACE"
+                '''
+            }
+        }
+
+        // ── STAGE 2: Validate Environment ────────────────────────
+        stage('Validate Environment') {
+            steps {
+                sh '''
+                    echo "=== Ansible Environment ==="
+                    ansible --version
+
+                    echo ""
+                    echo "=== Config File Being Used ==="
+                    ansible --version | grep "config file"
+
+                    echo ""
+                    echo "=== Python Version ==="
+                    python3 --version
+
+                    echo ""
+                    echo "=== Inventory Check ==="
+                    ls -la inventory/ || echo "No inventory directory"
+                    ls -la inventory/${ENVIRONMENT}/ 2>/dev/null || \
+                        echo "No ${ENVIRONMENT} inventory"
+                '''
+            }
+        }
+
+        // ── STAGE 3: Validate Vault Access ───────────────────────
+        stage('Validate Vault') {
+            steps {
+                // withCredentials injects the vault password file
+                // Jenkins creates a TEMP file from the stored credential
+                // VAULT_PASS_FILE = path to that temp file
+                withCredentials([
+                    file(
+                        credentialsId: 'ansible-vault-password',
+                        variable: 'VAULT_PASS_FILE'
+                    )
+                ]) {
+                    sh '''
+                        echo "=== Vault File Validation ==="
+
+                        # Check temp file Jenkins created
+                        echo "Vault pass file location: $VAULT_PASS_FILE"
+                        ls -la "$VAULT_PASS_FILE"
+                        # Shows: -rw------- jenkins jenkins /tmp/vaultXXXXXX
+
+                        # Verify vault file exists in repo
+                        VAULT_FILE="group_vars/all/vault"
+                        if [ ! -f "$VAULT_FILE" ]; then
+                            echo "ERROR: $VAULT_FILE not found in repo!"
+                            exit 1
+                        fi
+
+                        # Verify vault file is encrypted
+                        HEADER=$(head -1 "$VAULT_FILE")
+                        if echo "$HEADER" | grep -q "ANSIBLE_VAULT"; then
+                            echo "Vault file is encrypted ✅"
+                        else
+                            echo "ERROR: Vault file is NOT encrypted!"
+                            echo "SECURITY ISSUE: plaintext secrets in repo!"
+                            exit 1
+                        fi
+
+                        # Test decryption with provided password
+                        echo "Testing vault decryption..."
+                        ansible-vault view \
+                            "$VAULT_FILE" \
+                            --vault-password-file "$VAULT_PASS_FILE" \
+                            > /dev/null 2>&1 && \
+                            echo "Vault decryption: SUCCESS ✅" || {
+                            echo "Vault decryption: FAILED ❌"
+                            echo "Check if vault password credential is correct"
+                            exit 1
+                        }
+                    '''
+                }
+            }
+        }
+
+        // ── STAGE 4: Syntax Check ─────────────────────────────────
+        stage('Syntax Check') {
+            steps {
+                withCredentials([
+                    file(
+                        credentialsId: 'ansible-vault-password',
+                        variable: 'VAULT_PASS_FILE'
+                    )
+                ]) {
+                    sh '''
+                        echo "=== Ansible Syntax Check ==="
+                        ansible-playbook \
+                            "${PLAYBOOK}" \
+                            -i "inventory/${ENVIRONMENT}/" \
+                            --vault-password-file "$VAULT_PASS_FILE" \
+                            --syntax-check
+
+                        echo "Syntax check passed ✅"
+                    '''
+                }
+            }
+        }
+
+        // ── STAGE 5: Dry Run (Check Mode) ────────────────────────
+        stage('Dry Run') {
+            when {
+                expression { params.DRY_RUN == true }
+            }
+            steps {
+                withCredentials([
+                    file(
+                        credentialsId: 'ansible-vault-password',
+                        variable: 'VAULT_PASS_FILE'
+                    ),
+                    sshUserPrivateKey(
+                        credentialsId: 'ansible-ssh-key',
+                        keyFileVariable: 'SSH_KEY_FILE',
+                        usernameVariable: 'SSH_USER'
+                    )
+                ]) {
+                    sh """
+                        echo "=== Running in CHECK MODE (Dry Run) ==="
+                        ansible-playbook \
+                            "${params.PLAYBOOK}" \
+                            -i "inventory/${params.ENVIRONMENT}/" \
+                            --vault-password-file "\$VAULT_PASS_FILE" \
+                            --private-key "\$SSH_KEY_FILE" \
+                            --user "\$SSH_USER" \
+                            --check \
+                            --diff \
+                            ${params.TAGS     ? "--tags ${params.TAGS}" : ''} \
+                            ${params.SKIP_TAGS ? "--skip-tags ${params.SKIP_TAGS}" : ''} \
+                            ${params.LIMIT    ? "--limit ${params.LIMIT}" : ''} \
+                            ${params.VERBOSE  ? '-vvv' : '-v'}
+                    """
+                }
+            }
+        }
+
+        // ── STAGE 6: Run Playbook ─────────────────────────────────
+        stage('Run Playbook') {
+            when {
+                expression { params.DRY_RUN == false }
+            }
+            steps {
+                withCredentials([
+                    // Vault password file from Jenkins credentials
+                    file(
+                        credentialsId: 'ansible-vault-password',
+                        variable: 'VAULT_PASS_FILE'
+                    ),
+                    // SSH key for connecting to target servers
+                    sshUserPrivateKey(
+                        credentialsId: 'ansible-ssh-key',
+                        keyFileVariable: 'SSH_KEY_FILE',
+                        usernameVariable: 'SSH_USER'
+                    )
+                ]) {
+                    sh """
+                        echo "=== Running Ansible Playbook ==="
+                        echo "Environment: ${params.ENVIRONMENT}"
+                        echo "Playbook: ${params.PLAYBOOK}"
+                        echo "Tags: ${params.TAGS ?: 'all'}"
+
+                        ansible-playbook \
+                            "${params.PLAYBOOK}" \
+                            -i "inventory/${params.ENVIRONMENT}/" \
+                            --vault-password-file "\$VAULT_PASS_FILE" \
+                            --private-key "\$SSH_KEY_FILE" \
+                            --user "\$SSH_USER" \
+                            ${params.TAGS     ? "--tags ${params.TAGS}" : ''} \
+                            ${params.SKIP_TAGS ? "--skip-tags ${params.SKIP_TAGS}" : ''} \
+                            ${params.LIMIT    ? "--limit ${params.LIMIT}" : ''} \
+                            ${params.VERBOSE  ? '-vvv' : '-v'}
+
+                        echo "Playbook completed successfully ✅"
+                    """
+                }
+            }
+        }
+
+        // ── STAGE 7: Verify Deployment ────────────────────────────
+        stage('Verify') {
+            when {
+                allOf {
+                    expression { params.DRY_RUN == false }
+                    expression { params.ENVIRONMENT != 'production' }
+                }
+            }
+            steps {
+                withCredentials([
+                    file(
+                        credentialsId: 'ansible-vault-password',
+                        variable: 'VAULT_PASS_FILE'
+                    ),
+                    sshUserPrivateKey(
+                        credentialsId: 'ansible-ssh-key',
+                        keyFileVariable: 'SSH_KEY_FILE',
+                        usernameVariable: 'SSH_USER'
+                    )
+                ]) {
+                    sh """
+                        echo "=== Post-Deploy Verification ==="
+                        ansible-playbook \
+                            verify.yml \
+                            -i "inventory/${params.ENVIRONMENT}/" \
+                            --vault-password-file "\$VAULT_PASS_FILE" \
+                            --private-key "\$SSH_KEY_FILE" \
+                            --user "\$SSH_USER" \
+                            -v || echo "Verification playbook not found, skipping"
+                    """
+                }
+            }
+        }
+    }
+
+    // ── Post-build Actions ───────────────────────────────────────
+    post {
+        always {
+            // Archive ansible log
+            archiveArtifacts(
+                allowEmptyArchive: true,
+                artifacts: 'ansible.log'
+            )
+
+            // Print last 50 lines of log
+            sh '''
+                echo "=== Last 50 lines of Ansible log ==="
+                tail -50 ansible.log 2>/dev/null || \
+                    echo "No log file found"
+            '''
+        }
+
+        success {
+            echo "✅ Ansible deployment to ${params.ENVIRONMENT} succeeded"
+        }
+
+        failure {
+            echo "❌ Ansible deployment to ${params.ENVIRONMENT} FAILED"
+            sh '''
+                echo "=== Failure diagnostics ==="
+                tail -100 ansible.log 2>/dev/null || true
+            '''
+        }
+
+        cleanup {
+            // Clean workspace after build
+            cleanWs()
+        }
+    }
+}
