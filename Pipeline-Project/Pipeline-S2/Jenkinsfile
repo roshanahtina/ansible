@@ -90,9 +90,9 @@ pipeline {
                     echo "Branch: $(git branch --show-current)"
                     echo "Workspace: $WORKSPACE"
                 '''
+                }
             }
         }
-    }
 
         stage ('Ansible Playbook') {
             steps {
