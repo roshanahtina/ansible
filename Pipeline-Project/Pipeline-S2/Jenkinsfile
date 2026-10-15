@@ -16,18 +16,6 @@ pipeline {
         timestamps()
     }
 
-    stages {
-        stage('All Stages') {
-            steps {
-                wrap([$class: 'AnsiColorBuildWrapper',
-                      colorMapName: 'xterm']) {
-                    // all your steps here
-                    sh 'ansible-playbook site.yml'
-                }
-            }
-        }
-    }
-
     // ── Options ──────────────────────────────────────────────────
     parameters {
         choice (
