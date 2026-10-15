@@ -1,6 +1,6 @@
 pipeline {
     agent {
-	lable 'ansible-agent'
+	label 'ansible-agent'
     }
 
     // ── Environments ───────────────────────────────────────────────
