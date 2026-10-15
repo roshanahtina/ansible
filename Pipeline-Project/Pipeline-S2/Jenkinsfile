@@ -97,7 +97,7 @@ pipeline {
             steps {
                 withCredentials([
                     string(
-                        credentialsId: 'ansible-vault-passwd'
+                        credentialsId: 'ansible-vault-passwd',
                         variable: 'VAULT_PASS_TEXT'
                     )
                 ]) {
