@@ -89,8 +89,11 @@ pipeline {
     }
 
     stages {
+
         stage ('Git Checkout') {
             steps {
+                wrap([$class: 'AnsiColorBuildWrapper',
+                      colorMapName: 'xterm']) {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
                 sh '''
@@ -99,8 +102,10 @@ pipeline {
                     echo "Branch: $(git branch --show-current)"
                     echo "Workspace: $WORKSPACE"
                 '''
+            }
         }
     }
+
         stage ('Ansible Playbook') {
             steps {
                 sh '''
