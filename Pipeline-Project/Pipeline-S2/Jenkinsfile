@@ -80,8 +80,7 @@ pipeline {
 
         stage ('Git Checkout') {
             steps {
-                wrap([$class: 'AnsiColorBuildWrapper',
-                      colorMapName: 'xterm']) {
+                ansiColor('xterm') {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
                 sh '''
@@ -96,12 +95,19 @@ pipeline {
 
         stage ('Ansible Playbook') {
             steps {
-                sh '''
+                withCredentials([
+                    string(
+                        credentialsId: 'ansible-vault-passwd'
+                        variable: 'VAULT_PASS_TEXT'
+                    )
+                ]) {
+                    sh '''
                     ansible-playbook \
                         -i inv.ini \
                         -l "${CHOOSE_ENVIRONMENT}" \
                         --vault-password-file $VAULT_PASS_TEXT
                     '''
+                }
             }
         }
     }
