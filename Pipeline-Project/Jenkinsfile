@@ -1,6 +1,9 @@
 pipeline {
-    agent any
+    agent {
+	lable 'ansible-agent'
+    }
 
+    // ── Environments ───────────────────────────────────────────────
     environment {
         VAULT_PASS_FILE = credentials('ansible-vault-password')
     }
