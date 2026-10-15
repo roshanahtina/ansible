@@ -1,0 +1,104 @@
+pipeline {
+    agent {
+        label 'ansible-agent'
+    }
+    
+    // ── Options ──────────────────────────────────────────────────
+    options {
+        buildDiscarder(
+            logRotator(
+                numToKeepStr: '30',
+                daysToKeepStr: '90'
+            )
+        )
+        timeout(time: 60, unit: 'MINUTES')
+        disableConcurrentBuilds()
+        timestamps()
+        ansiColor('xterm')
+    }
+
+    // ── Options ──────────────────────────────────────────────────
+    parameters {
+        choice (
+            name: 'CHOOSE_ENVIRONMENT',
+            choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster', 'localhost', 'all'],
+            description: 'Target deployment environment'
+        )
+        string(
+            name: 'CHOOSE_PLAYBOOK',
+            defaultValue: 'site.yml',
+            description: 'Ansible playbook to run'
+        )
+        string(
+            name: 'TAGS',
+            defaultValue: '',
+            description: 'Ansible tags (comma separated, empty = all)'
+        )
+        string(
+            name: 'SKIP_TAGS',
+            defaultValue: '',
+            description: 'Ansible tags to skip'
+        )
+        string(
+            name: 'LIMIT',
+            defaultValue: '',
+            description: 'Limit to specific hosts (empty = all)'
+        )
+        booleanParam(
+            name: 'DRY_RUN',
+            defaultValue: false,
+            description: 'Check mode — no changes made'
+        )
+        booleanParam(
+            name: 'VERBOSE',
+            defaultValue: false,
+            description: 'Enable verbose output (-vvv)'
+        )
+    }
+
+    // ── Environments ───────────────────────────────────────────────
+    environment {
+        // Ansible Vault Password - Jenkins Secret Text
+        VAULT_PASS_TEXT = credentials('ansible-vault-passwd')
+
+        // Tell Ansible to use project ansible.cfg
+        ANSIBLE_CONFIG = "${WORKSPACE}/ansible.cfg"
+
+        // Force color in output
+        ANSIBLE_FORCE_COLOR = 'true'
+
+        // Disable host key checking in CI
+        ANSIBLE_HOST_KEY_CHECKING = 'false'
+
+        // Log path
+        ANSIBLE_LOG_PATH = "${WORKSPACE}/ansible.log"
+
+        // Set home for ansible roles
+        ANSIBLE_ROLES_PATH = "${WORKSPACE}/roles"
+    }
+
+    stages {
+        stage ('Git Checkout') {
+            steps {
+                // SCM checkout happens automatically
+                // but we can add extra steps here
+                sh '''
+                    echo "=== Repository Info ==="
+                    git log -1 --format="%h %an %s"
+                    echo "Branch: $(git branch --show-current)"
+                    echo "Workspace: $WORKSPACE"
+                '''
+        }
+    }
+        stage ('Ansible Playbook') {
+            steps {
+                sh '''
+                    ansible-playbook \
+                        -i inv.ini \
+                        -l "${CHOOSE_ENVIRONMENT}" \
+                        --vault-password-file $VAULT_PASS_TEXT
+                    '''
+            }
+        }
+    }
+}
