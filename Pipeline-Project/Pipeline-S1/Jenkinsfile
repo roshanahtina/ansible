@@ -5,6 +5,7 @@ pipeline {
 
     // ── Environments ───────────────────────────────────────────────
     environment {
+        // Ansible Vault Password - Jenkins Secret File
         VAULT_PASS_FILE = credentials('ansible-vault-password')
     }
 
