@@ -9,7 +9,7 @@ pipeline {
     parameters {
         choice(
             name: 'Choose_Environment',
-            choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster', 'all', 'localhost'],
+            choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster', 'localhost', 'all'],
             description: 'Target deployment environment'
         )
         string(
