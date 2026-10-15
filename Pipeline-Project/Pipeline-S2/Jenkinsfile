@@ -100,13 +100,22 @@ pipeline {
                         credentialsId: 'ansible-vault-passwd',
                         variable: 'VAULT_PASS_TEXT'
                     )
-                ]) {
+                ]) ansiColor('xterm') {
                     sh '''
-                    ansible-playbook \
-                        -i inv.ini \
-                        -l "${CHOOSE_ENVIRONMENT}" \
-                        "${CHOOSE_PLAYBOOK}" \
-                        --vault-password-file $VAULT_PASS_TEXT
+                        # Write a password ao temp file
+                        TEMP_PASS=$(mktemp)
+                        echo "$VAULT_PASS_TEXT" > $TEMP_PASS
+                        chmod 600 $TEMP_PASS
+
+                        # Run Palybook
+                        ansible-playbook \
+                            -i inv.ini \
+                            -l "${CHOOSE_ENVIRONMENT}" \
+                            "${CHOOSE_PLAYBOOK}" \
+                            --vault-password-file $TEMP_PASS
+                        
+                        # Cleanup temp file
+                        rm -f $TEMP_PASS
                     '''
                 }
             }
