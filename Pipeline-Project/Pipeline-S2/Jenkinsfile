@@ -131,7 +131,7 @@ pipeline {
                             "${TAGS}" \
                             "${SKIP_TAGS}" \
                             "${LIMIT}" \
-                            "$( [ "DRY_RUN" == "true"] && echo "--check" )" \
+                            "$( [ "DRY_RUN" == "true" ] && echo "--check" )" \
                             "$( [ "$VERBOSE" = "true" ] && echo "-vvv" )" \
                             --vault-password-file $TEMP_PASS
                         
