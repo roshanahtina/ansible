@@ -83,6 +83,7 @@ pipeline {
                 sh '''
                     echo "$ANSIBLE_FORCE_COLOR
                 '''
+            }
         }
 
         stage ('Git Checkout') {
