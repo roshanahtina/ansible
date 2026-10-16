@@ -45,12 +45,12 @@ pipeline {
         )
         booleanParam(
             name: 'DRY_RUN',
-            defaultValue: false,
+            defaultValue: '',
             description: 'Check mode — no changes made'
         )
         booleanParam(
             name: 'VERBOSE',
-            defaultValue: false,
+            defaultValue: '',
             description: 'Enable verbose output (-vvv)'
         )
     }
