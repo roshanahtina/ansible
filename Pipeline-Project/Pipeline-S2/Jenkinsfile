@@ -45,12 +45,12 @@ pipeline {
         )
         booleanParam(
             name: 'DRY_RUN',
-            defaultValue: '',
+            defaultValue: false,
             description: 'Check mode — no changes made'
         )
         booleanParam(
             name: 'VERBOSE',
-            defaultValue: '',
+            defaultValue: false,
             description: 'Enable verbose output (-vvv)'
         )
     }
@@ -131,7 +131,7 @@ pipeline {
                             "${TAGS}" \
                             "${SKIP_TAGS}" \
                             "${LIMIT}" \
-                            "${DRY_RUN}" \
+                            "$( [ "DRY_RUN" == "true"] && echo "--check" )" \
                             "${VERBOSE}" \
                             --vault-password-file $TEMP_PASS
                         
