@@ -109,7 +109,7 @@ pipeline {
                         credentialsId: 'ansible-vault-passwd',
                         variable: 'VAULT_PASS_TEXT'
                     )
-                ]) {
+                ]) // {
                     // ansiColor('xterm') 
                     {
                         sh '''
@@ -128,7 +128,7 @@ pipeline {
                         # Cleanup temp file
                         rm -f $TEMP_PASS
                     '''
-                    }
+                    // }
                 }
             }
         }
