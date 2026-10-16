@@ -117,6 +117,7 @@ pipeline {
                     ansiColor('xterm')
                     {
                         sh '''
+                        set +x
                         # Write a password ao temp file
                         TEMP_PASS=$(mktemp)
                         echo "$VAULT_PASS_TEXT" > $TEMP_PASS
@@ -125,8 +126,8 @@ pipeline {
                         # Run Palybook
                         echo ansible-playbook \
                             -i inv.ini \
-                            -l "${CHOOSE_ENVIRONMENT}" \
-                            "${CHOOSE_PLAYBOOK}" \
+                            -l "$CHOOSE_ENVIRONMENT" \
+                            "$CHOOSE_PLAYBOOK" \
                             "$TAGS" \
                             "$SKIP_TAGS" \
                             "$LIMIT" \
