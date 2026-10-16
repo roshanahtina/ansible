@@ -64,7 +64,7 @@ pipeline {
         ANSIBLE_CONFIG = "${WORKSPACE}/ansible.cfg"
 
         // Force color in output
-        ANSIBLE_FORCE_COLOR = 'true'
+        // ANSIBLE_FORCE_COLOR = 'true'
 
         // Disable host key checking in CI
         ANSIBLE_HOST_KEY_CHECKING = 'false'
@@ -78,7 +78,7 @@ pipeline {
 
     stages {
 
-        stage ('Checking The ANSIBLE_FORCE_COLOR state') {
+        stage ('Checking The "ANSIBLE_FORCE_COLOR" state') {
             steps {
                 sh '''
                     echo "$ANSIBLE_FORCE_COLOR"
@@ -88,8 +88,8 @@ pipeline {
 
         stage ('Git Checkout') {
             steps {
-                // ansiColor('xterm') 
-                // {
+                ansiColor('xterm') 
+                {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
                 sh '''
@@ -98,7 +98,7 @@ pipeline {
                     echo "Branch: $(git branch --show-current)"
                     echo "Workspace: $WORKSPACE"
                 '''
-                // }
+                }
             }
         }
 
@@ -109,8 +109,8 @@ pipeline {
                         credentialsId: 'ansible-vault-passwd',
                         variable: 'VAULT_PASS_TEXT'
                     )
-                ]) // {
-                    // ansiColor('xterm') 
+                ]) {
+                    ansiColor('xterm') 
                     {
                         sh '''
                         # Write a password ao temp file
@@ -128,7 +128,7 @@ pipeline {
                         # Cleanup temp file
                         rm -f $TEMP_PASS
                     '''
-                    // }
+                    }
                 }
             }
         }
