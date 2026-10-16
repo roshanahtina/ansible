@@ -96,6 +96,7 @@ pipeline {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
                 sh '''
+                    set +x
                     echo "=== Repository Info ==="
                     git log -1 --format="%h %an %s"
                     echo "Branch: $(git branch --show-current)"
@@ -116,6 +117,7 @@ pipeline {
                     ansiColor('xterm')
                     {
                         sh '''
+                        set +x
                         # Write a password ao temp file
                         TEMP_PASS=$(mktemp)
                         echo "$VAULT_PASS_TEXT" > $TEMP_PASS
