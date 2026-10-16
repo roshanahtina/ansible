@@ -113,8 +113,9 @@ pipeline {
 
                     echo ""
                     echo "=== Inventory Check ==="
-                    ls -l inv.ini/ || echo "No inventory directory"
-                    ls -la inventory/${ENVIRONMENT}/ 2>/dev/null || \
+                    ls -l inv.ini || echo "No inventory file"
+                    ls -la inventory || echo "No inventory directory"
+                    ls -l inventory/${ENVIRONMENT}/ 2>/dev/null || \
                         echo "No ${ENVIRONMENT} inventory"
                 '''
             }
