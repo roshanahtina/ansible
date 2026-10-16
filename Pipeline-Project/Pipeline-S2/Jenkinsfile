@@ -96,7 +96,7 @@ pipeline {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
                 sh '''
-                    set +x
+                    set -x
                     echo "=== Repository Info ==="
                     git log -1 --format="%h %an %s"
                     echo "Branch: $(git branch --show-current)"
