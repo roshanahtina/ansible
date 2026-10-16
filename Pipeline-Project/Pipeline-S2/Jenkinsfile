@@ -88,7 +88,7 @@ pipeline {
 
         stage ('Git Checkout') {
             steps {
-                ansiColor('xterm') 
+                // ansiColor('xterm') 
                 {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
@@ -110,7 +110,7 @@ pipeline {
                         variable: 'VAULT_PASS_TEXT'
                     )
                 ]) {
-                    ansiColor('xterm') 
+                    // ansiColor('xterm') 
                     {
                         sh '''
                         # Write a password ao temp file
