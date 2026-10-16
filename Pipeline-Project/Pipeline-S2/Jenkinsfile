@@ -96,7 +96,7 @@ pipeline {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
                 sh '''
-                    set -x
+                    set +x
                     echo "=== Repository Info ==="
                     git log -1 --format="%h %an %s"
                     echo "Branch: $(git branch --show-current)"
@@ -128,6 +128,11 @@ pipeline {
                             -i inv.ini \
                             -l "${CHOOSE_ENVIRONMENT}" \
                             "${CHOOSE_PLAYBOOK}" \
+                            "${TAGS}" \
+                            "${SKIP_TAGS}" \
+                            "${LIMIT}" \
+                            "${DRY_RUN}" \
+                            "${VERBOSE}" \
                             --vault-password-file $TEMP_PASS
                         
                         # Cleanup temp file
