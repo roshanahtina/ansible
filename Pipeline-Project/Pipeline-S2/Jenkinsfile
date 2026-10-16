@@ -19,12 +19,12 @@ pipeline {
     // ── Options ──────────────────────────────────────────────────
     parameters {
         choice (
-            name: 'CHOOSE_ENVIRONMENT',
-            choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster', 'localhost', 'all'],
+            name: 'ENVIRONMENT',
+            choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster'],
             description: 'Target deployment environment'
         )
         string(
-            name: 'CHOOSE_PLAYBOOK',
+            name: 'PLAYBOOK',
             defaultValue: 'ping.yml',
             description: 'Ansible playbook to run'
         )
@@ -78,17 +78,7 @@ pipeline {
 
     stages {
 
-        stage ('Deleted open files') {
-            steps {
-                sh '''
-                    set +x
-                    sudo ls -ltrh /proc/*/fd/* 2>/dev/null | grep "(deleted)" \
-                    || echo "===No deleted open files found==="
-                    sudo lsof +L1 || echo "===Command not found==="
-                '''
-            }
-        }
-
+        // ── STAGE 1: Checkout ─────────────────────────────────────
         stage ('Git Checkout') {
             steps {
                 ansiColor('xterm')
@@ -106,6 +96,31 @@ pipeline {
             }
         }
 
+        // ── STAGE 2: Validate Environment ────────────────────────
+        stage('Validate Environment') {
+            steps {
+                sh '''
+                    echo "=== Ansible Environment ==="
+                    ansible --version
+
+                    echo ""
+                    echo "=== Config File Being Used ==="
+                    ansible --version | grep "config file"
+
+                    echo ""
+                    echo "=== Python Version ==="
+                    python3 --version
+
+                    echo ""
+                    echo "=== Inventory Check ==="
+                    ls -la inv.ini/ || echo "No inventory directory"
+                    ls -la inventory/${ENVIRONMENT}/ 2>/dev/null || \
+                        echo "No ${ENVIRONMENT} inventory"
+                '''
+            }
+        }
+
+        // ── STAGE 3: Validate Vault Access ───────────────────────
         stage ('Ansible Playbook') {
             steps {
                 withCredentials([
@@ -126,10 +141,8 @@ pipeline {
                         # Run Palybook
                         ansible-playbook \
                             -i inv.ini \
-                            -l "$CHOOSE_ENVIRONMENT" \
-                            "$CHOOSE_PLAYBOOK" \
-                            "$( [ "$DRY_RUN" == "true" ] && echo "--check" )" \
-                            "$( [ "$VERBOSE" = "true" ] && echo "-vvv" )" \
+                            -l "${ENVIRONMENT}" \
+                            "${PLAYBOOK}" \
                             --vault-password-file $TEMP_PASS
                         
                         # Cleanup temp file
