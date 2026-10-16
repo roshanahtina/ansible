@@ -124,13 +124,10 @@ pipeline {
                         chmod 600 $TEMP_PASS
 
                         # Run Palybook
-                        echo ansible-playbook \
+                        ansible-playbook \
                             -i inv.ini \
-                            -l "${CHOOSE_ENVIRONMENT}" \
-                            "${CHOOSE_PLAYBOOK}" \
-                            "$TAGS" \
-                            "$SKIP_TAGS" \
-                            "$LIMIT" \
+                            -l "$CHOOSE_ENVIRONMENT" \
+                            "$CHOOSE_PLAYBOOK" \
                             "$( [ "$DRY_RUN" == "true" ] && echo "--check" )" \
                             "$( [ "$VERBOSE" = "true" ] && echo "-vvv" )" \
                             --vault-password-file $TEMP_PASS
