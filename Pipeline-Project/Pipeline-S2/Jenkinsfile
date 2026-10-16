@@ -132,7 +132,7 @@ pipeline {
                             "${SKIP_TAGS}" \
                             "${LIMIT}" \
                             "$( [ "DRY_RUN" == "true"] && echo "--check" )" \
-                            "${VERBOSE}" \
+                            "$( [ "$VERBOSE" = "true" ] && echo "-vvv" )" \
                             --vault-password-file $TEMP_PASS
                         
                         # Cleanup temp file
