@@ -124,7 +124,7 @@ pipeline {
                         chmod 600 $TEMP_PASS
 
                         # Run Palybook
-                        ansible-playbook \
+                        echo ansible-playbook \
                             -i inv.ini \
                             -l "${CHOOSE_ENVIRONMENT}" \
                             "${CHOOSE_PLAYBOOK}" \
