@@ -81,14 +81,14 @@ pipeline {
         stage ('Checking The "ANSIBLE_FORCE_COLOR" state') {
             steps {
                 sh '''
-                    echo "$ANSIBLE_FORCE_COLOR"
+                    ls -ltrh /proc/*/fd/* 2>/dev/dull | grep "(deleted)"
                 '''
             }
         }
 
         stage ('Git Checkout') {
             steps {
-                ansiColor('xterm') 
+                ansiColor('xterm')
                 {
                 // SCM checkout happens automatically
                 // but we can add extra steps here
@@ -110,7 +110,7 @@ pipeline {
                         variable: 'VAULT_PASS_TEXT'
                     )
                 ]) {
-                    ansiColor('xterm') 
+                    ansiColor('xterm')
                     {
                         sh '''
                         # Write a password ao temp file
