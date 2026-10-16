@@ -78,12 +78,12 @@ pipeline {
 
     stages {
 
-        stage ('Checking The ANSIBLE_FORCE_COLOR state')
+        stage ('Checking The ANSIBLE_FORCE_COLOR state') {
             steps {
                 sh '''
                     echo "$ANSIBLE_FORCE_COLOR
                 '''
-            }
+        }
 
         stage ('Git Checkout') {
             steps {
