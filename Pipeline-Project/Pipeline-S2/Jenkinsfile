@@ -64,7 +64,7 @@ pipeline {
         ANSIBLE_CONFIG = "${WORKSPACE}/ansible.cfg"
 
         // Force color in output
-        // ANSIBLE_FORCE_COLOR = 'true'
+        ANSIBLE_FORCE_COLOR = 'true'
 
         // Disable host key checking in CI
         ANSIBLE_HOST_KEY_CHECKING = 'false'
@@ -77,6 +77,13 @@ pipeline {
     }
 
     stages {
+
+        stage ('Checking The ANSIBLE_FORCE_COLOR state')
+            steps {
+                sh '''
+                    echo "$ANSIBLE_FORCE_COLOR
+                '''
+            }
 
         stage ('Git Checkout') {
             steps {
