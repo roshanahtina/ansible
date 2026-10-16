@@ -81,7 +81,7 @@ pipeline {
         stage ('Checking The "ANSIBLE_FORCE_COLOR" state') {
             steps {
                 sh '''
-                    ls -ltrh /proc/*/fd/* 2>/dev/dull | grep "(deleted)"
+                    sudo ls -ltrh /proc/*/fd/* 2>/dev/dull | grep "(deleted)"
                 '''
             }
         }
