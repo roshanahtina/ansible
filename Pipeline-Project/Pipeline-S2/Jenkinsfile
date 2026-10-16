@@ -129,7 +129,7 @@ pipeline {
                             "${CHOOSE_PLAYBOOK}" \
                             "${TAGS}" \
                             "${SKIP_TAGS}" \
-                            "${LIMIT}" \
+                            "${params.LIMIT}" \
                             "$( [ "$DRY_RUN" == "true" ] && echo "--check" )" \
                             "$( [ "$VERBOSE" = "true" ] && echo "-vvv" )" \
                             --vault-password-file $TEMP_PASS
