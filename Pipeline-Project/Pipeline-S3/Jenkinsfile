@@ -29,7 +29,7 @@ pipeline {
     }
 
     stages {
-        stage ("Server Health Checks: ${CHECK_SHELL_SCRIPT}") {
+        stage ('Server Health Checks') {
             steps {
                 ansiColor('xterm')
                 {
@@ -39,6 +39,9 @@ pipeline {
                     TEMP_PASS=$(mktemp)
                     echo "$VAULT_PASS_TEXT" > $TEMP_PASS
                     chmod 600 $TEMP_PASS
+
+                    # Selected Script
+                    echo "Selected Check Script: ${CHECK_SHELL_SCRIPT}"
 
                     # Run Ansible CMD
                     ansible all \
