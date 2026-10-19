@@ -89,7 +89,7 @@ pipeline {
                     if (params.MEMORY_CHECK) {
                         stage ('MEMORY_CHECK') {
                             sh '''
-                            chmod +x Pipeline-Project/Pipeline-S2/mem_check.sh
+                            chmod +x Pipeline-Project/Pipeline-S3/mem_check.sh
                             ./Pipeline-Project/Pipeline-S3/mem_check.sh
                             '''
                         }
@@ -97,7 +97,7 @@ pipeline {
                     if (params.LOAD_CHECK) {
                         stage ('LOAD_CHECK') {
                             sh '''
-                            chmod +x Pipeline-Project/Pipeline-S2/load_check.sh
+                            chmod +x Pipeline-Project/Pipeline-S3/load_check.sh
                             ./Pipeline-Project/Pipeline-S3/load_check.sh
                             '''
                         }
