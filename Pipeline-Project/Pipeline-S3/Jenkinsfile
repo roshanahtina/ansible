@@ -22,14 +22,14 @@ pipeline {
             description: 'Ansible module to run'
         )
         choice (
-            name: 'SHELL_SCRIPT',
+            name: 'CHECK_SHELL_SCRIPT',
             choices: ['mem_check.sh', 'load_check.sh', 'disk_check.sh', 'process_check.sh', 'network_check.sh'],
             description: 'Ansible module to run'
         )
     }
 
     stages {
-        stage ('Checking The Server Health Checks: "${SHELL_SCRIPT}"') {
+        stage ("Server Health Checks: ${CHECK_SHELL_SCRIPT}") {
             steps {
                 ansiColor('xterm')
                 {
@@ -45,7 +45,7 @@ pipeline {
                         -i inv.ini \
                         -l "${ENVIRONMENT}" \
                         -m "${ANSIBLE_MODULE}" \
-                        -a "Pipeline-Project/Pipeline-S3/${SHELL_SCRIPT}" \
+                        -a "Pipeline-Project/Pipeline-S3/${CHECK_SHELL_SCRIPT}" \
                         -b -o \
                         --vault-password-file $TEMP_PASS
                     
