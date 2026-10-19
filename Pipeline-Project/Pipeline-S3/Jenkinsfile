@@ -91,7 +91,7 @@ pipeline {
                             sh """
                             set -x
                             chmod +x Pipeline-Project/Pipeline-S3/mem_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/mem_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/mem_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
                             """
                         }
                     }
@@ -100,7 +100,7 @@ pipeline {
                             sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/load_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/load_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/load_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
                             """
                         }
                     }
@@ -109,7 +109,7 @@ pipeline {
                             sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/disk_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/disk_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/disk_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
                             """
                         }
                     }
@@ -118,7 +118,7 @@ pipeline {
                             sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/network_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/network_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/network_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
                             """
                         }
                     }
@@ -127,7 +127,7 @@ pipeline {
                             sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/process_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/process_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/process_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
                             """
                         }
                     }
