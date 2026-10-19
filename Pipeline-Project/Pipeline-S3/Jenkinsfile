@@ -18,12 +18,12 @@ pipeline {
         )
         choise (
             name: 'ANSIBLE_MODULE',
-            defaultValue: ['mem_check.sh', 'load_check.sh', 'disk_check.sh', 'process_check.sh' 'network_check.sh'],
+            defaultValue: ['shell', 'command'],
             description: 'Ansible module to run'
         )
         choise (
             name: 'SHELL_SCRIPT',
-            defaultValue: ['mem_check.sh', 'load_check.sh', 'disk_check.sh', 'process_check.sh' 'network_check.sh'],
+            defaultValue: ['mem_check.sh', 'load_check.sh', 'disk_check.sh', 'process_check.sh', 'network_check.sh'],
             description: 'Ansible module to run'
         )
     }
