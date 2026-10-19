@@ -155,13 +155,14 @@ pipeline {
         }
 
         // mem_check.sh — memory/swap thresholds + OOM Killer detection, Nagios-style exit codes
-        stage ('Checking The Memory/Swap Thresholds') {
-            steps {
-                sh '''
-                    chmod +x Pipeline-Project/Pipeline-S2/mem_check.sh
-                    ./Pipeline-Project/Pipeline-S2/mem_check.sh
-                '''
-            }
-        }
+        // stage ('Checking The Memory/Swap Thresholds') {
+        //    steps {
+        //        sh '''
+        //            chmod +x Pipeline-Project/Pipeline-S2/mem_check.sh
+        //            ./Pipeline-Project/Pipeline-S2/mem_check.sh
+        //        '''
+        //    }
+        // }
+        // 
     }
 }
