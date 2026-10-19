@@ -28,7 +28,7 @@ pipeline {
         )
     }
 
-    stages {
+    stages ('Checking The Server Health Checks: "${SHELL_SCRIPT}"') {
         stage {
             steps {
                 ansiColor('xterm')
