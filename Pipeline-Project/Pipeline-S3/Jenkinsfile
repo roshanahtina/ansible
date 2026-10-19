@@ -24,7 +24,32 @@ pipeline {
         choice (
             name: 'CHECK_SHELL_SCRIPT',
             choices: ['mem_check.sh', 'load_check.sh', 'disk_check.sh', 'process_check.sh', 'network_check.sh'],
-            description: 'Ansible module to run'
+            description: 'Ansible script to execute'
+        )
+        booleanParam (
+        name: 'MEMORY_CHECK',
+        defaultValue: false
+        description: 'Check health — MEMORY_CHECK'
+        )
+        booleanParam (
+        name: 'LOAD_CHECK',
+        defaultValue: false
+        description: 'Check health — LOAD_CHECK'
+        )
+        booleanParam (
+        name: 'DISK_CHECK',
+        defaultValue: false
+        description: 'Check health — DISK_CHECK'
+        )
+        booleanParam (
+        name: 'NETWORK_CHECK',
+        defaultValue: false
+        description: 'Check health — NETWORK_CHECK'
+        )
+        booleanParam (
+        name: 'PROCESS_CHECK',
+        defaultValue: false
+        description: 'Check health — PROCESS_CHECK'
         )
     }
 
@@ -41,7 +66,7 @@ pipeline {
                     chmod 600 $TEMP_PASS
 
                     # Selected Script
-                    echo "Selected Check Script: Pipeline-Project/Pipeline-S3/${CHECK_SHELL_SCRIPT}"
+                    # echo "Selected Check Script: Pipeline-Project/Pipeline-S3/${CHECK_SHELL_SCRIPT}"
 
                     # Run Ansible CMD
                     ansible all \
@@ -55,6 +80,26 @@ pipeline {
                     # Cleanup temp file
                     rm -f $TEMP_PASS
                 '''
+                }
+            }
+        }
+        stage ('Server Health Checks - Chosen') {
+            steps {
+                script {
+                    if (params.MEMORY_CHECK) {
+                        stage ('MEMORY_CHECK') {
+                            sh '''
+                            ./Pipeline-Project/Pipeline-S3/mem_check.sh
+                            '''
+                        }
+                    }
+                    if (params.LOAD_CHECK) {
+                        stage ('LOAD_CHECK') {
+                            sh '''
+                            ./Pipeline-Project/Pipeline-S3/load_check.sh
+                            '''
+                        }
+                    }
                 }
             }
         }
