@@ -40,8 +40,8 @@ pipeline {
                     echo "$VAULT_PASS_TEXT" > $TEMP_PASS
                     chmod 600 $TEMP_PASS
                 
-                    # Run Palybook
-                    ansible-playbook \
+                    # Run Ansible CMD
+                    ansible all \
                         -i inv.ini \
                         -l "${ENVIRONMENT}" \
                         -m "${ANSIBLE_MODULE}" \
