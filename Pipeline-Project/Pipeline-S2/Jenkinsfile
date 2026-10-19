@@ -158,6 +158,8 @@ pipeline {
         stage ('Checking The Memory/Swap Thresholds') {
             steps {
                 sh '''
+                    pwd
+                    find . -name "mem_check.sh"
                     chmod +x mem_check.sh
                     ./mem_check.sh
                 '''
