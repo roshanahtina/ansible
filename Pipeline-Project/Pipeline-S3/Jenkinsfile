@@ -28,28 +28,28 @@ pipeline {
         )
         booleanParam (
         name: 'MEMORY_CHECK',
-        defaultValue: false
-        description: 'Check health of MEMORY_CHECK'
+        defaultValue: false,
+        description: 'Check health — MEMORY_CHECK'
         )
         booleanParam (
         name: 'LOAD_CHECK',
-        defaultValue: false
-        description: 'Check health of LOAD_CHECK'
+        defaultValue: false,
+        description: 'Check health — LOAD_CHECK'
         )
         booleanParam (
         name: 'DISK_CHECK',
-        defaultValue: false
-        description: 'Check health of DISK_CHECK'
+        defaultValue: false,
+        description: 'Check health — DISK_CHECK'
         )
         booleanParam (
         name: 'NETWORK_CHECK',
-        defaultValue: false
-        description: 'Check health of NETWORK_CHECK'
+        defaultValue: false,
+        description: 'Check health — NETWORK_CHECK'
         )
         booleanParam (
         name: 'PROCESS_CHECK',
-        defaultValue: false
-        description: 'Check health of PROCESS_CHECK'
+        defaultValue: false,
+        description: 'Check health — PROCESS_CHECK'
         )
     }
 
