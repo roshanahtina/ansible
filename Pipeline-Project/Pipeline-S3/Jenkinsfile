@@ -84,28 +84,28 @@ pipeline {
         stage ('Server Health Checks - Chosen') {
             steps {
                 script {
-                    def ansibleCmd = '''
+                    def ansibleCmd = "
                         ansible all \
                             -i inv.ini \
                             -l "${params.ENVIRONMENT}" \
                             -m script
-                        '''
+                        "
                     if (params.MEMORY_CHECK) {
                         stage ('MEMORY_CHECK') {
-                            sh '''
+                            sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/mem_check.sh
                             ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/mem_check.sh"
-                            '''
+                            """
                         }
                     }
                     if (params.LOAD_CHECK) {
                         stage ('LOAD_CHECK') {
-                            sh '''
+                            sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/load_check.sh
                             ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/load_check.sh"
-                            '''
+                            """
                         }
                     }
                     if (params.DISK_CHECK) {
