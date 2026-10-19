@@ -46,6 +46,7 @@ pipeline {
                         -l "${ENVIRONMENT}" \
                         -m "${ANSIBLE_MODULE}" \
                         -a "Pipeline-Project/Pipeline-S3/${SHELL_SCRIPT}" \
+                        -b -o \
                         --vault-password-file $TEMP_PASS
                     
                     # Cleanup temp file
