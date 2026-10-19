@@ -11,17 +11,17 @@ pipeline {
 
     // ── Options ──────────────────────────────────────────────────
     parameters {
-        choise (
+        choice (
             name: 'ENVIRONMENT',
             choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster'],
             description: 'Target deployment environment'
         )
-        choise (
+        choice (
             name: 'ANSIBLE_MODULE',
             defaultValue: ['shell', 'command'],
             description: 'Ansible module to run'
         )
-        choise (
+        choice (
             name: 'SHELL_SCRIPT',
             defaultValue: ['mem_check.sh', 'load_check.sh', 'disk_check.sh', 'process_check.sh', 'network_check.sh'],
             description: 'Ansible module to run'
