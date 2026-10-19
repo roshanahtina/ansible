@@ -84,7 +84,7 @@ pipeline {
         stage ('Server Health Checks - Chosen') {
             steps {
                 script {
-                    def ansibleCmd = "ansible all -i inv.ini -l "${params.ENVIRONMENT}" -m script"
+                    def ansibleCmd = "ansible all -i inv.ini -l ${params.ENVIRONMENT} -m script"
                         
                     if (params.MEMORY_CHECK) {
                         stage ('MEMORY_CHECK') {
