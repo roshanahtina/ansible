@@ -100,35 +100,35 @@ pipeline {
                             sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/load_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/load_check.sh"
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/load_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
                             """
                         }
                     }
                     if (params.DISK_CHECK) {
                         stage ('DISK_CHECK') {
-                            sh '''
+                            sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/disk_check.sh
-                            ./Pipeline-Project/Pipeline-S3/disk_check.sh
-                            '''
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/disk_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            """
                         }
                     }
                     if (params.NETWORK_CHECK) {
                         stage ('NETWORK_CHECK') {
-                            sh '''
+                            sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/network_check.sh
-                            ./Pipeline-Project/Pipeline-S3/network_check.sh
-                            '''
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/network_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            """
                         }
                     }
                     if (params.PROCESS_CHECK) {
                         stage ('PROCESS_CHECK') {
-                            sh '''
+                            sh """
                             set +x
                             chmod +x Pipeline-Project/Pipeline-S3/process_check.sh
-                            ./Pipeline-Project/Pipeline-S3/process_check.sh
-                            '''
+                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/process_check.sh" -b --vault-password-file ${params.VAULT_PASS_TEXT}
+                            """
                         }
                     }
                 }
