@@ -11,14 +11,7 @@
       when: memory_check | bool
     - name: Show Memory Result
       debug:
-        msg: |
-          ==========================================
-          MEMORY HEALTH CHECK
-          ==========================================
-          Host: {{ inventory_hostname }}
-          ==========================================
-          {{ mem_result.stdout }}
-          ==========================================
+        msg: "{{ mem_result.stdout }}"
       when: memory_check | bool
 
     - name: Load Check
