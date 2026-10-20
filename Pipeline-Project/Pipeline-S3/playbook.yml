@@ -6,7 +6,7 @@
   tasks:
 
     - name: Memory Check
-      script: Pipeline-Project/Pipeline-S3/mem_check.sh
+      script: mem_check.sh
       register: mem_result
       when: memory_check | bool
     - name: Show Memory Result
@@ -15,7 +15,7 @@
       when: memory_check | bool
 
     - name: Load Check
-      script: Pipeline-Project/Pipeline-S3/load_check.sh
+      script: load_check.sh
       register: load_result
       when: load_check | bool
     - name: Show Load Result
@@ -24,7 +24,7 @@
       when: load_check | bool
 
     - name: Disk Check
-      script: Pipeline-Project/Pipeline-S3/disk_check.sh
+      script: disk_check.sh
       register: disk_result
       when: disk_check | bool
     - name: Show Disk Result
@@ -33,7 +33,7 @@
       when: disk_check | bool
 
     - name: Network Check
-      script: Pipeline-Project/Pipeline-S3/network_check.sh
+      script: network_check.sh
       register: network_result
       when: network_check | bool
     - name: Show Network Result
@@ -42,7 +42,7 @@
       when: network_check | bool
 
     - name: Process Check
-      script: Pipeline-Project/Pipeline-S3/process_check.sh
+      script: process_check.sh
       register: process_result
       when: process_check | bool
     - name: Show Process Result
