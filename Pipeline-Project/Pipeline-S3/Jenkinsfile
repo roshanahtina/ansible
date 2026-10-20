@@ -54,7 +54,7 @@ pipeline {
         booleanParam (
         name: 'ALL_CHECKS',
         defaultValue: false,
-        description: 'Run ALL checks (overrides the individual boxes'
+        description: 'Run ALL checks (overrides the individual boxes)'
         )
     }
 
@@ -74,7 +74,7 @@ pipeline {
                         NETWORK_CHECK=true
                         PROCESS_CHECK=true
                     fi
-    
+
                     # Fail fast if nothing is selected
                     if [ "${MEMORY_CHECK}${LOAD_CHECK}${DISK_CHECK}${NETWORK_CHECK}${PROCESS_CHECK}" = "falsefalsefalsefalsefalse" ]; then
                         echo "No checks selected. Tick ALL_CHECKS or at least one check."
