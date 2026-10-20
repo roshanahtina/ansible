@@ -109,6 +109,18 @@ pipeline {
                     if (params.LOAD_CHECK) {
                         runScript ('load_check.sh')
                     }
+
+                    if (params.DISK_CHECK) {
+                        runScript ('disk_check.sh')
+                    }
+
+                    if (params.NETWORK_CHECK) {
+                        runScript ('network_check.sh')
+                    }
+
+                    if (params.PROCESS_CHECK) {
+                        runScript ('process_check.sh')
+                    }
                         
                     //if (params.MEMORY_CHECK) {
                     //    stage ('MEMORY_CHECK') {
