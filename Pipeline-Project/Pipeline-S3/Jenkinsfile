@@ -51,6 +51,11 @@ pipeline {
         defaultValue: false,
         description: 'Check health — PROCESS_CHECK'
         )
+        booleanParam (
+        name: 'ALL_CHECKS',
+        defaultValue: false,
+        description: 'Run ALL checks (overrides the individual boxes'
+        )
     }
 
     stages {
@@ -61,6 +66,21 @@ pipeline {
                 sh '''
                     set +x
                     
+                    # ALL_CHECKS overrides the individual boxes
+                    if [ "${ALL_CHECKS}" = "true" ]; then
+                        MEMORY_CHECK=true
+                        LOAD_CHECK=true
+                        DISK_CHECK=true
+                        NETWORK_CHECK=true
+                        PROCESS_CHECK=true
+                    fi
+    
+                    # Fail fast if nothing is selected
+                    if [ "${MEMORY_CHECK}${LOAD_CHECK}${DISK_CHECK}${NETWORK_CHECK}${PROCESS_CHECK}" = "falsefalsefalsefalsefalse" ]; then
+                        echo "No checks selected. Tick ALL_CHECKS or at least one check."
+                        exit 1
+                    fi
+
                     # Write a password ao temp file
                     TEMP_PASS=$(mktemp)
                     echo "$VAULT_PASS_TEXT" > "$TEMP_PASS"
