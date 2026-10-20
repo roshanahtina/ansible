@@ -37,7 +37,7 @@
       when: disk_check | bool
     - name: Show Disk Result
       debug:
-        msg: "{{ disk_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
+        msg: "{{ disk_result.stdout_lines | map('trim') | select | list }}"
       when: disk_check | bool
 
     - name: Network Check
