@@ -86,8 +86,7 @@ pipeline {
                 script {
                     def ansibleBase = "ansible all -i inv.ini -l ${params.ENVIRONMENT} -m script"
                     def runScript = { scriptName -> 
-                        def output = sh(
-                            script: """
+                        sh """
                         # Write a password ao temp file
                         TEMP_PASS=\$(mktemp)
                         echo "\$VAULT_PASS_TEXT" > \$TEMP_PASS
@@ -100,18 +99,6 @@ pipeline {
 
                         # Cleanup temp file
                         rm -f \$TEMP_PASS
-                        """,
-                            returnStdout: true
-                        ).trim()
-
-                            echo """
-                        ========================================
-                        Health Check: ${scriptName}
-                        ========================================
-                        
-                        ${output}
-                        
-                        ========================================
                         """
                     }
 
