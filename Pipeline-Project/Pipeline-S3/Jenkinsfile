@@ -86,7 +86,7 @@ pipeline {
                 script {
                     def ansibleBase = "ansible all -i inv.ini -l ${params.ENVIRONMENT} -m script"
                     def runScript = { scriptName -> 
-                        def output = sh (
+                        def output = sh(
                             """
                         # Write a password ao temp file
                         TEMP_PASS=\$(mktemp)
