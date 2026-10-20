@@ -66,19 +66,42 @@ pipeline {
                 sh '''
                     set +x
                     
-                    # ALL_CHECKS overrides the individual boxes
-                    if [ "${ALL_CHECKS}" = "true" ]; then
-                        MEMORY_CHECK=true
-                        LOAD_CHECK=true
-                        DISK_CHECK=true
-                        NETWORK_CHECK=true
-                        PROCESS_CHECK=true
+                    # # ALL_CHECKS overrides the individual boxes
+                    # if [ "${ALL_CHECKS}" = "true" ]; then
+                    #     MEMORY_CHECK=true
+                    #     LOAD_CHECK=true
+                    #     DISK_CHECK=true
+                    #     NETWORK_CHECK=true
+                    #     PROCESS_CHECK=true
+                    # fi
+
+                    # # Fail fast if nothing is selected
+                    # if [ "${MEMORY_CHECK}${LOAD_CHECK}${DISK_CHECK}${NETWORK_CHECK}${PROCESS_CHECK}" = "falsefalsefalsefalsefalse" ]; then
+                    #     echo "No checks selected. Tick ALL_CHECKS or at least one check."
+                    #     exit 1
+                    # fi
+
+                    # --- Validate selection ---
+                    INDIVIDUAL_SELECTED=0
+                    for v in "${MEMORY_CHECK}" "${LOAD_CHECK}" "${DISK_CHECK}" "${NETWORK_CHECK}" "${PROCESS_CHECK}"; do
+                        [ "$v" = "true" ] && INDIVIDUAL_SELECTED=$((INDIVIDUAL_SELECTED + 1))
+                    done
+
+                    if [ "${ALL_CHECKS}" = "true" ] && [ "$INDIVIDUAL_SELECTED" -gt 0 ]; then
+                        echo "ERROR: ALL_CHECKS cannot be combined with individual checks ($INDIVIDUAL_SELECTED selected)."
+                        echo "Tick ALL_CHECKS on its own, or untick it and choose individual checks."
+                        exit 1
                     fi
 
-                    # Fail fast if nothing is selected
-                    if [ "${MEMORY_CHECK}${LOAD_CHECK}${DISK_CHECK}${NETWORK_CHECK}${PROCESS_CHECK}" = "falsefalsefalsefalsefalse" ]; then
-                        echo "No checks selected. Tick ALL_CHECKS or at least one check."
+                    if [ "${ALL_CHECKS}" != "true" ] && [ "$INDIVIDUAL_SELECTED" -eq 0 ]; then
+                        echo "ERROR: No checks selected. Tick ALL_CHECKS or at least one individual check."
                         exit 1
+                    fi
+
+                    # ALL_CHECKS alone: enable every check
+                    if [ "${ALL_CHECKS}" = "true" ]; then
+                        MEMORY_CHECK=true; LOAD_CHECK=true; DISK_CHECK=true
+                        NETWORK_CHECK=true; PROCESS_CHECK=true
                     fi
 
                     # Write a password ao temp file
