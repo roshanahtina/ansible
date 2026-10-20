@@ -6,9 +6,9 @@
   tasks:
 
     - name: Memory Check
-        script: Pipeline-Project/Pipeline-S3/mem_check.sh
-        register: mem_result
-        when: memory_check | bool
+      script: Pipeline-Project/Pipeline-S3/mem_check.sh
+      register: mem_result
+      when: memory_check | bool
     - name: Show Memory Result
       debug:
         msg: "{{ mem_result.stdout }}"
