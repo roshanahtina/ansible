@@ -47,6 +47,8 @@ done
 
 EXCLUDE_FSTYPES="tmpfs|devtmpfs|overlay|squashfs|proc|sysfs|cgroup|cgroup2|devpts|mqueue|tracefs|debugfs"
 
+is_num() { [[ ${1:-} =~ ^[0-9]+$ ]]; }
+
 worst_exit=0
 echo "--- Filesystem space & inode usage ---"
 
