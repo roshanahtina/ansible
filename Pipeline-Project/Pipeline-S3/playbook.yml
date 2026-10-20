@@ -38,7 +38,7 @@
       when: network_check | bool
     - name: Show Network Result
       debug:
-        msg: "{{ network_result.stdout_lines | select('match', '\\S') | join('\n') }}"
+        msg: "{{ network_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
       when: network_check | bool
 
     - name: Process Check
