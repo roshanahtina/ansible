@@ -11,7 +11,7 @@
       when: memory_check | bool
     - name: Show Memory Result
       debug:
-        msg: "{{ mem_result.stdout_lines }}"
+        msg: "{{ mem_result.stdout_lines | select('match', '\S') | join('\n') }}"
       when: memory_check | bool
 
     - name: Load Check
@@ -20,7 +20,7 @@
       when: load_check | bool
     - name: Show Load Result
       debug:
-        msg: "{{ load_result.stdout_lines }}"
+        msg: "{{ load_result.stdout_lines | select('match', '\S') | join('\n') }}"
       when: load_check | bool
 
     - name: Disk Check
