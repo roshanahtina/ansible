@@ -11,7 +11,7 @@
       when: memory_check | bool
     - name: Show Memory Result
       debug:
-        msg: "{{ mem_result.stdout_lines | select('match', '\\S') | join('\n') }}"
+        msg: "{{ mem_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
       when: memory_check | bool
 
     - name: Load Check
@@ -20,7 +20,7 @@
       when: load_check | bool
     - name: Show Load Result
       debug:
-        msg: "{{ load_result.stdout_lines | select('match', '\\S') | join('\n') }}"
+        msg: "{{ load_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
       when: load_check | bool
 
     - name: Disk Check
@@ -29,7 +29,7 @@
       when: disk_check | bool
     - name: Show Disk Result
       debug:
-        msg: "{{ disk_result.stdout_lines | select('match', '\\S') | join('\n') }}"
+        msg: "{{ disk_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
       when: disk_check | bool
 
     - name: Network Check
@@ -47,5 +47,5 @@
       when: process_check | bool
     - name: Show Process Result
       debug:
-        msg: "{{ process_result.stdout_lines | select('match', '\\S') | join('\n') }}"
+        msg: "{{ process_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
       when: process_check | bool
