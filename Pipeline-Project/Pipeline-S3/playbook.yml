@@ -55,5 +55,5 @@
       when: process_check | bool
     - name: Show Process Result
       debug:
-        msg: "{{ process_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
+        msg: "{{ process_result.stdout_lines | map('trim') | select | join('\n') }}"
       when: process_check | bool
