@@ -84,53 +84,77 @@ pipeline {
         stage ('Server Health Checks - Chosen') {
             steps {
                 script {
-                    def ansibleCmd = "ansible all -i inv.ini -l ${params.ENVIRONMENT} -m script"
-                        
+                    def ansibleBase = "ansible all -i inv.ini -l ${params.ENVIRONMENT} -m script"
+                    def runScript = { scriptName
+                        sh """
+                        # Write a password ao temp file
+                        TEMP_PASS=$(mktemp)
+                        echo "$VAULT_PASS_TEXT" > $TEMP_PASS
+                        chmod 600 $TEMP_PASS
+
+                        {ansibleBase} \
+                        -a "Pipeline-Project/Pipeline-S3/${scriptName}" \
+                        -b -o \
+                        --vault-password-file $TEMP_PASS
+
+                        # Cleanup temp file
+                        rm -f $TEMP_PASS
+                        """
+                    }
+
                     if (params.MEMORY_CHECK) {
-                        stage ('MEMORY_CHECK') {
-                            sh """
-                            set -x
-                            chmod +x Pipeline-Project/Pipeline-S3/mem_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/mem_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
-                            """
-                        }
+                        runScript('mem_check.sh')
                     }
+
                     if (params.LOAD_CHECK) {
-                        stage ('LOAD_CHECK') {
-                            sh """
-                            set +x
-                            chmod +x Pipeline-Project/Pipeline-S3/load_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/load_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
-                            """
-                        }
+                        runScript ('load_check.sh')
                     }
-                    if (params.DISK_CHECK) {
-                        stage ('DISK_CHECK') {
-                            sh """
-                            set +x
-                            chmod +x Pipeline-Project/Pipeline-S3/disk_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/disk_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
-                            """
-                        }
-                    }
-                    if (params.NETWORK_CHECK) {
-                        stage ('NETWORK_CHECK') {
-                            sh """
-                            set +x
-                            chmod +x Pipeline-Project/Pipeline-S3/network_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/network_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
-                            """
-                        }
-                    }
-                    if (params.PROCESS_CHECK) {
-                        stage ('PROCESS_CHECK') {
-                            sh """
-                            set +x
-                            chmod +x Pipeline-Project/Pipeline-S3/process_check.sh
-                            ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/process_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
-                            """
-                        }
-                    }
+                        
+                    //if (params.MEMORY_CHECK) {
+                    //    stage ('MEMORY_CHECK') {
+                    //        sh """
+                    //        set -x
+                    //        chmod +x Pipeline-Project/Pipeline-S3/mem_check.sh
+                    //        ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/mem_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
+                    //        """
+                    //    }
+                    //}
+                    //if (params.LOAD_CHECK) {
+                    //    stage ('LOAD_CHECK') {
+                    //        sh """
+                    //        set +x
+                    //        chmod +x Pipeline-Project/Pipeline-S3/load_check.sh
+                    //        ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/load_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
+                    //        """
+                    //    }
+                    //}
+                    //if (params.DISK_CHECK) {
+                    //    stage ('DISK_CHECK') {
+                    //        sh """
+                    //        set +x
+                    //        chmod +x Pipeline-Project/Pipeline-S3/disk_check.sh
+                    //        ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/disk_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
+                    //        """
+                    //    }
+                    //}
+                    //if (params.NETWORK_CHECK) {
+                    //    stage ('NETWORK_CHECK') {
+                    //        sh """
+                    //        set +x
+                    //        chmod +x Pipeline-Project/Pipeline-S3/network_check.sh
+                    //        ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/network_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
+                    //        """
+                    //    }
+                    //}
+                    //if (params.PROCESS_CHECK) {
+                    //    stage ('PROCESS_CHECK') {
+                    //        sh """
+                    //        set +x
+                    //        chmod +x Pipeline-Project/Pipeline-S3/process_check.sh
+                    //        ${ansibleCmd} -a "Pipeline-Project/Pipeline-S3/process_check.sh" -b -o --vault-password-file ${params.VAULT_PASS_TEXT}
+                    //        """
+                    //    }
+                    //}
                 }
             }
         }
