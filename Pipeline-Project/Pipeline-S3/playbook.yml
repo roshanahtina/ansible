@@ -1,0 +1,51 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: true
+
+  tasks:
+
+    - name: Memory Check
+        script: Pipeline-Project/Pipeline-S3/mem_check.sh
+        register: mem_result
+        when: memory_check | bool
+    - name: Show Memory Result
+      debug:
+        msg: "{{ mem_result.stdout }}"
+      when: memory_check | bool
+
+    - name: Load Check
+      script: Pipeline-Project/Pipeline-S3/load_check.sh
+      register: load_result
+      when: load_check | bool
+    - name: Show Load Result
+      debug:
+        msg: "{{ load_result.stdout }}"
+      when: load_check | bool
+
+    - name: Disk Check
+      script: Pipeline-Project/Pipeline-S3/disk_check.sh
+      register: disk_result
+      when: disk_check | bool
+    - name: Show Disk Result
+      debug:
+        msg: "{{ disk_result.stdout }}"
+      when: disk_check | bool
+
+    - name: Network Check
+      script: Pipeline-Project/Pipeline-S3/network_check.sh
+      register: network_result
+      when: network_check | bool
+    - name: Show Network Result
+      debug:
+        msg: "{{ network_result.stdout }}"
+      when: network_check | bool
+
+    - name: Process Check
+      script: Pipeline-Project/Pipeline-S3/process_check.sh
+      register: process_result
+      when: process_check | bool
+    - name: Show Process Result
+      debug:
+        msg: "{{ process_result.stdout }}"
+      when: process_check | bool
