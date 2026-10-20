@@ -86,20 +86,20 @@ pipeline {
                 script {
                     def ansibleBase = "ansible all -i inv.ini -l ${params.ENVIRONMENT} -m script"
                     def runScript = { scriptName
-                        sh '''
+                        sh """
                         # Write a password ao temp file
-                        TEMP_PASS=$(mktemp)
-                        echo "$VAULT_PASS_TEXT" > $TEMP_PASS
-                        chmod 600 $TEMP_PASS
+                        TEMP_PASS=\$(mktemp)
+                        echo "\$VAULT_PASS_TEXT" > \$TEMP_PASS
+                        chmod 600 \$TEMP_PASS
 
                         {ansibleBase} \
                         -a "Pipeline-Project/Pipeline-S3/${scriptName}" \
                         -b -o \
-                        --vault-password-file $TEMP_PASS
+                        --vault-password-file \$TEMP_PASS
 
                         # Cleanup temp file
-                        rm -f $TEMP_PASS
-                        '''
+                        rm -f \$TEMP_PASS
+                        """
                     }
 
                     if (params.MEMORY_CHECK) {
