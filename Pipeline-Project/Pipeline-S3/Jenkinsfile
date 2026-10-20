@@ -92,7 +92,7 @@ pipeline {
                         echo "\$VAULT_PASS_TEXT" > \$TEMP_PASS
                         chmod 600 \$TEMP_PASS
 
-                        {ansibleBase} \
+                        ${ansibleBase} \
                         -a "Pipeline-Project/Pipeline-S3/${scriptName}" \
                         -b -o \
                         --vault-password-file \$TEMP_PASS
