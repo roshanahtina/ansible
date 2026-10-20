@@ -16,7 +16,13 @@
 #   - Uses a real (not string-matched) exclusion list for filesystem types,
 #     easy to extend.
 
+# disk_check.sh - Disk space, inode & I/O latency check
+#
+# Output ends with "Overall: OK|WARNING|CRITICAL"
+# Exit codes: 0=OK, 1=WARNING, 2=CRITICAL, 3=usage error
+
 set -euo pipefail
+export LC_ALL=C
 
 SPACE_WARN_PCT=80
 SPACE_CRIT_PCT=90
@@ -49,12 +55,17 @@ while read -r fs fstype size used avail pct_space mount; do
     [[ "$fs" == "Filesystem" ]] && continue
     [[ "$fstype" =~ ^($EXCLUDE_FSTYPES)$ ]] && continue
 
-    space_pct=${pct_space%\%}
+    space_raw=${pct_space%\%}
+    inode_raw=$(df -iP "$mount" 2>/dev/null | awk 'NR==2 {print $5}')
+    inode_raw=${inode_raw%\%}
 
-    # Grab matching inode line for this mount point
-    inode_line=$(df -iP "$mount" 2>/dev/null | awk 'NR==2 {print $5}')
-    inode_pct=${inode_line%\%}
-    inode_pct=${inode_pct:-0}
+    # df prints "-" when a filesystem has no usage/inode data.
+    # Use 0 for the comparisons and "n/a" for display.
+    if is_num "$space_raw"; then space_pct=$space_raw; space_disp=$space_raw
+    else space_pct=0; space_disp="n/a"; fi
+
+    if is_num "$inode_raw"; then inode_pct=$inode_raw; inode_disp=$inode_raw
+    else inode_pct=0; inode_disp="n/a"; fi
 
     status="OK"
     ec=0
@@ -64,30 +75,45 @@ while read -r fs fstype size used avail pct_space mount; do
         status="WARNING"; ec=1
     fi
 
-    (( ec > worst_exit )) && worst_exit=$ec
+    if (( ec > worst_exit )); then worst_exit=$ec; fi
 
-    printf "%-8s %-20s space=%3d%% inodes=%3d%% mount=%s\n" "$status" "$fstype" "$space_pct" "$inode_pct" "$mount"
+    printf "%-8s %-8s space=%4s%% inodes=%4s%% mount=%s\n" \
+        "$status" "$fstype" "$space_disp" "$inode_disp" "$mount"
 done < <(df -TP)
 
 echo
-echo "--- Disk I/O latency (iostat -x, 1 sample) ---"
+echo "--- Disk I/O latency (iostat -dx, live sample) ---"
 if command -v iostat >/dev/null 2>&1; then
-    # -x extended stats, skip the first (boot-average) report with -y equivalent via tail
-    iostat -x 1 2 | awk '
-        /^Device/ {header_seen++; if (header_seen==2) show=1; next}
-        show && NF {print}
-    '
+    # 2 samples: the first is the since-boot average, so print only the second.
+    # Columns are located by header name, so it works across sysstat versions.
+    iostat -dx 1 2 | awk '
+        /^Device/ {
+            seen++
+            for (k in col) delete col[k]
+            for (i=1; i<=NF; i++) col[$i]=i
+            next
+        }
+        seen==2 && NF && $1 !~ /^(dm-|loop)/ {
+            rw = ("r_await" in col) ? $(col["r_await"]) : $(col["await"])
+            ww = ("w_await" in col) ? $(col["w_await"]) : $(col["await"])
+            printf "%-10s r_await=%-7s w_await=%-7s util=%s%%\n", $1, rw, ww, $(col["%util"])
+        }'
 else
     echo "iostat not installed (package: sysstat) - skipping I/O latency check"
 fi
 
 echo
-if (( worst_exit == 2 )); then
-    echo "Overall: CRITICAL"
-elif (( worst_exit == 1 )); then
-    echo "Overall: WARNING"
-else
-    echo "Overall: OK"
-fi
+# if (( worst_exit == 2 )); then
+#     echo "Overall: CRITICAL"
+# elif (( worst_exit == 1 )); then
+#     echo "Overall: WARNING"
+# else
+#     echo "Overall: OK"
+# fi
+case "$worst_exit" in
+    2) echo "Overall: CRITICAL" ;;
+    1) echo "Overall: WARNING"  ;;
+    *) echo "Overall: OK"       ;;
+esac
 
 exit "$worst_exit"
