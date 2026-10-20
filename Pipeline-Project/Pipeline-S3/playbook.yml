@@ -10,8 +10,12 @@
       register: mem_result
       when: memory_check | bool
     - name: Show Memory Result
+      vars:
+        raw: "{{ mem_result.stdout | trim }}"
+        state: "{{ raw.split(':')[0] }}"
+        pairs: "{{ raw.split(' | ')[0] | regex_findall('(\\w+ used|\\w+)=(\\S+)') }}"
       debug:
-        msg: "{{ mem_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
+        msg: "{{ [state ~ ' - ' ~ inventory_hostname] + (pairs | map('join', ' = ') | list) }}"
       when: memory_check | bool
 
     - name: Load Check
@@ -19,8 +23,12 @@
       register: load_result
       when: load_check | bool
     - name: Show Load Result
+      vars:
+        raw: "{{ load_result.stdout | trim }}"
+        state: "{{ raw.split(':')[0] }}"
+        pairs: "{{ raw.split(' | ')[0] | regex_findall('(\\w+ used|\\w+)=(\\S+)') }}"
       debug:
-        msg: "{{ load_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
+        msg: "{{ [state ~ ' - ' ~ inventory_hostname] + (pairs | map('join', ' = ') | list) }}"
       when: load_check | bool
 
     - name: Disk Check
