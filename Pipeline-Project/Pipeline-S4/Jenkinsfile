@@ -1,0 +1,73 @@
+pipeline {
+    agent {
+        label 'ansible-agnet'
+    }
+    // ── Environments ───────────────────────────────────────────────
+
+
+    //  ── Options ───────────────────────────────────────────────────
+    options {
+        buildDiscarder (
+            logRotator (
+                numToKeepStr: '20'
+            )
+        )
+        timeout (
+            time: '60',
+            units: 'MINUTES'
+        )
+        timestamps ()
+    }
+
+    // ── Auto environment from branch name ────────────────────────
+    environment {
+        TARGET_ENV = """${
+            switch(env.BRANCH_NAME) {
+                case 'master':        return 'production/ansimaster'
+                case 'staging':     return 'staging/dbclients'
+                case ~/prodfix\/.*/: return 'prodfix/ansimaster'
+                default:            return 'development/webclients'
+            }
+        }"""
+    }
+
+    stages {
+        stage ('Checkout & Setup') {
+            steps {
+                checkout scm
+                sh '''
+                    echo "Branch: ${BRANCH_NAME}"
+                    echo "Target Environment: ${TARGET_ENV}"
+                    ansible --version | grep "config file"
+                '''
+            }
+        }
+
+        stage ('Validate') {
+            steps {
+                withCredentials([
+                    file(
+                        credentialsId: 'ansible-vault-password',
+                        variable: 'VAULT_PASS_FILE'
+                    )
+                ]) {
+                    sh '''
+                        # Validate vault
+                        ansible-vault view \
+                            group_vars/all/vault \
+                            --vault-password-file "$VAULT_PASS_FILE" \
+                            > /dev/null && \
+                            echo "Vault OK ✅"
+
+                        # Syntax check
+                        ansible-playbook GatheringUserInfo.yml \
+                            -i "inventory/${TARGET_ENV}" \
+                            --vault-password-file "$VAULT_PASS_FILE" \
+                            --syntax-check && \
+                            echo "Syntax OK ✅"
+                    '''
+                }
+            }
+        }
+    }
+}
