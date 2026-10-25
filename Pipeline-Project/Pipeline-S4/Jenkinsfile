@@ -14,7 +14,7 @@ pipeline {
         )
         timeout (
             time: 60,
-            units: 'MINUTES'
+            unit: 'MINUTES'
         )
         timestamps ()
     }
