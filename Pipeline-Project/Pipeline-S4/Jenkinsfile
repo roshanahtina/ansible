@@ -13,7 +13,7 @@ pipeline {
             )
         )
         timeout (
-            time: '60',
+            time: 60,
             units: 'MINUTES'
         )
         timestamps ()
