@@ -42,6 +42,11 @@ pipeline {
         description: 'Check health — PROCESS_CHECK'
         )
         booleanParam (
+        name: 'RUN_ALL_CHECK',
+        defaultValue: false,
+        description: 'Check health — RUN_ALL_CHECK'
+        )
+        booleanParam (
         name: 'ALL_CHECKS',
         defaultValue: false,
         description: 'Run ALL checks (overrides the individual boxes)'
@@ -94,6 +99,7 @@ pipeline {
                         -e disk_check=${DISK_CHECK} \
                         -e network_check=${NETWORK_CHECK} \
                         -e process_check=${PROCESS_CHECK} \
+                        -e run_all_check=${RUN_ALL_CHECK} \
                         -b \
                         --vault-password-file "$TEMP_PASS"
                     

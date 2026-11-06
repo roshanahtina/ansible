@@ -57,3 +57,12 @@
       debug:
         msg: "{{ process_result.stdout_lines | map('trim') | select | list }}"
       when: process_check | bool
+
+    - name: Run All Checks
+      script: run_all.sh
+      register: run_all_result
+      when: run_all_check | bool
+    - name: Show Run All Result
+      debug:
+        msg: "{{ run_all_result.stdout_lines | map('trim') | select | list }}"
+      when: run_all_check | bool
