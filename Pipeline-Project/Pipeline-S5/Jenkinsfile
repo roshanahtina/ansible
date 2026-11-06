@@ -63,7 +63,7 @@ pipeline {
 
                     # --- Validate selection ---
                     INDIVIDUAL_SELECTED=0
-                    for v in "${MEMORY_CHECK}" "${LOAD_CHECK}" "${DISK_CHECK}" "${NETWORK_CHECK}" "${PROCESS_CHECK}"; do
+                    for v in "${MEMORY_CHECK}" "${LOAD_CHECK}" "${DISK_CHECK}" "${NETWORK_CHECK}" "${PROCESS_CHECK}" "${RUN_ALL_CHECK}"; do
                         [ "$v" = "true" ] && INDIVIDUAL_SELECTED=$((INDIVIDUAL_SELECTED + 1))
                     done
 
