@@ -1,0 +1,38 @@
+# /etc/systemd/system/sysmon.service
+# NOTE: this is a TEMPLATE. It was written to follow systemd best practice but has NOT been executed on a systemd
+# host in this project (the build sandbox has no systemd) — validate with `systemd-analyze verify` and a manual
+# `systemctl start sysmon.service` before relying on it.
+#
+# Install:   install -d /opt/sysmon && cp -r lib *.sh /opt/sysmon/
+#            cp systemd/sysmon.* /etc/systemd/system/ && systemctl daemon-reload && systemctl enable --now sysmon.timer
+[Unit]
+Description=sysmon health checks (memory, load, disk, process, network) → node_exporter textfile
+Documentation=file:///opt/sysmon/README.md
+
+[Service]
+Type=oneshot
+ExecStart=/opt/sysmon/run_all.sh --format prom --prom-file /var/lib/node_exporter/textfile/sysmon.prom --timeout 30
+
+# Monitoring exit codes are DATA (1=WARNING, 2=CRITICAL, 3=UNKNOWN), not service failures.
+# Without this, every WARNING would mark the unit "failed" and page the people watching systemd.
+SuccessExitStatus=0 1 2 3
+TimeoutStartSec=60
+
+# State (flap-suppression counters, disk growth history) must survive between runs.
+StateDirectory=sysmon
+Environment=SYSMON_STATE_DIR=/var/lib/sysmon
+
+# Needs root (or CAP_SYS_PTRACE + CAP_DAC_READ_SEARCH) to read other processes' fd counts; otherwise run as an
+# unprivileged user and accept partial fd coverage (the check logs how many processes it could see).
+User=root
+
+# Hardening: the checks only READ /proc and /sys and write one file + their state dir.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/node_exporter/textfile /var/lib/sysmon
+ProtectKernelTunables=no   # we read /proc/sys values; reading is fine, this only forbids writing
+ProtectControlGroups=no    # cgroup limits are read from /sys/fs/cgroup
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX   # outbound probes (TCP connect / DNS / TLS) need sockets
+LockPersonality=yes
