@@ -1,0 +1,59 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: true
+
+  tasks:
+
+    - name: Memory Check
+      script: mem_check.sh
+      register: mem_result
+      when: memory_check | bool
+    - name: Show Memory Result
+      vars:
+        raw: "{{ mem_result.stdout | trim }}"
+        state: "{{ raw.split(':')[0] }}"
+        pairs: "{{ raw.split(' | ')[0] | regex_findall('(\\w+ used|\\w+)=(\\S+)') }}"
+      debug:
+        msg: "{{ [state ~ ' - ' ~ inventory_hostname] + (pairs | map('join', ' = ') | list) }}"
+      when: memory_check | bool
+
+    - name: Load Check
+      script: load_check.sh
+      register: load_result
+      when: load_check | bool
+    - name: Show Load Result
+      vars:
+        raw: "{{ load_result.stdout | trim }}"
+        state: "{{ raw.split(':')[0] }}"
+        pairs: "{{ raw.split(' | ')[0] | regex_findall('(\\w+ used|\\w+)=(\\S+)') }}"
+      debug:
+        msg: "{{ [state ~ ' - ' ~ inventory_hostname] + (pairs | map('join', ' = ') | list) }}"
+      when: load_check | bool
+
+    - name: Disk Check
+      script: disk_check.sh
+      register: disk_result
+      when: disk_check | bool
+    - name: Show Disk Result
+      debug:
+        msg: "{{ disk_result.stdout_lines | map('trim') | select | list }}"
+      when: disk_check | bool
+
+    - name: Network Check
+      script: network_check.sh
+      register: network_result
+      when: network_check | bool
+    - name: Show Network Result
+      debug:
+        msg: "{{ network_result.stdout_lines | map('trim') | select | map('regex_replace', '\\s+', ' ') | list }}"
+      when: network_check | bool
+
+    - name: Process Check
+      script: process_check.sh
+      register: process_result
+      when: process_check | bool
+    - name: Show Process Result
+      debug:
+        msg: "{{ process_result.stdout_lines | map('trim') | select | list }}"
+      when: process_check | bool

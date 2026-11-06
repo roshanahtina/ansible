@@ -1,0 +1,107 @@
+pipeline {
+    agent {
+        label 'ansible-agent'
+    }
+
+    // ── Environments ───────────────────────────────────────────────
+    environment {
+        // Ansible Vault Password - Jenkins Secret Text
+        VAULT_PASS_TEXT = credentials('ansible-vault-passwd')
+    }
+
+    // ── Options ──────────────────────────────────────────────────
+    parameters {
+        choice (
+            name: 'ENVIRONMENT',
+            choices: ['ansiclients', 'dbclients', 'webclients', 'ansimaster'],
+            description: 'Target deployment environment'
+        )
+        booleanParam (
+        name: 'MEMORY_CHECK',
+        defaultValue: false,
+        description: 'Check health — MEMORY_CHECK'
+        )
+        booleanParam (
+        name: 'LOAD_CHECK',
+        defaultValue: false,
+        description: 'Check health — LOAD_CHECK'
+        )
+        booleanParam (
+        name: 'DISK_CHECK',
+        defaultValue: false,
+        description: 'Check health — DISK_CHECK'
+        )
+        booleanParam (
+        name: 'NETWORK_CHECK',
+        defaultValue: false,
+        description: 'Check health — NETWORK_CHECK'
+        )
+        booleanParam (
+        name: 'PROCESS_CHECK',
+        defaultValue: false,
+        description: 'Check health — PROCESS_CHECK'
+        )
+        booleanParam (
+        name: 'ALL_CHECKS',
+        defaultValue: false,
+        description: 'Run ALL checks (overrides the individual boxes)'
+        )
+    }
+
+    stages {
+        stage ('Server Health Checks') {
+            steps {
+                ansiColor('xterm')
+                {
+                sh '''
+                    set +x
+
+                    # --- Validate selection ---
+                    INDIVIDUAL_SELECTED=0
+                    for v in "${MEMORY_CHECK}" "${LOAD_CHECK}" "${DISK_CHECK}" "${NETWORK_CHECK}" "${PROCESS_CHECK}"; do
+                        [ "$v" = "true" ] && INDIVIDUAL_SELECTED=$((INDIVIDUAL_SELECTED + 1))
+                    done
+
+                    if [ "${ALL_CHECKS}" = "true" ] && [ "$INDIVIDUAL_SELECTED" -gt 0 ]; then
+                        echo "ERROR: ALL_CHECKS cannot be combined with individual checks ($INDIVIDUAL_SELECTED selected)."
+                        echo "Tick ALL_CHECKS on its own, or untick it and choose individual checks."
+                        exit 1
+                    fi
+
+                    if [ "${ALL_CHECKS}" != "true" ] && [ "$INDIVIDUAL_SELECTED" -eq 0 ]; then
+                        echo "ERROR: No checks selected. Tick ALL_CHECKS or at least one individual check."
+                        exit 1
+                    fi
+
+                    # ALL_CHECKS alone: enable every check
+                    if [ "${ALL_CHECKS}" = "true" ]; then
+                        MEMORY_CHECK=true; LOAD_CHECK=true; DISK_CHECK=true
+                        NETWORK_CHECK=true; PROCESS_CHECK=true
+                    fi
+
+                    # Write a password ao temp file
+                    TEMP_PASS=$(mktemp)
+                    echo "$VAULT_PASS_TEXT" > "$TEMP_PASS"
+                    chmod 600 "$TEMP_PASS"
+                    
+                    # Run Ansible Playbook
+                    ansible-playbook \
+                        -i inv.ini \
+                        -l "${ENVIRONMENT}" \
+                        Pipeline-Project/Pipeline-S3/playbook.yml \
+                        -e memory_check=${MEMORY_CHECK} \
+                        -e load_check=${LOAD_CHECK} \
+                        -e disk_check=${DISK_CHECK} \
+                        -e network_check=${NETWORK_CHECK} \
+                        -e process_check=${PROCESS_CHECK} \
+                        -b \
+                        --vault-password-file "$TEMP_PASS"
+                    
+                    # Cleanup temp file
+                    rm -f "$TEMP_PASS"
+                '''
+                }
+            }
+        }
+    }
+}
