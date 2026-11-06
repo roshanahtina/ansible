@@ -93,7 +93,7 @@ pipeline {
                     ansible-playbook \
                         -i inv.ini \
                         -l "${ENVIRONMENT}" \
-                        Pipeline-Project/Pipeline-S3/playbook.yml \
+                        Pipeline-Project/Pipeline-S5/playbook.yml \
                         -e memory_check=${MEMORY_CHECK} \
                         -e load_check=${LOAD_CHECK} \
                         -e disk_check=${DISK_CHECK} \
