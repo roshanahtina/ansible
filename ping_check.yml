@@ -1,0 +1,14 @@
+---
+- name: Execute ping check script on remote servers
+  hosts: localhost
+  gather_facts: true
+
+  tasks:
+    - name: Execute Bash ping script
+      ansible.builtin.script: scripts/ping_check.sh
+      connection: local
+      register: ping_result
+
+    - name: Display ping results
+      ansible.builtin.debug:
+        var: ping_result.stdout_lines
