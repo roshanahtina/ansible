@@ -12,7 +12,7 @@
         mode: "0755"
 
     - name: Memory Check
-      script: mem_check.sh
+      ansible.builtin.command: /opt/sysmon/mem_check.sh
       register: mem_result
       when: memory_check | bool
     - name: Show Memory Result
@@ -25,7 +25,7 @@
       when: memory_check | bool
 
     - name: Load Check
-      script: load_check.sh
+      ansible.builtin.command: /opt/sysmon/load_check.sh
       register: load_result
       when: load_check | bool
     - name: Show Load Result
@@ -38,7 +38,7 @@
       when: load_check | bool
 
     - name: Disk Check
-      script: disk_check.sh
+      ansible.builtin.command: /opt/sysmon/disk_check.sh
       register: disk_result
       when: disk_check | bool
     - name: Show Disk Result
@@ -47,7 +47,7 @@
       when: disk_check | bool
 
     - name: Network Check
-      script: network_check.sh
+      ansible.builtin.command: /opt/sysmon/network_check.sh
       register: network_result
       when: network_check | bool
     - name: Show Network Result
@@ -56,7 +56,7 @@
       when: network_check | bool
 
     - name: Process Check
-      script: process_check.sh
+      ansible.builtin.command: /opt/sysmon/process_check.sh
       register: process_result
       when: process_check | bool
     - name: Show Process Result
