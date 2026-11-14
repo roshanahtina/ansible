@@ -1,0 +1,13 @@
+# /etc/systemd/system/sysmon.timer   (template — not executed on a systemd host in this project; see sysmon.service)
+[Unit]
+Description=Run sysmon health checks every minute
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min        # measured from the END of the previous run → runs can never overlap or pile up
+RandomizedDelaySec=5        # spread load when the same timer is deployed to hundreds of hosts
+AccuracySec=1s
+Persistent=false            # a missed minute is simply skipped; replaying old samples would distort rate metrics
+
+[Install]
+WantedBy=timers.target

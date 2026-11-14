@@ -5,6 +5,12 @@
 
   tasks:
 
+    - name: Deploy sysmon (whole tree, so lib/ stays next to the scripts)
+      ansible.builtin.copy:
+        src: senior-scripts/
+        dest: /opt/sysmon/
+        mode: "0755"
+
     - name: Memory Check
       script: mem_check.sh
       register: mem_result
@@ -59,7 +65,7 @@
       when: process_check | bool
 
     - name: Run All Checks
-      script: run_all.sh
+      ansible.builtin.command: /opt/sysmon/run_all.sh --format text
       register: run_all_result
       when: run_all_check | bool
     - name: Show Run All Result
